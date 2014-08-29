@@ -1,0 +1,29 @@
+{
+  "name": "react-timeago",
+  "version": "0.0.1",
+  "description": "A simple Time-Ago component for ReactJs",
+  "main": "timeago.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/naman34/react-timeago.git"
+  },
+  "keywords": [
+    "React",
+    "ReactJS",
+    "Time",
+    "Ago",
+    "TimeAgo"
+  ],
+  "author": "Naman Goel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/naman34/react-timeago/issues"
+  },
+  "homepage": "https://github.com/naman34/react-timeago",
+  "peerDependencies": {
+    "react": "^0.11.1"
+  }
+}
