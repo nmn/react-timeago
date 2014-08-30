@@ -7,8 +7,16 @@ module.exports = React.createClass({
 
   displayName: 'Time-Ago',
 
+  getDefaultProps: function(){
+    return {
+      live: true
+    };
+  },
+
   componentDidMount: function(){
-    this.tick(true);
+    if(this.props.live) {
+      this.tick(true);
+    }
   },
 
   tick: function(refresh){
@@ -84,7 +92,7 @@ module.exports = React.createClass({
         className:this.props.className || '',
         style: this.props.style || {},
         id: this.props.id || ''
-      }, 
+      },
       content + ' ' + unit + ' ' + suffix
     );
   }

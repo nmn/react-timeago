@@ -1,6 +1,6 @@
 {
   "name": "react-timeago",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "timeago.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "ReactJS",
     "Time",
     "Ago",
-    "TimeAgo"
+    "TimeAgo",
+    "ender"
   ],
   "author": "Naman Goel",
   "license": "MIT",
