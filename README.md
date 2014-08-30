@@ -33,3 +33,7 @@ If this is not for you, please looks at the alternatives out there.
 While the code is complete and pretty stable, I welcome issues and pull requests.
 
 New features will be considered if they don't stray from the goals of the project - Keep it simple to use and don't over-complicate the configuration.
+
+## SemVer
+
+I will try my best to follow SemVer, and make React-TimeAgo completely dependable
