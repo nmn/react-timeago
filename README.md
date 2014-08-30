@@ -1,5 +1,4 @@
-React-TimeAgo
-=============
+![React-TimeAgo](http://naman.s3.amazonaws.com/react-timeago.png)
 
 A simple time-ago component for ReactJs.
 
