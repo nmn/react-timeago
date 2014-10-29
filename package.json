@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/naman34/react-timeago",
   "peerDependencies": {
-    "react": "^0.11.1"
+    "react": "0.11.0 - 0.12.9"
   }
 }
