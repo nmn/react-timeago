@@ -48,8 +48,9 @@ A function that takes three arguments:
     - 'from now'
 
 Here are some examples of what the formatter function will receive:
-'5 minutes ago' => formatter(5, 'minute', 'ago')
-'1 year from now' => formatter(1, 'year', 'from now')
+
+- '5 minutes ago' => formatter(5, 'minute', 'ago')
+- '1 year from now' => formatter(1, 'year', 'from now')
 
 The formatter function is a simple way to extend the functionality of React-Timeago to support any feature you may need from a fuzzy time display. The formatter function is expected to return a string. But it can also return any React component (or array of components) that would become the child of React-TimeAgo
 
