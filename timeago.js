@@ -8,11 +8,11 @@ module.exports = React.createClass(
   , getDefaultProps: function(){
       return { live: true
              , component: 'span'
-             , formatter: function (content, unit, suffix) {
-                 if(content !== 1){
+             , formatter: function (value, unit, suffix) {
+                 if(value !== 1){
                    unit += 's'
                  }
-                 return content + ' ' + unit + ' ' + suffix
+                 return value + ' ' + unit + ' ' + suffix
                }
              }
     }
@@ -57,29 +57,29 @@ module.exports = React.createClass(
 
       var suffix = then < now ? 'ago' : 'from now'
 
-      var content
+      var value
       var unit
 
       if(seconds < 60){
-        content = Math.round(seconds)
+        value = Math.round(seconds)
         unit = 'second'
       } else if(seconds < 60*60) {
-        content = Math.round(seconds/60)
+        value = Math.round(seconds/60)
         unit = 'minute'
       } else if(seconds < 60*60*24) {
-        content = Math.round(seconds/(60*60))
+        value = Math.round(seconds/(60*60))
         unit = 'hour'
       } else if(seconds < 60*60*24*7) {
-        content = Math.round(seconds/(60*60*24))
+        value = Math.round(seconds/(60*60*24))
         unit = 'day'
       } else if(seconds < 60*60*24*30) {
-        content = Math.round(seconds/(60*60*24*7))
+        value = Math.round(seconds/(60*60*24*7))
         unit = 'week'
       } else if(seconds < 60*60*24*365) {
-        content = Math.round(seconds/(60*60*24*30))
+        value = Math.round(seconds/(60*60*24*30))
         unit = 'month'
       } else {
-        content = Math.round(seconds/(60*60*24*365))
+        value = Math.round(seconds/(60*60*24*365))
         unit = 'year'
       }
 
@@ -89,7 +89,7 @@ module.exports = React.createClass(
       delete props.formatter
       delete props.component
 
-      return React.createElement( this.props.component, props, this.props.formatter(content, unit, suffix) )
+      return React.createElement( this.props.component, props, this.props.formatter(value, unit, suffix) )
     }
   }
 )
