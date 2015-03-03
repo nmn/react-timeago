@@ -1,0 +1,16 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "quotes": [2, "single"],
+    "eol-last": [0],
+    "no-underscore-dangle": [0],
+    "no-cond-assign" : 0,
+    "indent": [2, 2],
+    semi: [2, "never"],
+    "comma-style": [2, "first"]
+  }
+}
