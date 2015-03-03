@@ -90,7 +90,8 @@ module.exports = React.createClass({
       {
         className:this.props.className || '',
         style: this.props.style || {},
-        id: this.props.id || ''
+        id: this.props.id || '',
+        title: this.props.date
       },
       content + ' ' + unit + ' ' + suffix
     );
