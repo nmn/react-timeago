@@ -1,7 +1,7 @@
 'use strict'
 
 var React = require('react')
-Object.assign = require('react/lib/Object.assign')
+var assign = require('react/lib/Object.assign')
 
 module.exports = React.createClass(
   { displayName: 'Time-Ago'
@@ -83,7 +83,7 @@ module.exports = React.createClass(
         unit = 'year'
       }
 
-      var props = Object.assign({}, this.props)
+      var props = assign({}, this.props)
 
       delete props.date
       delete props.formatter
