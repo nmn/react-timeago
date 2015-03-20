@@ -1,6 +1,6 @@
 {
   "name": "react-timeago",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "timeago.js",
   "scripts": {
@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/naman34/react-timeago",
   "peerDependencies": {
-    "react": "^0.12.0"
+    "react": ">=0.12.0"
   }
 }
