@@ -7,6 +7,7 @@ module.exports = React.createClass(
   { displayName: 'Time-Ago'
   , getDefaultProps: function(){
       return { live: true
+             , minPeriod: 0
              , component: 'span'
              , formatter: function (value, unit, suffix) {
                  if(value !== 1){
@@ -43,7 +44,7 @@ module.exports = React.createClass(
       }
 
       if(!!period){
-        setTimeout(this.tick, period)
+        setTimeout(this.tick, Math.max(this.props.minPeriod, period));
       }
 
       if(!refresh){
