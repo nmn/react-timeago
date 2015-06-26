@@ -16,11 +16,22 @@ module.exports = React.createClass(
                }
              }
     }
+  , getInitialState: function () {
+    return {
+      timeoutId: 0
+    }
+  }
   , componentDidMount: function(){
       if(this.props.live) {
         this.tick(true)
       }
     }
+  , componentWillUnmount: function() {
+    if(this.state.timeoutId) {
+      clearTimeout(this.state.timeoutId)
+      this.state.timeoutId = undefined
+    }
+  }
   , tick: function(refresh){
       if(!this.isMounted()){
         return
@@ -43,7 +54,7 @@ module.exports = React.createClass(
       }
 
       if(!!period){
-        setTimeout(this.tick, period)
+        this.setState({'timeoutId' : setTimeout(this.tick, period)})
       }
 
       if(!refresh){
