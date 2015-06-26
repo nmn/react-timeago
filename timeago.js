@@ -5,6 +5,7 @@ var assign = require('react/lib/Object.assign')
 
 module.exports = React.createClass(
   { displayName: 'Time-Ago'
+  , timeoutId: 0
   , getDefaultProps: function(){
       return { live: true
              , component: 'span'
@@ -21,6 +22,12 @@ module.exports = React.createClass(
         this.tick(true)
       }
     }
+  , componentWillUnmount: function() {
+    if(this.timeoutId) {
+      clearTimeout(this.timeoutId);
+      this.timeoutId = undefined;
+    }
+  }
   , tick: function(refresh){
       if(!this.isMounted()){
         return
@@ -43,7 +50,7 @@ module.exports = React.createClass(
       }
 
       if(!!period){
-        setTimeout(this.tick, period)
+        this.timeoutId = setTimeout(this.tick, period)
       }
 
       if(!refresh){
