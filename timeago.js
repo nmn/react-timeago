@@ -33,14 +33,12 @@ module.exports = React.createClass(
         this.tick(true)
       }
     }
-  , componentWillReceiveProps: function(newProps){
-      if(!newProps.live && this.timeoutId){
-        clearTimeout(this.timeoutId);
-        this.timeoutId = undefined;
-      }
-    }
   , componentDidUpdate: function(lastProps){
-      if(this.props.live && !lastProps.live){
+      if(this.props.live !== lastProps.live || this.props.date !== lastProps.date){
+        if(!newProps.live && this.timeoutId){
+          clearTimeout(this.timeoutId);
+          this.timeoutId = undefined;
+        }
         this.tick()
       }
     }
@@ -86,8 +84,7 @@ module.exports = React.createClass(
 
       var suffix = then < now ? 'ago' : 'from now'
 
-      var value
-      var unit
+      var value, unit
 
       if(seconds < 60){
         value = Math.round(seconds)

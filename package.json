@@ -1,6 +1,6 @@
 {
   "name": "react-timeago",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "timeago.js",
   "scripts": {
@@ -21,9 +21,9 @@
   "author": "Naman Goel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/naman34/react-timeago/issues"
+    "url": "https://github.com/nmn/react-timeago/issues"
   },
-  "homepage": "https://github.com/naman34/react-timeago",
+  "homepage": "https://github.com/nmn/react-timeago",
   "peerDependencies": {
     "react": ">=0.12.0"
   },
