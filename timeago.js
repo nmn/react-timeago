@@ -22,6 +22,17 @@ module.exports = React.createClass(
         this.tick(true)
       }
     }
+  , componentWillReceiveProps: function(newProps){
+      if(!newProps.live && this.timeoutId){
+        clearTimeout(this.timeoutId);
+        this.timeoutId = undefined;
+      }
+    }
+  , componentDidUpdate: function(lastProps){
+      if(this.props.live && !lastProps.live){
+        this.tick()
+      }
+    }
   , componentWillUnmount: function() {
     if(this.timeoutId) {
       clearTimeout(this.timeoutId);
@@ -29,7 +40,7 @@ module.exports = React.createClass(
     }
   }
   , tick: function(refresh){
-      if(!this.isMounted()){
+      if(!this.isMounted() || !this.props.live){
         return
       }
 
@@ -96,7 +107,7 @@ module.exports = React.createClass(
       delete props.formatter
       delete props.component
 
-      return React.createElement( this.props.component, props, this.props.formatter(value, unit, suffix) )
+      return React.createElement( this.props.component, props, this.props.formatter(value, unit, suffix, then) )
     }
   }
 )
