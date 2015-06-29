@@ -17,6 +17,17 @@ module.exports = React.createClass(
                }
              }
     }
+  , propTypes:
+      { live: React.PropTypes.bool.isRequired
+      , component: React.PropTypes.onOfType([React.PropTypes.string, React.PropTypes.func]).isRequired
+      , formatter: React.PropTypes.func.isRequired
+      , date: React.PropTypes.onOfType(
+          [ React.PropTypes.string
+          , React.PropTypes.number
+          , React.PropTypes.instanceOf(Date)
+          ]
+        ).isRequired
+      }
   , componentDidMount: function(){
       if(this.props.live) {
         this.tick(true)
