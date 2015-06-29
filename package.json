@@ -1,6 +1,6 @@
 {
   "name": "react-timeago",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "timeago.js",
   "scripts": {

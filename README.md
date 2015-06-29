@@ -53,6 +53,14 @@ I recommend using the fantastic [L10ns](http://l10ns.org) for internationalizati
 ###### component (optional) (default: 'span')
 A string of ReactClass that is used to wrap the live updating string
 
+###### minPeriod (optional) (default: 0)
+The minimum number of seconds that the component should wait before updating. The component will still update if you pass new props.
+Use this if, for example, you don't want to update every second for recent times.
+
+###### maxPeriod (optional) (default: Infinity)
+The opposite of minPeriod. Use this to force dates to update more often than the default behaviour.
+For example, you can use this update a time every 5 minutes even after it is more than an hour old.
+
 ###### Anything Else? (optional)
 As of v2.0 you can pass in any props. Any props not used by React-TimeAgo will be passed down to the resulting component.
 This means that you can pass className, styles, id, title, aria-label, event handlers or anything else you want.
@@ -86,6 +94,9 @@ For any additional functionality, a formatter function should do the job. I want
 React-TimeAgo follows SemVer strictly.
 
 ## Changelog
+
+#### v2.2.0
+* FEATURE: New Props: `minPeriod` and `maxPeriod` to customize how often the Component updates.
 
 #### v2.1.1
 

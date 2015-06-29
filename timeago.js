@@ -9,6 +9,8 @@ module.exports = React.createClass(
   , getDefaultProps: function(){
       return { live: true
              , component: 'span'
+             , minPeriod: 0
+             , maxPeriod: Infinity
              , formatter: function (value, unit, suffix) {
                  if(value !== 1){
                    unit += 's'
@@ -19,6 +21,8 @@ module.exports = React.createClass(
     }
   , propTypes:
       { live: React.PropTypes.bool.isRequired
+      , minPeriod: React.PropTypes.number.isRequired
+      , maxPeriod: React.PropTypes.number.isRequired
       , component: React.PropTypes.onOfType([React.PropTypes.string, React.PropTypes.func]).isRequired
       , formatter: React.PropTypes.func.isRequired
       , date: React.PropTypes.onOfType(
@@ -68,6 +72,8 @@ module.exports = React.createClass(
       } else {
         period = 0
       }
+
+      period = Math.min(Math.max(period, this.props.minPeriod), this.prop.maxPeriod)
 
       if(!!period){
         this.timeoutId = setTimeout(this.tick, period)
