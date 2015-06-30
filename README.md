@@ -95,6 +95,9 @@ React-TimeAgo follows SemVer strictly.
 
 ## Changelog
 
+#### v2.2.1
+* Fixed the many typos introduced by me in 2.2.0. Thanks to insin for the quick PR.
+
 #### v2.2.0
 * FEATURE: New Props: `minPeriod` and `maxPeriod` to customize how often the Component updates.
 
