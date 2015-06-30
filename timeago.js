@@ -23,9 +23,9 @@ module.exports = React.createClass(
       { live: React.PropTypes.bool.isRequired
       , minPeriod: React.PropTypes.number.isRequired
       , maxPeriod: React.PropTypes.number.isRequired
-      , component: React.PropTypes.onOfType([React.PropTypes.string, React.PropTypes.func]).isRequired
+      , component: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.func]).isRequired
       , formatter: React.PropTypes.func.isRequired
-      , date: React.PropTypes.onOfType(
+      , date: React.PropTypes.oneOfType(
           [ React.PropTypes.string
           , React.PropTypes.number
           , React.PropTypes.instanceOf(Date)
