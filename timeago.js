@@ -23,9 +23,9 @@ module.exports = React.createClass(
       { live: React.PropTypes.bool.isRequired
       , minPeriod: React.PropTypes.number.isRequired
       , maxPeriod: React.PropTypes.number.isRequired
-      , component: React.PropTypes.onOfType([React.PropTypes.string, React.PropTypes.func]).isRequired
+      , component: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.func]).isRequired
       , formatter: React.PropTypes.func.isRequired
-      , date: React.PropTypes.onOfType(
+      , date: React.PropTypes.oneOfType(
           [ React.PropTypes.string
           , React.PropTypes.number
           , React.PropTypes.instanceOf(Date)
@@ -39,7 +39,7 @@ module.exports = React.createClass(
     }
   , componentDidUpdate: function(lastProps){
       if(this.props.live !== lastProps.live || this.props.date !== lastProps.date){
-        if(!newProps.live && this.timeoutId){
+        if(!this.props.live && this.timeoutId){
           clearTimeout(this.timeoutId);
           this.timeoutId = undefined;
         }
@@ -73,7 +73,7 @@ module.exports = React.createClass(
         period = 0
       }
 
-      period = Math.min(Math.max(period, this.props.minPeriod), this.prop.maxPeriod)
+      period = Math.min(Math.max(period, this.props.minPeriod), this.props.maxPeriod)
 
       if(!!period){
         this.timeoutId = setTimeout(this.tick, period)
