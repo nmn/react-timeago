@@ -36,7 +36,7 @@ A function that takes four arguments:
     - 'week'
     - 'month'
     - 'year'
-  - suffux : A string. This can be one of
+  - suffix : A string. This can be one of
     - 'ago'
     - 'from now'
   - date: The actual date you are trying to represent. Use this for a more custom format for showing your date.
