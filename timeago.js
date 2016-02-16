@@ -1,7 +1,7 @@
 'use strict'
 
 var React = require('react')
-var assign = require('react/lib/Object.assign')
+var assign = require('object-assign')
 
 module.exports = React.createClass(
   { displayName: 'Time-Ago'
