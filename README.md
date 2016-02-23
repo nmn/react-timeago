@@ -4,7 +4,7 @@ A simple time-ago component for ReactJs.
 
 ## Usage:
 
-React-timeago is a very simple component that takes a date prop and returns a span with live updating date in a time-ago format. The date will update every second for a minute, every minute for the next 5 minutes, Every 5 minutes for the hour, Every hour for a day, every day after that, and so on.
+React-timeago is a very simple component that takes a date prop and returns a span with live updating date in a time-ago format. The date will update only as often as needed. For timestamps below a minute away — every second, for timestamps up to 5 minutes away — every hour, and so on.
 
 React-TimeAgo does the minimum amount of updates necessary.
 
