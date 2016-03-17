@@ -117,6 +117,10 @@ module.exports = React.createClass(
 
       var props = assign({}, this.props)
 
+      props.title = props.title || typeof props.date === 'string'
+        ? props.date
+        : (new Date(props.date)).toISOString().substr(0, 16).replace('T', ' ')
+
       delete props.date
       delete props.formatter
       delete props.component
