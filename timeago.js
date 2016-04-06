@@ -73,7 +73,7 @@ module.exports = React.createClass(
         period = 0
       }
 
-      period = Math.min(Math.max(period, this.props.minPeriod), this.props.maxPeriod)
+      period = Math.min(Math.max(period, this.props.minPeriod * 1000), this.props.maxPeriod * 1000)
 
       if(!!period){
         this.timeoutId = setTimeout(this.tick, period)
