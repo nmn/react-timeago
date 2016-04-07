@@ -8,7 +8,7 @@
     "cpflow": "for f in `pwd`/src/*; do cp $f `pwd`/lib/$(basename $f).flow; done",
     "babel": "babel src/ --out-dir lib/",
     "example": "browserify -t babelify examples/simple/index.js -o examples/simple/bundle.js",
-    "build": "npm run build && npm run cpflow && npm run example",
+    "build": "npm run babel && npm run cpflow && npm run example",
     "prepublish": "npm run build"
   },
   "repository": {
