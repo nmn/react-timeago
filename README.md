@@ -2,6 +2,24 @@
 
 A simple time-ago component for ReactJs.
 
+## UPDATE:
+
+The newest v3.0.0 is currently in beta. The biggest changes include:
+- minPeriod and maxPeriod now accept seconds not milliseconds. This matches the documentation.
+- react-timeago now uses ES6 modules. So if you don't use ES6, your code will go from :
+```
+var TimeAgo = require('react-timeago')
+```
+to:
+```
+var TimeAgo = require('react-timeago').default
+```
+ES6 imports will obviously continue to work just fine:
+```
+import TimeAgo from 'react-timeago'
+```
+
+
 ## Usage:
 
 React-timeago is a very simple component that takes a date prop and returns a span with live updating date in a time-ago format. The date will update only as often as needed. For timestamps below a minute away — every second, for timestamps up to 5 minutes away — every hour, and so on.
