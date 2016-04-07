@@ -8,7 +8,7 @@ module.exports = React.createClass(
   , timeoutId: 0
   , getDefaultProps: function(){
       return { live: true
-             , component: 'span'
+             , component: 'time'
              , minPeriod: 0
              , maxPeriod: Infinity
              , formatter: function (value, unit, suffix) {
@@ -120,6 +120,10 @@ module.exports = React.createClass(
       props.title = props.title || typeof props.date === 'string'
         ? props.date
         : (new Date(props.date)).toISOString().substr(0, 16).replace('T', ' ')
+
+      if (props.component === 'time') {
+        props.dateTime = (new Date(props.date)).toISOString()
+      }
 
       delete props.date
       delete props.formatter
