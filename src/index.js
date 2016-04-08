@@ -42,7 +42,7 @@ type TickFn = (refresh: ?boolean) => void
 declare class TimeAgo extends Component<DefaultProps, Props, void> {
   static displayName: string;
   timeoutId: ?number;
-  isMounted: boolean;
+  isStillMounted: boolean;
   tick: TickFn;
 }
 */
@@ -85,10 +85,10 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
   };
 
   timeoutId: ?number;
-  isMounted: boolean = false;
+  isStillMounted: boolean = false;
 
   tick: TickFn = (refresh) => {
-    if (!this.isMounted || !this.props.live) {
+    if (!this.isStillMounted || !this.props.live) {
       return
     }
 
@@ -119,7 +119,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
   };
 
   componentDidMount () {
-    this.isMounted = true
+    this.isStillMounted = true
     if (this.props.live) {
       this.tick(true)
     }
@@ -135,7 +135,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
   }
 
   componentWIllUnmount () {
-    this.isMounted = false
+    this.isStillMounted = false
     if (this.timeoutId) {
       clearTimeout(this.timeoutId)
       this.timeoutId = undefined
