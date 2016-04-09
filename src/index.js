@@ -134,7 +134,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     }
   }
 
-  componentWIllUnmount () {
+  componentWillUnmount () {
     this.isStillMounted = false
     if (this.timeoutId) {
       clearTimeout(this.timeoutId)
