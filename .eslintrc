@@ -4,5 +4,8 @@
   "globals": {
     "React$Element": false,
     "ReactClass": false
+  },
+  "rules": {
+    operator-linebreak: ["error", "before"]
   }
 }

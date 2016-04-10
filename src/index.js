@@ -23,7 +23,7 @@ type Props = {
   /** A function to decide how to format the date.
    * If you use this, react-timeago is basically acting like a glorified setInterval for you.
    */
-  formatter: (value: number, unit: Unit, suffix: Suffix, date: number) => string | React$Element,
+  formatter: (value: number, unit: Unit, suffix: Suffix, epochSeconds: number) => string | React$Element,
   /** The Date to display. An actual Date object or something that can be fed to new Date */
   date: string | number | Date
 }
@@ -33,19 +33,18 @@ type DefaultProps = {
   minPeriod: number,
   maxPeriod: number,
   component: string | ReactClass | Function,
-  formatter: (value: number, unit: Unit, suffix: Suffix, date: Date) => string | React$Element
+  formatter: (value: number, unit: Unit, suffix: Suffix, epochSeconds: number) => string | React$Element
 }
 
 type TickFn = (refresh: ?boolean) => void
 
-/*
-declare class TimeAgo extends Component<DefaultProps, Props, void> {
-  static displayName: string;
-  timeoutId: ?number;
-  isStillMounted: boolean;
-  tick: TickFn;
-}
-*/
+// Just some simple constants for readability
+const MINUTE = 60
+const HOUR = MINUTE * 60
+const DAY = HOUR * 24
+const WEEK = DAY * 7
+const MONTH = DAY * 30
+const YEAR = DAY * 365
 
 export default class TimeAgo extends Component<DefaultProps, Props, void> {
 
@@ -60,7 +59,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     /** The container to render the string into. You could use a string like `span` or a custom component */
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
     /** A function to decide how to format the date.
-     * If you use this, react-timeago is basically acting like a glorified setInterval for you.
+     * If you use this, `react-timeago` is basically acting like a glorified `setInterval`.
      */
     formatter: PropTypes.func.isRequired,
     /** The Date to display. An actual Date object or something that can be fed to new Date */
@@ -92,24 +91,24 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       return
     }
 
-    let period = 1000
     const then = (new Date(this.props.date)).valueOf()
     const now = Date.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
 
-    if (seconds < 60) {
-      period = 1000
-    } else if (seconds < 60 * 60) {
-      period = 1000 * 60
-    } else if (seconds < 60 * 60 * 24) {
-      period = 1000 * 60 * 60
-    } else {
-      period = 0
-    }
+    const unboundPeriod
+      = seconds < MINUTE
+      ? 1000
+      : seconds < HOUR
+      ? 1000 * MINUTE
+      : seconds < DAY
+      ? 1000 * HOUR
+      : 0
+    const period = Math.min(
+      Math.max(unboundPeriod, this.props.minPeriod * 1000),
+      this.props.maxPeriod * 1000
+    )
 
-    period = Math.min(Math.max(period, this.props.minPeriod * 1000), this.props.maxPeriod * 1000)
-
-    if (period != null) {
+    if (period) {
       this.timeoutId = setTimeout(this.tick, period)
     }
 
@@ -146,36 +145,24 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     const then = (new Date(this.props.date)).valueOf()
     const now = Date.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
-
     const suffix = then < now ? 'ago' : 'from now'
 
-    let value, unit
+    const [value, unit]
+      = seconds < MINUTE
+      ? [Math.round(seconds), 'second']
+      : seconds < HOUR
+      ? [Math.round(seconds / MINUTE), 'minute']
+      : seconds < DAY
+      ? [Math.round(seconds / HOUR), 'hour']
+      : seconds < WEEK
+      ? [Math.round(seconds / DAY), 'day']
+      : seconds < MONTH
+      ? [Math.round(seconds / WEEK), 'week']
+      : seconds < YEAR
+      ? [Math.round(seconds / MONTH), 'month']
+      : [Math.round(seconds / YEAR), 'year']
 
-    if (seconds < 60) {
-      value = Math.round(seconds)
-      unit = 'second'
-    } else if (seconds < 60 * 60) {
-      value = Math.round(seconds / 60)
-      unit = 'minute'
-    } else if (seconds < 60 * 60 * 24) {
-      value = Math.round(seconds / (60 * 60))
-      unit = 'hour'
-    } else if (seconds < 60 * 60 * 24 * 7) {
-      value = Math.round(seconds / (60 * 60 * 24))
-      unit = 'day'
-    } else if (seconds < 60 * 60 * 24 * 30) {
-      value = Math.round(seconds / (60 * 60 * 24 * 7))
-      unit = 'week'
-    } else if (seconds < 60 * 60 * 24 * 365) {
-      value = Math.round(seconds / (60 * 60 * 24 * 30))
-      unit = 'month'
-    } else {
-      value = Math.round(seconds / (60 * 60 * 24 * 365))
-      unit = 'year'
-    }
-
-    var props = Object.assign({}, this.props)
-
+    const props = Object.assign({}, this.props)
     props.title = props.title || typeof props.date === 'string'
       ? props.date
       : (new Date(props.date)).toISOString().substr(0, 16).replace('T', ' ')

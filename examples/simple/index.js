@@ -6,7 +6,7 @@ import TimeAgo from '../../src/index'
 ReactDom.render(
   <div>
     You opened this page {' '}
-    <TimeAgo date={Date.now()}/>
+    <TimeAgo date={Date.now()} />
   </div>,
   document.getElementById('app')
 )
