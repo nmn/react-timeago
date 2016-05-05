@@ -162,7 +162,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       ? [Math.round(seconds / MONTH), 'month']
       : [Math.round(seconds / YEAR), 'year']
 
-    const props = Object.assign({}, this.props)
+    const props = {...this.props}
     props.title = props.title || typeof props.date === 'string'
       ? props.date
       : (new Date(props.date)).toISOString().substr(0, 16).replace('T', ' ')
