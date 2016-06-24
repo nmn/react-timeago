@@ -1,5 +1,5 @@
 // Korean
-const localeKR = {
+const TimeAgoLocaleKR = {
     ago:" 전",
     fromNow:" 후",
     second:"초",
@@ -18,4 +18,4 @@ const localeKR = {
     years:"년"
 }
 
-export default localeKR
+export default TimeAgoLocaleKR

@@ -1,5 +1,6 @@
 /* @flow */
 import React, {PropTypes, Component} from 'react'
+import TimeAgoLocaleKR from './localeKR'
 
 type Unit = 'second'
 | 'minute'
