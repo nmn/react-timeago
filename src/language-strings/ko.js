@@ -4,7 +4,7 @@ import type {L10nsStrings} from '../formatters/buildFormatter'
 // Korean
 const strings: L10nsStrings = {
   prefixAgo: null,
-  prefixFromNow: null,
+  refixFromNow: null,
   suffixAgo: '전',
   suffixFromNow: '후',
   seconds: '1분',
@@ -14,6 +14,8 @@ const strings: L10nsStrings = {
   hours: '약 %d시간',
   day: '하루',
   days: '%d일',
+  week: '주',
+  weeks: '%d주',
   month: '약 1개월',
   months: '%d개월',
   year: '약 1년',
