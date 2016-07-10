@@ -174,7 +174,11 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     delete props.date
     delete props.formatter
     delete props.component
-
+    // deleting other unused props
+    delete props.live
+    delete props.minPeriod
+    delete props.maxPeriod
+    
     const Komponent = this.props.component
     return (
       <Komponent {...props}>
