@@ -1,11 +1,11 @@
 {
   "name": "react-timeago",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cpflow": "for f in `pwd`/src/*; do cp $f `pwd`/lib/$(basename $f).flow; done",
+    "cpflow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\\/src\\\//\\\/lib\\\//g'`.flow; done",
     "babel": "babel src/ --out-dir lib/",
     "example": "browserify -t babelify --debug examples/simple/index.js -o examples/simple/bundle.js",
     "build": "npm run babel && npm run cpflow && npm run example",

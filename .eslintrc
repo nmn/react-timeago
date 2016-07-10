@@ -6,6 +6,7 @@
     "ReactClass": false
   },
   "rules": {
-    operator-linebreak: ["error", "before"]
+    "operator-linebreak": ["error", "before"],
+    "react/prop-types": 0
   }
 }

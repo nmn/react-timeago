@@ -1,17 +1,17 @@
 /* @flow */
-import React, {PropTypes, Component} from 'react'
+import React, {Component} from 'react'
 
-type Unit = 'second'
+export type Unit = 'second'
           | 'minute'
           | 'hour'
           | 'day'
           | 'week'
           | 'month'
           | 'year'
+export type Suffix = 'ago' | 'from now'
+export type Formatter = (value: number, unit: Unit, suffix: Suffix, epochSeconds: number) => string | React$Element<Object>
 
-type Suffix = 'ago' | 'from now'
-
-type Props = {
+export type Props = {
   /** If the component should update itself over time */
   live: boolean,
   /** minimum amount of time in seceonds between re-renders */
@@ -19,11 +19,15 @@ type Props = {
   /** Maximum time between re-renders in seconds. The component should update at least once every `x` seconds */
   maxPeriod: number,
   /** The container to render the string into. You could use a string like `span` or a custom component */
-  component: any,
+  component: string | ReactClass<any>,
+  /**
+   * A title used for setting the title attribute if a <time> HTML Element is used.
+   */
+  title?: string,
   /** A function to decide how to format the date.
    * If you use this, react-timeago is basically acting like a glorified setInterval for you.
    */
-  formatter: (value: number, unit: Unit, suffix: Suffix, epochSeconds: number) => string | React$Element,
+  formatter: Formatter,
   /** The Date to display. An actual Date object or something that can be fed to new Date */
   date: string | number | Date
 }
@@ -32,8 +36,8 @@ type DefaultProps = {
   live: boolean,
   minPeriod: number,
   maxPeriod: number,
-  component: string | ReactClass | Function,
-  formatter: (value: number, unit: Unit, suffix: Suffix, epochSeconds: number) => string | React$Element
+  component: string | ReactClass<Object> | Function,
+  formatter: Formatter
 }
 
 type TickFn = (refresh: ?boolean) => void
@@ -47,29 +51,7 @@ const MONTH = DAY * 30
 const YEAR = DAY * 365
 
 export default class TimeAgo extends Component<DefaultProps, Props, void> {
-
   static displayName = 'TimeAgo';
-  static propTypes = {
-    /** If the component should update itself over time */
-    live: PropTypes.bool.isRequired,
-    /** minimum amount of time in seceonds between re-renders */
-    minPeriod: PropTypes.number.isRequired,
-    /** Maximum time between re-renders in seconds. The component should update at least once every `x` seconds */
-    maxPeriod: PropTypes.number.isRequired,
-    /** The container to render the string into. You could use a string like `span` or a custom component */
-    component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-    /** A function to decide how to format the date.
-     * If you use this, `react-timeago` is basically acting like a glorified `setInterval`.
-     */
-    formatter: PropTypes.func.isRequired,
-    /** The Date to display. An actual Date object or something that can be fed to new Date */
-    date: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.instanceOf(Date)
-    ]).isRequired
-  };
-
   static defaultProps = {
     live: true,
     component: 'time',
@@ -141,8 +123,20 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     }
   }
 
-  render (): React$Element {
-    const then = (new Date(this.props.date)).valueOf()
+  render (): React$Element<*> {
+    /* eslint-disable no-unused-vars */
+    const {
+      date,
+      formatter,
+      component: Komponent,
+      live,
+      minPeriod,
+      maxPeriod,
+      title,
+      ...passDownProps
+    } = this.props
+    /* eslint-enable no-unused-vars */
+    const then = (new Date(date)).valueOf()
     const now = Date.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
     const suffix = then < now ? 'ago' : 'from now'
@@ -162,26 +156,17 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       ? [Math.round(seconds / MONTH), 'month']
       : [Math.round(seconds / YEAR), 'year']
 
-    const props = {...this.props}
-    props.title = props.title || typeof props.date === 'string'
-      ? props.date
-      : (new Date(props.date)).toISOString().substr(0, 16).replace('T', ' ')
+    const passDownTitle = title
+      || typeof date === 'string'
+      ? date
+      : (new Date(date)).toISOString().substr(0, 16).replace('T', ' ')
 
-    if (props.component === 'time') {
-      props.dateTime = (new Date(props.date)).toISOString()
+    if (Komponent === 'time') {
+      Object.assign(passDownProps, {dateTime: (new Date(date)).toISOString()})
     }
 
-    delete props.date
-    delete props.formatter
-    delete props.component
-    // deleting other unused props
-    delete props.live
-    delete props.minPeriod
-    delete props.maxPeriod
-    
-    const Komponent = this.props.component
     return (
-      <Komponent {...props}>
+      <Komponent {...passDownProps} title={passDownTitle}>
         {this.props.formatter(value, unit, suffix, then)}
       </Komponent>
     )
