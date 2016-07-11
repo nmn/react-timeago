@@ -162,7 +162,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       : (new Date(date)).toISOString().substr(0, 16).replace('T', ' ')
 
     if (Komponent === 'time') {
-      Object.assign(passDownProps, {dateTime: (new Date(date)).toISOString()})
+      passDownProps.dateTime = (new Date(date)).toISOString()
     }
 
     return (
