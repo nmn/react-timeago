@@ -156,10 +156,11 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       ? [Math.round(seconds / MONTH), 'month']
       : [Math.round(seconds / YEAR), 'year']
 
-    const passDownTitle = title
-      || typeof date === 'string'
-      ? date
-      : (new Date(date)).toISOString().substr(0, 16).replace('T', ' ')
+    const passDownTitle = typeof title === 'undefined'
+      ? (typeof date === 'string'
+	? date
+	: (new Date(date)).toISOString().substr(0, 16).replace('T', ' '))
+      : title
 
     if (Komponent === 'time') {
       passDownProps.dateTime = (new Date(date)).toISOString()
