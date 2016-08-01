@@ -45,8 +45,8 @@ import the language strings and build a custom formatter.
 
 ```js
 import TimeAgo from 'react-timeago'
-import frenchStrings from 'react-timeago/language-strings/fr'
-import buildFormatter from 'react-timeago/formatters/buildFormatter'
+import frenchStrings from 'react-timeago/lib/language-strings/fr'
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
 
 const formatter = buildFormatter(frenchStrings)
 
