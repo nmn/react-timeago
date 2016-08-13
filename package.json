@@ -4,13 +4,16 @@
   "description": "A simple Time-Ago component for ReactJs",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "cpflow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\\/src\\\//\\\/lib\\\//g'`.flow; done",
+    "test": "ava --require babel-register",
+    "cpflow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
     "babel": "babel src/ --out-dir lib/",
     "example": "browserify -t babelify --debug examples/simple/index.js -o examples/simple/bundle.js",
     "build": "npm run babel && npm run cpflow && npm run example",
     "prepublish": "npm run build"
   },
+	"ava": {
+		"babel": "inherit"
+	},
   "repository": {
     "type": "git",
     "url": "https://github.com/naman34/react-timeago.git"
@@ -33,6 +36,7 @@
     "react": "^0.14.0 || ^15.0.0-0"
   },
   "devDependencies": {
+    "ava": "^0.16.0",
     "babel-cli": "^6.10.1",
     "babel-eslint": "^6.1.2",
     "babel-plugin-syntax-flow": "^6.5.0",
@@ -44,6 +48,7 @@
     "babel-preset-stage-1": "^6.5.0",
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
+    "enzyme": "^2.4.1",
     "eslint": "^3.0.1",
     "eslint-config-standard": "^5.3.1",
     "eslint-config-standard-react": "^2.5.0",
@@ -53,8 +58,8 @@
     "eslint-plugin-react": "^5.2.2",
     "eslint-plugin-standard": "^1.3.2",
     "react": "^15.0.0-rc.2",
+    "react-addons-test-utils": "^15.3.0",
     "react-dom": "^15.0.0-rc.2"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
