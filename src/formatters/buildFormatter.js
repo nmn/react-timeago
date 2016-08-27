@@ -61,7 +61,7 @@ export default function buildFormatter (strings: L10nsStrings): Formatter {
     // convert weeks to days if strings don't handle weeks
     if (unit === 'week' && !strings.week && !strings.weeks) {
       const now = Date.now()
-      const days = Math.round(Math.abs(epochSeconds - now) % (1000 * 60 * 60 * 24))
+      const days = Math.round(Math.abs(epochSeconds - now) / (1000 * 60 * 60 * 24))
       value = days
       unit = 'day'
     }
@@ -99,7 +99,7 @@ export default function buildFormatter (strings: L10nsStrings): Formatter {
     }
 
     // join the array into a string and return it
-    const wordSeparator = strings.wordSeparator || ' '
+    const wordSeparator = strings.wordSeparator === undefined ? ' ' : strings.wordSeparator
     return dateString.join(wordSeparator)
   }
 }
