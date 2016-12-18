@@ -14,7 +14,7 @@ type NumberArray = [
   string,
   string,
   string
-]
+] | []
 
 export type L10nsStrings = {
   prefixAgo?: ?StringOrFn,
