@@ -51,7 +51,7 @@ const MONTH = DAY * 30
 const YEAR = DAY * 365
 
 function defaultFormatter (value, unit, suffix) {
-  if (value !== 1) {
+  if ((value % 10 !== 1) || (value % 100 === 11)) {
     unit += 's'
   }
   return value + ' ' + unit + ' ' + suffix
