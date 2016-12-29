@@ -79,7 +79,7 @@ Date is a date in the past or the future. This can be a Date Object, A UTC date-
 React-Timeago is live by default and will auto update it's value. However, if you don't want this behaviour, you can set live:false.
 
 ###### formatter (optional)
-A function that takes four arguments:
+A function that takes five arguments:
   - value : An integer value, already rounded off
   - unit : A string representing the unit in english. This could be one of:
     - 'second'
@@ -93,6 +93,7 @@ A function that takes four arguments:
     - 'ago'
     - 'from now'
   - date: The actual date you are trying to represent. Use this for a more custom format for showing your date.
+  - defaultFormatter: (Optional) A default formatter function with pre-bound values. May be used as a fallback formatting option inside a custom formatting logic.
 
 Here are some examples of what the formatter function will receive:
 

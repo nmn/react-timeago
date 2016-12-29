@@ -9,7 +9,7 @@ export type Unit = 'second'
           | 'month'
           | 'year'
 export type Suffix = 'ago' | 'from now'
-export type Formatter = (value: number, unit: Unit, suffix: Suffix, epochSeconds: number) => string | React$Element<Object>
+export type Formatter = (value: number, unit: Unit, suffix: Suffix, epochSeconds: number, nextFormatter?: () => void) => string | React$Element<Object>
 
 export type Props = {
   /** If the component should update itself over time */
@@ -50,6 +50,13 @@ const WEEK = DAY * 7
 const MONTH = DAY * 30
 const YEAR = DAY * 365
 
+function defaultFormatter (value, unit, suffix) {
+  if ((value % 10 !== 1) || (value % 100 === 11)) {
+    unit += 's'
+  }
+  return value + ' ' + unit + ' ' + suffix
+}
+
 export default class TimeAgo extends Component<DefaultProps, Props, void> {
   static displayName = 'TimeAgo';
   static defaultProps = {
@@ -57,12 +64,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     component: 'time',
     minPeriod: 0,
     maxPeriod: Infinity,
-    formatter (value, unit, suffix) {
-      if (value !== 1) {
-        unit += 's'
-      }
-      return value + ' ' + unit + ' ' + suffix
-    }
+    formatter: defaultFormatter
   };
 
   timeoutId: ?number;
@@ -166,9 +168,11 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       passDownProps.dateTime = (new Date(date)).toISOString()
     }
 
+    const nextFormatter = defaultFormatter.bind(null, value, unit, suffix, then);
+
     return (
       <Komponent {...passDownProps} title={passDownTitle}>
-        {this.props.formatter(value, unit, suffix, then)}
+        {this.props.formatter(value, unit, suffix, then, nextFormatter)}
       </Komponent>
     )
   }
