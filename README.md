@@ -76,7 +76,7 @@ Look through the source for more details.
 Date is a date in the past or the future. This can be a Date Object, A UTC date-string or number of milliseconds since epoch time.
 
 ###### live (optional)
-React-Timeago is live by default and will auto update it's value. However, if you don't want this behaviour, you can set live:false.
+React-Timeago is live by default and will auto update its value. However, if you don't want this behaviour, you can set live:false.
 
 ###### formatter (optional)
 A function that takes five arguments:
