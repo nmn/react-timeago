@@ -1,5 +1,6 @@
 /* @flow */
 import React, {Component} from 'react'
+import defaultFormatter from './defaultFormatter'
 
 export type Unit = 'second'
           | 'minute'
@@ -50,13 +51,6 @@ const WEEK = DAY * 7
 const MONTH = DAY * 30
 const YEAR = DAY * 365
 
-function defaultFormatter (value, unit, suffix): string {
-  if ((value % 10 !== 1) || (value % 100 === 11)) {
-    unit += 's'
-  }
-  return value + ' ' + unit + ' ' + suffix
-}
-
 export default class TimeAgo extends Component<DefaultProps, Props, void> {
   static displayName = 'TimeAgo';
   static defaultProps = {
@@ -76,6 +70,11 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     }
 
     const then = (new Date(this.props.date)).valueOf()
+    if (Number.isNaN(then)) {
+      console.warn('[react-timeago] Invalid Date provided')
+      return
+    }
+
     const now = Date.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
 
@@ -125,7 +124,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     }
   }
 
-  render (): React$Element<*> {
+  render (): ?React$Element<*> {
     /* eslint-disable no-unused-vars */
     const {
       date,
@@ -139,6 +138,9 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     } = this.props
     /* eslint-enable no-unused-vars */
     const then = (new Date(date)).valueOf()
+    if (Number.isNaN(then)) {
+      return null
+    }
     const now = Date.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
     const suffix = then < now ? 'ago' : 'from now'
@@ -168,7 +170,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       passDownProps.dateTime = (new Date(date)).toISOString()
     }
 
-    const nextFormatter = defaultFormatter.bind(null, value, unit, suffix, then);
+    const nextFormatter = defaultFormatter.bind(null, value, unit, suffix, then)
 
     return (
       <Komponent {...passDownProps} title={passDownTitle}>
