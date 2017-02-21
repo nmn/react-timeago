@@ -20,8 +20,7 @@ const strings: L10nsStrings = {
   months: '%d개월',
   year: '약 1년',
   years: '%d년',
-  wordSeparator: ' ',
-  numbers: []
+  wordSeparator: ' '
 }
 
 export default strings

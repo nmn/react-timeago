@@ -18,8 +18,7 @@ const strings: L10nsStrings = {
   months: '%d เดือน',
   year: 'ประมาณหนึ่งปี',
   years: '%d ปี',
-  wordSeparator: '',
-  numbers: []
+  wordSeparator: ''
 }
 
 export default strings

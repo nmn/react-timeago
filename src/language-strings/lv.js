@@ -18,8 +18,7 @@ const strings: L10nsStrings = {
   months: '%d mēnesis.',
   year: 'gads',
   years: '%d gads',
-  wordSeparator: ' ',
-  numbers: []
+  wordSeparator: ' '
 }
 
 export default strings

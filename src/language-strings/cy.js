@@ -18,8 +18,7 @@ const strings: L10nsStrings = {
   months: '%d mis',
   year: 'am y flwyddyn',
   years: '%d blynedd',
-  wordSeparator: ' ',
-  numbers: []
+  wordSeparator: ' '
 }
 
 export default strings

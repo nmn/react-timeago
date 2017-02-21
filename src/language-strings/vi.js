@@ -18,8 +18,7 @@ const strings: L10nsStrings = {
   months: '%d tháng',
   year: 'khoảng 1 năm',
   years: '%d năm',
-  wordSeparator: ' ',
-  numbers: []
+  wordSeparator: ' '
 }
 
 export default strings

@@ -17,8 +17,7 @@ const strings: L10nsStrings = {
   months: '%d mánuðum',
   year: 'ári',
   years: '%d árum',
-  wordSeparator: ' ',
-  numbers: []
+  wordSeparator: ' '
 }
 
 export default strings

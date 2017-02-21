@@ -18,7 +18,6 @@ const strings: L10nsStrings = {
   months: '%d個月',
   year: '大約1年',
   years: '%d年',
-  numbers: [],
   wordSeparator: ''
 }
 

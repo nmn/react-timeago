@@ -18,8 +18,7 @@ const strings: L10nsStrings = {
   months: '%d maanden',
   year: 'ongeveer een jaar',
   years: '%d jaar',
-  wordSeparator: ' ',
-  numbers: []
+  wordSeparator: ' '
 }
 
 export default strings

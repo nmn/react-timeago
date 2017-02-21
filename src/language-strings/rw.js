@@ -18,8 +18,7 @@ const strings: L10nsStrings = {
   months: 'amezi %d',
   year: 'umwaka',
   years: 'imyaka %d',
-  wordSeparator: ' ',
-  numbers: []
+  wordSeparator: ' '
 }
 
 export default strings
