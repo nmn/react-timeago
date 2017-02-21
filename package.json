@@ -1,6 +1,6 @@
 {
   "name": "react-timeago",
-  "version": "3.1.3",
+  "version": "3.2.0",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "lib/index.js",
   "scripts": {
