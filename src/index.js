@@ -69,8 +69,8 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       return
     }
 
-    const then = parseDateString(this.props.date).valueOf()
-    if (Number.isNaN(then)) {
+    const then = this.parseDateString(this.props.date).valueOf()
+    if (!then) {
       console.warn('[react-timeago] Invalid Date provided')
       return
     }
@@ -149,8 +149,8 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       ...passDownProps
     } = this.props
     /* eslint-enable no-unused-vars */
-    const then = parseDateString(date).valueOf()
-    if (Number.isNaN(then)) {
+    const then = this.parseDateString(date).valueOf()
+    if (!then) {
       return null
     }
     const now = Date.now()
@@ -175,11 +175,11 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     const passDownTitle = typeof title === 'undefined'
       ? (typeof date === 'string'
 	? date
-	: parseDateString(date).toISOString().substr(0, 16).replace('T', ' '))
+	: this.parseDateString(date).toISOString().substr(0, 16).replace('T', ' '))
       : title
 
     if (Komponent === 'time') {
-      passDownProps.dateTime = parseDateString(date).toISOString()
+      passDownProps.dateTime = this.parseDateString(date).toISOString()
     }
 
     const nextFormatter = defaultFormatter.bind(null, value, unit, suffix, then)
