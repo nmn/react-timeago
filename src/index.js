@@ -69,7 +69,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       return
     }
 
-    const then = (new Date(this.props.date)).valueOf()
+    const then = parseDateString(this.props.date).valueOf()
     if (Number.isNaN(then)) {
       console.warn('[react-timeago] Invalid Date provided')
       return
@@ -124,6 +124,18 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     }
   }
 
+  parseDateString (dateString) {
+    let parts = dateString.match(/\d+/g)
+    if (parts === null || parts.length <= 2) {
+      let parsed = new Date(dateString);
+      return !Number.isNaN(parsed.valueOf()) ? parsed : null
+    }
+
+    parts[1] = --parts[1]
+    let isoDate = new Date(Date.UTC(...parts))
+    return isoDate;
+  }
+
   render (): ?React$Element<*> {
     /* eslint-disable no-unused-vars */
     const {
@@ -137,7 +149,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       ...passDownProps
     } = this.props
     /* eslint-enable no-unused-vars */
-    const then = (new Date(date)).valueOf()
+    const then = parseDateString(date).valueOf()
     if (Number.isNaN(then)) {
       return null
     }
@@ -163,11 +175,11 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     const passDownTitle = typeof title === 'undefined'
       ? (typeof date === 'string'
 	? date
-	: (new Date(date)).toISOString().substr(0, 16).replace('T', ' '))
+	: parseDateString(date).toISOString().substr(0, 16).replace('T', ' '))
       : title
 
     if (Komponent === 'time') {
-      passDownProps.dateTime = (new Date(date)).toISOString()
+      passDownProps.dateTime = parseDateString(date).toISOString()
     }
 
     const nextFormatter = defaultFormatter.bind(null, value, unit, suffix, then)
