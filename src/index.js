@@ -127,7 +127,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
   parseDateString (dateString) {
     let parts = dateString.match(/\d+/g)
     if (parts === null || parts.length <= 2) {
-      let parsed = new Date(dateString);
+      let parsed = new Date(dateString)
       return !Number.isNaN(parsed.valueOf()) ? parsed : null
     }
 
