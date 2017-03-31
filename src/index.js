@@ -1,6 +1,7 @@
 /* @flow */
 import React, {Component} from 'react'
 import defaultFormatter from './defaultFormatter'
+import dateParser from './dateParser'
 
 export type Unit = 'second'
           | 'minute'
@@ -69,7 +70,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       return
     }
 
-    const then = this.parseDateString(this.props.date).valueOf()
+    const then = dateParser(this.props.date).valueOf()
     if (!then) {
       console.warn('[react-timeago] Invalid Date provided')
       return
@@ -124,18 +125,6 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     }
   }
 
-  parseDateString (dateString) {
-    let parts = dateString.match(/\d+/g)
-    if (parts === null || parts.length <= 2) {
-      let parsed = new Date(dateString)
-      return !Number.isNaN(parsed.valueOf()) ? parsed : null
-    }
-
-    parts[1] = --parts[1]
-    let isoDate = new Date(Date.UTC(...parts))
-    return isoDate;
-  }
-
   render (): ?React$Element<*> {
     /* eslint-disable no-unused-vars */
     const {
@@ -149,7 +138,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       ...passDownProps
     } = this.props
     /* eslint-enable no-unused-vars */
-    const then = this.parseDateString(date).valueOf()
+    const then = dateParser(date).valueOf()
     if (!then) {
       return null
     }
@@ -175,11 +164,11 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     const passDownTitle = typeof title === 'undefined'
       ? (typeof date === 'string'
 	? date
-	: this.parseDateString(date).toISOString().substr(0, 16).replace('T', ' '))
+	: dateParser(date).toISOString().substr(0, 16).replace('T', ' '))
       : title
 
     if (Komponent === 'time') {
-      passDownProps.dateTime = this.parseDateString(date).toISOString()
+      passDownProps.dateTime = dateParser(date).toISOString()
     }
 
     const nextFormatter = defaultFormatter.bind(null, value, unit, suffix, then)
