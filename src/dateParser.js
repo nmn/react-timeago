@@ -12,6 +12,6 @@ export default function dateParser (date: string | number | Date): Date {
   } else {
     parts[1] = --parts[1]
     let isoDate = new Date(Date.UTC(...parts))
-    return isoDate;
+    return isoDate
   }
 }
