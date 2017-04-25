@@ -1,6 +1,7 @@
 /* @flow */
 import React, {Component} from 'react'
 import defaultFormatter from './defaultFormatter'
+import dateParser from './dateParser'
 
 export type Unit = 'second'
           | 'minute'
@@ -69,8 +70,8 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       return
     }
 
-    const then = (new Date(this.props.date)).valueOf()
-    if (Number.isNaN(then)) {
+    const then = dateParser(this.props.date).valueOf()
+    if (!then) {
       console.warn('[react-timeago] Invalid Date provided')
       return
     }
@@ -137,8 +138,8 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       ...passDownProps
     } = this.props
     /* eslint-enable no-unused-vars */
-    const then = (new Date(date)).valueOf()
-    if (Number.isNaN(then)) {
+    const then = dateParser(date).valueOf()
+    if (!then) {
       return null
     }
     const now = Date.now()
@@ -163,11 +164,11 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     const passDownTitle = typeof title === 'undefined'
       ? (typeof date === 'string'
 	? date
-	: (new Date(date)).toISOString().substr(0, 16).replace('T', ' '))
+	: dateParser(date).toISOString().substr(0, 16).replace('T', ' '))
       : title
 
     if (Komponent === 'time') {
-      passDownProps.dateTime = (new Date(date)).toISOString()
+      passDownProps.dateTime = dateParser(date).toISOString()
     }
 
     const nextFormatter = defaultFormatter.bind(null, value, unit, suffix, then)
