@@ -75,6 +75,9 @@ Look through the source for more details.
 ###### date (required)
 Date is a date in the past or the future. This can be a Date Object, A UTC date-string or number of milliseconds since epoch time.
 
+###### now (optional)
+A function that returns what `Date.now` returns. Useful for server-side rendering.
+
 ###### live (optional)
 React-Timeago is live by default and will auto update its value. However, if you don't want this behaviour, you can set live:false.
 
@@ -158,6 +161,12 @@ default english, weeks get down-converted to days instead. Help me fix that.
 React-TimeAgo follows SemVer strictly.
 
 ## Changelog
+
+#### v3.3.0
+* Added a new prop type that lets you replace Date.now with your own function. For server rendering.
+
+#### v3.2.1
+* Added a special function to parse dates that works around a bug in Safari
 
 #### v2.2.1
 * Fixed the many typos introduced by me in 2.2.0. Thanks to insin for the quick PR.

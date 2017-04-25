@@ -3,48 +3,68 @@ import React, {Component} from 'react'
 import defaultFormatter from './defaultFormatter'
 import dateParser from './dateParser'
 
-export type Unit = 'second'
-          | 'minute'
-          | 'hour'
-          | 'day'
-          | 'week'
-          | 'month'
-          | 'year'
-export type Suffix = 'ago' | 'from now'
-export type Formatter = (value: number, unit: Unit, suffix: Suffix, epochSeconds: number, nextFormatter?: Formatter) => string | React$Element<any>
+export type Unit =
+  | 'second'
+  | 'minute'
+  | 'hour'
+  | 'day'
+  | 'week'
+  | 'month'
+  | 'year'
+
+export type Suffix =
+  | 'ago'
+  | 'from now'
+
+export type Formatter = (
+  value: number,
+  unit: Unit,
+  suffix: Suffix,
+  epochSeconds: number,
+  nextFormatter?: Formatter
+) => string | React$Element<any>
 
 export type Props = {
   /** If the component should update itself over time */
-  live: boolean,
+  +live: boolean,
   /** minimum amount of time in seceonds between re-renders */
-  minPeriod: number,
-  /** Maximum time between re-renders in seconds. The component should update at least once every `x` seconds */
-  maxPeriod: number,
-  /** The container to render the string into. You could use a string like `span` or a custom component */
-  component: string | ReactClass<any>,
+  +minPeriod: number,
+  /** Maximum time between re-renders in seconds.
+   * The component should update at least once every `x` seconds
+   */
+  +maxPeriod: number,
+  /** The container to render the string into.
+   * You could use a string like `span` or a custom component
+   */
+  +component: string | ReactClass<any>,
   /**
-   * A title used for setting the title attribute if a <time> HTML Element is used.
+   * A title used for setting the title attribute if a <time> Element is used.
    */
-  title?: string,
+  +title?: string,
   /** A function to decide how to format the date.
-   * If you use this, react-timeago is basically acting like a glorified setInterval for you.
+   * If you use this, react-timeago is basically acting like a glorified
+   * setInterval for you.
    */
-  formatter: Formatter,
-  /** The Date to display. An actual Date object or something that can be fed to new Date */
-  date: string | number | Date
+  +formatter: Formatter,
+  /** The Date to display. An actual Date object or something that can be fed
+   * to new Date
+   */
+  +date: string | number | Date,
+  /** A function that returns what Date.now would return. Primarily for server
+   * rendering.
+   */
+  +now: () => number
 }
 
 type DefaultProps = {
-  live: boolean,
-  minPeriod: number,
-  maxPeriod: number,
-  component: string | ReactClass<Object> | Function,
-  formatter: Formatter
+  +live: boolean,
+  +minPeriod: number,
+  +maxPeriod: number,
+  +component: string | ReactClass<Object> | Function,
+  +formatter: Formatter,
+  +now: () => number
 }
 
-type TickFn = (refresh: ?boolean) => void
-
-// Just some simple constants for readability
 const MINUTE = 60
 const HOUR = MINUTE * 60
 const DAY = HOUR * 24
@@ -53,19 +73,20 @@ const MONTH = DAY * 30
 const YEAR = DAY * 365
 
 export default class TimeAgo extends Component<DefaultProps, Props, void> {
-  static displayName = 'TimeAgo';
+  static displayName = 'TimeAgo'
   static defaultProps = {
     live: true,
     component: 'time',
     minPeriod: 0,
     maxPeriod: Infinity,
-    formatter: defaultFormatter
-  };
+    formatter: defaultFormatter,
+    now: () => Date.now()
+  }
 
-  timeoutId: ?number;
-  isStillMounted: boolean = false;
+  timeoutId: ?number
+  isStillMounted: boolean = false
 
-  tick: TickFn = (refresh) => {
+  tick = (refresh: ?boolean): void => {
     if (!this.isStillMounted || !this.props.live) {
       return
     }
@@ -76,7 +97,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       return
     }
 
-    const now = Date.now()
+    const now = this.props.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
 
     const unboundPeriod
@@ -99,7 +120,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     if (!refresh) {
       this.forceUpdate()
     }
-  };
+  }
 
   componentDidMount () {
     this.isStillMounted = true
@@ -142,7 +163,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     if (!then) {
       return null
     }
-    const now = Date.now()
+    const now = this.props.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
     const suffix = then < now ? 'ago' : 'from now'
 
