@@ -6,12 +6,13 @@ export default function dateParser (date: string | number | Date): Date {
     return parsed
   }
 
-  let parts = date.match(/\d+/g)
-  if (parts === null || parts.length <= 2) {
-    return null
+  let parts: ?$ReadOnlyArray<string> = String(date).match(/\d+/g)
+  if (parts == null || parts.length <= 2) {
+    return parsed
   } else {
-    parts[1] = --parts[1]
-    let isoDate = new Date(Date.UTC(...parts))
+    const [firstP, secondP, ...restPs] = parts.map(x => parseInt(x))
+    const correctedParts = [firstP, secondP - 1, ...restPs]
+    let isoDate = new Date(Date.UTC(...correctedParts))
     return isoDate
   }
 }
