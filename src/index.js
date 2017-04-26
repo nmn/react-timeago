@@ -64,13 +64,18 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
   timeoutId: ?number;
   isStillMounted: boolean = false;
 
+  // Use Number.isNaN if available, otherwise use polyfill (not available in some browsers inc. IE11)
+  checkIsNaN = (value) => {
+    return (Number.isNaN !== undefined) ? Number.isNaN(value) : typeof value === 'number' && isNaN(value);
+  }
+
   tick: TickFn = (refresh) => {
     if (!this.isStillMounted || !this.props.live) {
       return
     }
 
     const then = (new Date(this.props.date)).valueOf()
-    if (Number.isNaN(then)) {
+    if (this.checkIsNaN(then)) {
       console.warn('[react-timeago] Invalid Date provided')
       return
     }
@@ -138,7 +143,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     } = this.props
     /* eslint-enable no-unused-vars */
     const then = (new Date(date)).valueOf()
-    if (Number.isNaN(then)) {
+    if (this.checkIsNaN(then)) {
       return null
     }
     const now = Date.now()
