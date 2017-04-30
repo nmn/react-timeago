@@ -70,18 +70,18 @@ Further, many type definitions are now exported for use in your own code.
 
 Look through the source for more details.
 
-#### Props
+## Props
 
-###### `date` (required)
+#### `date` (required)
 Date is a date in the past or the future. This can be a Date Object, A UTC date-string or number of milliseconds since epoch time.
 
-###### `now` (optional)
+#### `now` (optional)
 A function that returns what `Date.now` returns. Useful for server-side rendering.
 
-###### `live` (optional)
-React-Timeago is live by default and will auto update its value. However, if you don't want this behaviour, you can set live:false.
+#### `live` (optional)
+React-Timeago is live by default and will auto update its value. However, if you don't want this behaviour, you can set `live: false`.
 
-###### `formatter` (optional)
+#### `formatter` (optional)
 A function that takes five arguments:
   - `value`: An integer value, already rounded off
   - `unit`: A string representing the unit in english. This could be one of:
@@ -112,23 +112,23 @@ You can customize the strings, or provide your own custom formatter function.
 
 I recommend using the fantastic [L10ns](http://l10ns.org) for other internationalization needs.
 
-###### `component` (optional) (default: 'time')
+#### `component` (optional) (default: 'time')
 A string of ReactClass that is used to wrap the live updating string
 
-###### `title` (optional)
+#### `title` (optional)
 If the component is left as the default 'time' component, a title attribute is passed to it.
 You can customize this by passing a string, or a UTC date-string will be used based on
 the given date.
 
-###### `minPeriod` (optional) (default: 0)
+#### `minPeriod` (optional) (default: 0)
 The minimum number of seconds that the component should wait before updating. The component will still update if you pass new props.
 Use this if, for example, you don't want to update every second for recent times.
 
-###### `maxPeriod` (optional) (default: Infinity)
+#### `maxPeriod` (optional) (default: Infinity)
 The opposite of `minPeriod`. Use this to force dates to update more often than the default behaviour.
 For example, you can use this update a time every 5 minutes even after it is more than an hour old.
 
-###### Anything Else? (optional)
+#### Anything Else? (optional)
 As of v2.0 you can pass in any props. Any props not used by React-TimeAgo will be passed down to the resulting component.
 This means that you can pass `className`, `styles`, `id`, `title`, `aria-label`, event handlers or anything else you want.
 
