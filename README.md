@@ -25,7 +25,7 @@ React-timeago is a very simple component that takes a date prop and returns a sp
 
 React-TimeAgo does the minimum amount of updates necessary.
 
-```
+```jsx
 <TimeAgo date="Aug 29, 2014" />
 
 // OR in vanilla JS
@@ -43,7 +43,7 @@ This support is based on the string objects taken from `jquery-timeago`
 To use any of the languages provided, other than the default english, you will have to
 import the language strings and build a custom formatter.
 
-```js
+```jsx
 import TimeAgo from 'react-timeago'
 import frenchStrings from 'react-timeago/lib/language-strings/fr'
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
