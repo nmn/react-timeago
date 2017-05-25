@@ -78,6 +78,9 @@ Date is a date in the past or the future. This can be a Date Object, A UTC date-
 ###### now (optional)
 A function that returns what `Date.now` returns. Useful for server-side rendering.
 
+###### dateParser (optional)
+A function that parses the `date` prop and returns a `Date` object.
+
 ###### live (optional)
 React-Timeago is live by default and will auto update its value. However, if you don't want this behaviour, you can set live:false.
 

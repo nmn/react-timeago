@@ -1,7 +1,7 @@
 /* @flow */
 import React, {Component} from 'react'
 import defaultFormatter from './defaultFormatter'
-import dateParser from './dateParser'
+import defaultDateParser from './defaultDateParser'
 
 export type Unit =
   | 'second'
@@ -53,7 +53,10 @@ export type Props = {
   /** A function that returns what Date.now would return. Primarily for server
    * rendering.
    */
-  +now: () => number
+  +now: () => number,
+  /** A function that parses the provided date prop and returns a Date object
+    */
+  +dateParser: (date: string | number | Date) => Date
 }
 
 type DefaultProps = {
@@ -62,7 +65,8 @@ type DefaultProps = {
   +maxPeriod: number,
   +component: string | ReactClass<Object> | Function,
   +formatter: Formatter,
-  +now: () => number
+  +now: () => number,
+  +dateParser: (date: string | number | Date) => Date,
 }
 
 const MINUTE = 60
@@ -80,7 +84,8 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     minPeriod: 0,
     maxPeriod: Infinity,
     formatter: defaultFormatter,
-    now: () => Date.now()
+    now: () => Date.now(),
+    dateParser: defaultDateParser
   }
 
   timeoutId: ?number
@@ -91,7 +96,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       return
     }
 
-    const then = dateParser(this.props.date).valueOf()
+    const then = this.props.dateParser(this.props.date).valueOf()
     if (!then) {
       console.warn('[react-timeago] Invalid Date provided')
       return
@@ -149,9 +154,11 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
   render (): ?React$Element<*> {
     /* eslint-disable no-unused-vars */
     const {
-      date,
-      formatter,
       component: Komponent,
+      now: dateNow,
+      date,
+      dateParser,
+      formatter,
       live,
       minPeriod,
       maxPeriod,
@@ -163,7 +170,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     if (!then) {
       return null
     }
-    const now = this.props.now()
+    const now = dateNow()
     const seconds = Math.round(Math.abs(now - then) / 1000)
     const suffix = then < now ? 'ago' : 'from now'
 
@@ -197,7 +204,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
 
     return (
       <Komponent {...passDownProps} title={passDownTitle}>
-        {this.props.formatter(value, unit, suffix, then, nextFormatter)}
+        {formatter(value, unit, suffix, then, nextFormatter)}
       </Komponent>
     )
   }
