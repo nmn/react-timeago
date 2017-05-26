@@ -65,5 +65,10 @@
     "react-addons-test-utils": "^15.3.0",
     "react-dom": "^15.3.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "files": [
+    "index.js",
+    "language-strings/",
+    "formatters/"
+  ]
 }
