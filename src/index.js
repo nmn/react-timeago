@@ -193,7 +193,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       delete passDownProps.now
     }
 
-    const nextFormatter = defaultFormatter.bind(null, value, unit, suffix, then)
+    const nextFormatter = defaultFormatter.bind(null, value, unit, suffix)
 
     return (
       <Komponent {...passDownProps} title={passDownTitle}>
