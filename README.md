@@ -4,7 +4,7 @@ A simple time-ago component for ReactJs.
 
 ## Changes in V3.X:
 
-- minPeriod and maxPeriod now accept seconds not milliseconds. This matches the documentation.
+- `minPeriod` and `maxPeriod` now accept seconds not milliseconds. This matches the documentation.
 - react-timeago now uses ES6 modules. So if you don't use ES6, your code will go from :
 ```js
 var TimeAgo = require('react-timeago')
@@ -25,7 +25,7 @@ React-timeago is a very simple component that takes a date prop and returns a sp
 
 React-TimeAgo does the minimum amount of updates necessary.
 
-```
+```jsx
 <TimeAgo date="Aug 29, 2014" />
 
 // OR in vanilla JS
@@ -43,7 +43,7 @@ This support is based on the string objects taken from `jquery-timeago`
 To use any of the languages provided, other than the default english, you will have to
 import the language strings and build a custom formatter.
 
-```js
+```jsx
 import TimeAgo from 'react-timeago'
 import frenchStrings from 'react-timeago/lib/language-strings/fr'
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
@@ -65,26 +65,26 @@ and pass them around.
 
 Since v3.0.0 `react-timeago` comes with flow type definitions out of the box.
 
-In v3.1.0, the React.PropType validations have been removed in favour of just flow types.
+In v3.1.0, the `React.PropType` validations have been removed in favour of just flow types.
 Further, many type definitions are now exported for use in your own code.
 
 Look through the source for more details.
 
-#### Props
+## Props
 
-###### date (required)
+#### `date` (required)
 Date is a date in the past or the future. This can be a Date Object, A UTC date-string or number of milliseconds since epoch time.
 
-###### now (optional)
+#### `now` (optional)
 A function that returns what `Date.now` returns. Useful for server-side rendering.
 
-###### live (optional)
-React-Timeago is live by default and will auto update its value. However, if you don't want this behaviour, you can set live:false.
+#### `live` (optional)
+React-Timeago is live by default and will auto update its value. However, if you don't want this behaviour, you can set `live: false`.
 
-###### formatter (optional)
+#### `formatter` (optional)
 A function that takes five arguments:
-  - value : An integer value, already rounded off
-  - unit : A string representing the unit in english. This could be one of:
+  - `value`: An integer value, already rounded off
+  - `unit`: A string representing the unit in english. This could be one of:
     - 'second'
     - 'minute'
     - 'hour'
@@ -92,16 +92,16 @@ A function that takes five arguments:
     - 'week'
     - 'month'
     - 'year'
-  - suffix : A string. This can be one of
+  - `suffix`: A string. This can be one of
     - 'ago'
     - 'from now'
-  - date: The actual date you are trying to represent. Use this for a more custom format for showing your date.
-  - defaultFormatter: (Optional) A default formatter function with pre-bound values. May be used as a fallback formatting option inside a custom formatting logic.
+  - `date`: The actual date you are trying to represent. Use this for a more custom format for showing your date.
+  - `defaultFormatter`: (Optional) A default formatter function with pre-bound values. May be used as a fallback formatting option inside a custom formatting logic.
 
 Here are some examples of what the formatter function will receive:
 
-- '5 minutes ago' => formatter(5, 'minute', 'ago')
-- '1 year from now' => formatter(1, 'year', 'from now')
+- `'5 minutes ago' => formatter(5, 'minute', 'ago')`
+- `'1 year from now' => formatter(1, 'year', 'from now')`
 
 The formatter function is a simple way to extend the functionality of React-Timeago to support any feature you may need from a fuzzy time display.
 The formatter function is expected to return a string.
@@ -112,25 +112,25 @@ You can customize the strings, or provide your own custom formatter function.
 
 I recommend using the fantastic [L10ns](http://l10ns.org) for other internationalization needs.
 
-###### component (optional) (default: 'time')
+#### `component` (optional) (default: 'time')
 A string of ReactClass that is used to wrap the live updating string
 
-###### title (optional)
+#### `title` (optional)
 If the component is left as the default 'time' component, a title attribute is passed to it.
 You can customize this by passing a string, or a UTC date-string will be used based on
 the given date.
 
-###### minPeriod (optional) (default: 0)
+#### `minPeriod` (optional) (default: 0)
 The minimum number of seconds that the component should wait before updating. The component will still update if you pass new props.
 Use this if, for example, you don't want to update every second for recent times.
 
-###### maxPeriod (optional) (default: Infinity)
-The opposite of minPeriod. Use this to force dates to update more often than the default behaviour.
+#### `maxPeriod` (optional) (default: Infinity)
+The opposite of `minPeriod`. Use this to force dates to update more often than the default behaviour.
 For example, you can use this update a time every 5 minutes even after it is more than an hour old.
 
-###### Anything Else? (optional)
+#### Anything Else? (optional)
 As of v2.0 you can pass in any props. Any props not used by React-TimeAgo will be passed down to the resulting component.
-This means that you can pass className, styles, id, title, aria-label, event handlers or anything else you want.
+This means that you can pass `className`, `styles`, `id`, `title`, `aria-label`, event handlers or anything else you want.
 
 ## Why React-TimeAgo
 
@@ -163,7 +163,7 @@ React-TimeAgo follows SemVer strictly.
 ## Changelog
 
 #### v3.3.0
-* Added a new prop type that lets you replace Date.now with your own function. For server rendering.
+* Added a new prop type that lets you replace `Date.now` with your own function. For server rendering.
 
 #### v3.2.1
 * Added a special function to parse dates that works around a bug in Safari
