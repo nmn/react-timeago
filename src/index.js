@@ -184,8 +184,8 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
 
     const passDownTitle = typeof title === 'undefined'
       ? (typeof date === 'string'
-	? date
-	: dateParser(date).toISOString().substr(0, 16).replace('T', ' '))
+  ? date
+  : dateParser(date).toISOString().substr(0, 16).replace('T', ' '))
       : title
 
     if (Komponent === 'time') {
@@ -193,7 +193,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       delete passDownProps.now
     }
 
-    const nextFormatter = defaultFormatter.bind(null, value, unit, suffix)
+    const nextFormatter = defaultFormatter.bind(null, value, unit, suffix) // eslint-disable-line
 
     return (
       <Komponent {...passDownProps} title={passDownTitle}>
