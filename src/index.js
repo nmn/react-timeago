@@ -156,6 +156,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       minPeriod,
       maxPeriod,
       title,
+      now,
       ...passDownProps
     } = this.props
     /* eslint-enable no-unused-vars */
@@ -163,9 +164,9 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     if (!then) {
       return null
     }
-    const now = this.props.now()
-    const seconds = Math.round(Math.abs(now - then) / 1000)
-    const suffix = then < now ? 'ago' : 'from now'
+    const timeNow = now()
+    const seconds = Math.round(Math.abs(timeNow - then) / 1000)
+    const suffix = then < timeNow ? 'ago' : 'from now'
 
     const [value, unit]
       = seconds < MINUTE
