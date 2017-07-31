@@ -191,7 +191,6 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
 
     if (Komponent === 'time') {
       passDownProps.dateTime = dateParser(date).toISOString()
-      delete passDownProps.now
     }
 
     const nextFormatter = defaultFormatter.bind(null, value, unit, suffix)
