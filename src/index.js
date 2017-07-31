@@ -36,7 +36,7 @@ export type Props = {
   /** The container to render the string into.
    * You could use a string like `span` or a custom component
    */
-  +component: string | ReactClass<any>,
+  +component: string | ReactClass<Object> | Function,
   /**
    * A title used for setting the title attribute if a <time> Element is used.
    */
