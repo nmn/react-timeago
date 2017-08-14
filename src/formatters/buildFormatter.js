@@ -99,7 +99,7 @@ export default function buildFormatter (strings: L10nsStrings): Formatter {
     }
 
     // join the array into a string and return it
-    const wordSeparator = strings.wordSeparator || ' '
+    const wordSeparator = strings.wordSeparator == null ? strings.wordSeparator : ' '
     return dateString.join(wordSeparator)
   }
 }
