@@ -1,4 +1,6 @@
-node_modules
-src
-examples
 .babelrc
+.nyc_output
+coverage
+examples
+src
+test

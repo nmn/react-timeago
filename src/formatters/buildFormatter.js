@@ -2,7 +2,7 @@
 
 import type {Formatter, Unit, Suffix} from '../index'
 
-type StringOrFn = string | (value: number, millisDelta:  number) => string
+type StringOrFn = string | (value: number, millisDelta: number) => string
 type NumberArray = [
   string,
   string,

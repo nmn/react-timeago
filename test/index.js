@@ -3,8 +3,8 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import TimeAgo from '../src'
-import buildFormatter from '../src/formatters/buildFormatter'
-import TWStrings from '../src/language-strings/zh-TW'
+// import buildFormatter from '../src/formatters/buildFormatter'
+// import TWStrings from '../src/language-strings/zh-TW'
 
 test('just now', t => {
   const wrapper = shallow(<TimeAgo date={new Date()} />)
@@ -54,10 +54,10 @@ test('1 week ago', t => {
 /* ... */
 
 /* zh-TW */
-const formatter = buildFormatter(TWStrings)
-
-/* 1 week ago in zh-TW */
-test('1 week ago in zh-TW', t => {
-  const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60 * 60 * 24 * 7} formatter={formatter} />)
-  t.is(wrapper.text(), '7天之前')
-})
+// const formatter = buildFormatter(TWStrings)
+//
+// /* 1 week ago in zh-TW */
+// test('1 week ago in zh-TW', t => {
+//   const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60 * 60 * 24 * 7} formatter={formatter} />)
+//   t.is(wrapper.text(), '7天之前')
+// })
