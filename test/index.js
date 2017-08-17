@@ -61,3 +61,10 @@ test('1 week ago in zh-TW', t => {
   const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60 * 60 * 24 * 7} formatter={formatter} />)
   t.is(wrapper.text(), '7天之前')
 })
+
+test('allow custom wordSeparator', t => {
+  const strings = Object.assign({}, TWStrings, {wordSeparator: 'x'});
+  const formatter = buildFormatter(strings);
+  const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60 * 60 * 24 * 7} formatter={formatter} />)
+  t.is(wrapper.text(), '7天x之前')
+})
