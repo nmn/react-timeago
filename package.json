@@ -3,11 +3,13 @@
   "version": "3.4.3",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
     "cpflow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
-    "babel": "babel src/ --out-dir lib/",
+    "babel:cjs": "babel src/ --out-dir lib/",
+    "babel:es": "BABEL_ENV=es babel src/ --out-dir es/",
     "example": "browserify -t babelify --debug examples/simple/index.js -o examples/simple/bundle.js",
-    "build": "npm run babel && npm run cpflow && npm run example",
+    "build": "npm run babel:cjs && npm run babel:es && npm run cpflow && npm run example",
     "prepublish": "npm run build",
     "test": "ava --require babel-register",
     "coverall": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
