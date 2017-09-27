@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/nmn/react-timeago",
   "peerDependencies": {
-    "react": "^15.0.0"
+    "react": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "ava": "^0.16.0",
