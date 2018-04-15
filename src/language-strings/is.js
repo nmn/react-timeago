@@ -18,7 +18,6 @@ const strings: L10nsStrings = {
   year: 'ári',
   years: '%d árum',
   wordSeparator: ' ',
-  numbers: null,
 }
 
 export default strings

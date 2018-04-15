@@ -19,7 +19,6 @@ const strings: L10nsStrings = {
   year: 'am y flwyddyn',
   years: '%d blynedd',
   wordSeparator: ' ',
-  numbers: null,
 }
 
 export default strings

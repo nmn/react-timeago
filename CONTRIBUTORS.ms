@@ -5,4 +5,5 @@
 [Benjamin Flesch](https://github.com/bf)
 [Jonny Buchanan](https://github.com/insin)
 [Andrew Gremmo](https://github.com/andrewjgremmo)
-[denis-sokolov](https://github.com/denis-sokolov)
+[Denis Sokolov](https://github.com/denis-sokolov)
+[Paul Bach](https://github.com/psolbach)

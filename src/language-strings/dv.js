@@ -21,7 +21,6 @@ const strings: L10nsStrings = {
   year: 'އަހަރެއްވަރު',
   years: 'މީގެ %d އަހަރު',
   wordSeparator: ' ',
-  numbers: null,
 }
 
 export default strings

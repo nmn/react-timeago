@@ -19,7 +19,6 @@ const strings: L10nsStrings = {
   year: 'ประมาณหนึ่งปี',
   years: '%d ปี',
   wordSeparator: '',
-  numbers: null,
 }
 
 export default strings

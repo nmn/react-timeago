@@ -19,7 +19,6 @@ const strings: L10nsStrings = {
   year: 'umwaka',
   years: 'imyaka %d',
   wordSeparator: ' ',
-  numbers: null,
 }
 
 export default strings

@@ -2,7 +2,7 @@
 
 import type { Formatter, Unit, Suffix } from '../index'
 
-type StringOrFn = string | ((value: number, d: number) => string)
+type StringOrFn = string | ((value: number, millisDelta: number) => string)
 type NumberArray = [
   string,
   string,
@@ -58,8 +58,8 @@ const normalizeNumber = (numbers: ?NumberArray, value: number) =>
 // and provide a uniform API to create string parts
 const normalizeFn = (
   value: number,
-  numbers: ?NumberArray,
   distanceMillis: number,
+  numbers?: NumberArray,
 ) => (stringOrFn: StringOrFn) =>
   typeof stringOrFn === 'function'
     ? stringOrFn(value, distanceMillis).replace(
@@ -88,8 +88,8 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     // create a normalize function for given value
     const normalize = normalizeFn(
       value,
-      strings.numbers,
       now - epochMiliseconds,
+      strings.numbers,
     )
 
     // The eventual return value stored in an array so that the wordSeparator can be used
@@ -125,7 +125,7 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
 
     // join the array into a string and return it
     const wordSeparator =
-      strings.wordSeparator == null ? ' ' : strings.wordSeparator
+      typeof strings.wordSeparator === 'string' ? strings.wordSeparator : ' '
     return dateString.join(wordSeparator)
   }
 }

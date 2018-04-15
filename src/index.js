@@ -1,5 +1,7 @@
 /* @flow */
 import * as React from 'react'
+import defaultFormatter from './defaultFormatter'
+import dateParser from './dateParser'
 
 const { Component } = React
 
@@ -17,38 +19,42 @@ export type Formatter = (
   unit: Unit,
   suffix: Suffix,
   epochMiliseconds: number,
-) => string | React$Element<Object>
+  nextFormatter?: Formatter,
+) => React.Node
 
 export type Props = {
   /** If the component should update itself over time */
-  live: boolean,
+  +live: boolean,
   /** minimum amount of time in seceonds between re-renders */
-  minPeriod: number,
+  +minPeriod: number,
   /** Maximum time between re-renders in seconds. The component should update at least once every `x` seconds */
-  maxPeriod: number,
+  +maxPeriod: number,
   /** The container to render the string into. You could use a string like `span` or a custom component */
-  component: string | React.ComponentType<mixed>,
+  +component: string | React.ComponentType<mixed>,
   /**
    * A title used for setting the title attribute if a <time> HTML Element is used.
    */
-  title?: string,
+  +title?: string,
   /** A function to decide how to format the date.
    * If you use this, react-timeago is basically acting like a glorified setInterval for you.
    */
-  formatter: Formatter,
+  +formatter: Formatter,
   /** The Date to display. An actual Date object or something that can be fed to new Date */
-  date: string | number | Date,
+  +date: string | number | Date,
+  /** A function that returns what Date.now would return. Primarily for server
+   * date: string | number | Date		 +   * rendering.
+   */
+  +now: () => number,
 }
 
 type DefaultProps = {
-  live: boolean,
-  minPeriod: number,
-  maxPeriod: number,
-  component: string | React.ComponentType<mixed>,
-  formatter: Formatter,
+  +live: boolean,
+  +minPeriod: number,
+  +maxPeriod: number,
+  +component: string | React.ComponentType<mixed>,
+  +formatter: Formatter,
+  +now: () => number,
 }
-
-type TickFn = (refresh: ?boolean) => void
 
 // Just some simple constants for readability
 const MINUTE = 60
@@ -65,24 +71,25 @@ export default class TimeAgo extends Component<Props> {
     component: 'time',
     minPeriod: 0,
     maxPeriod: Infinity,
-    formatter(value, unit, suffix) {
-      if (value !== 1) {
-        unit += 's'
-      }
-      return value + ' ' + unit + ' ' + suffix
-    },
+    formatter: defaultFormatter,
+    now: () => Date.now(),
   }
 
   timeoutId: ?TimeoutID
   isStillMounted: boolean = false
 
-  tick: TickFn = refresh => {
+  tick = (refresh: ?boolean): void => {
     if (!this.isStillMounted || !this.props.live) {
       return
     }
 
-    const then = new Date(this.props.date).valueOf()
-    const now = Date.now()
+    const then = dateParser(this.props.date).valueOf()
+    if (!then) {
+      console.warn('[react-timeago] Invalid Date provided')
+      return
+    }
+
+    const now = this.props.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
 
     const unboundPeriod =
@@ -144,13 +151,17 @@ export default class TimeAgo extends Component<Props> {
       minPeriod,
       maxPeriod,
       title,
+      now,
       ...passDownProps
     } = this.props
     /* eslint-enable no-unused-vars */
-    const then = new Date(date).valueOf()
-    const now = Date.now()
-    const seconds = Math.round(Math.abs(now - then) / 1000)
-    const suffix = then < now ? 'ago' : 'from now'
+    const then = dateParser(date).valueOf()
+    if (!then) {
+      return null
+    }
+    const timeNow = now()
+    const seconds = Math.round(Math.abs(timeNow - then) / 1000)
+    const suffix = then < timeNow ? 'ago' : 'from now'
 
     const [value, unit] =
       seconds < MINUTE
@@ -171,7 +182,7 @@ export default class TimeAgo extends Component<Props> {
       typeof title === 'undefined'
         ? typeof date === 'string'
           ? date
-          : new Date(date)
+          : dateParser(date)
               .toISOString()
               .substr(0, 16)
               .replace('T', ' ')
@@ -180,13 +191,15 @@ export default class TimeAgo extends Component<Props> {
     const spreadProps =
       Komponent === 'time'
         ? Object.assign({}, passDownProps, {
-            dateTime: new Date(date).toISOString(),
+            dateTime: dateParser(date).toISOString(),
           })
         : passDownProps
 
+    const nextFormatter = defaultFormatter.bind(null, value, unit, suffix)
+
     return (
       <Komponent {...spreadProps} title={passDownTitle}>
-        {this.props.formatter(value, unit, suffix, then)}
+        {this.props.formatter(value, unit, suffix, then, nextFormatter)}
       </Komponent>
     )
   }

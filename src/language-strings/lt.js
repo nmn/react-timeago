@@ -19,7 +19,6 @@ const strings: L10nsStrings = {
   year: 'metus',
   years: '%d metus',
   wordSeparator: ' ',
-  numbers: null,
 }
 
 export default strings
