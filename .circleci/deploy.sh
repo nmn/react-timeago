@@ -19,7 +19,7 @@ VERSION=$(git describe --tags | grep "^v[0-9]\+\.[0-9]\+\.[0-9]\+$")
 if [[ "$VERSION" ]]; then
   set -e
   # login
-  echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login
+  echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
   # publish
   npm publish
 else
