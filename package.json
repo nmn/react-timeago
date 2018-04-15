@@ -1,6 +1,6 @@
 {
   "name": "react-timeago",
-  "version": "3.1.3",
+  "version": "4.0.0",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "lib/index.js",
   "scripts": {
@@ -47,6 +47,7 @@
     "babel-plugin-transform-flow-strip-types": "^6.14.0",
     "babel-plugin-transform-react-jsx": "^6.7.5",
     "babel-preset-es2015": "^6.14.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.13.0",
     "babelify": "^8.0.0",

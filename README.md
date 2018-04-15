@@ -2,6 +2,12 @@
 
 A simple time-ago component for ReactJs.
 
+
+## Changes in V4.X:
+- Requires React ^16.
+- Flow types updated to the latest version (0.69)
+- Various bug-fixes.
+
 ## Changes in V3.X:
 
 - minPeriod and maxPeriod now accept seconds not milliseconds. This matches the documentation.
