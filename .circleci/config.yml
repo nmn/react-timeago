@@ -14,8 +14,14 @@ jobs:
 
   deploy:
     working_directory: /home/timeago
+
+    docker:
+      - image: node:8
+
     steps:
       - checkout
+      - run: npm i
+      - run: npm test
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run: npm publish
 
