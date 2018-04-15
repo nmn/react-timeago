@@ -9,8 +9,7 @@
     "example": "browserify -t babelify --debug examples/simple/index.js -o examples/simple/bundle.js",
     "build": "npm run babel && npm run cpflow && npm run example",
     "prepublish": "npm run build",
-    "test": "ava",
-    "coverall": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "test": "jest --coverage"
   },
   "ava": {
     "babel": "inherit",
@@ -40,9 +39,9 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
     "babel-plugin-syntax-flow": "^6.13.0",
     "babel-plugin-syntax-jsx": "^6.13.0",
     "babel-plugin-transform-flow-strip-types": "^6.14.0",
@@ -52,10 +51,9 @@
     "babel-preset-stage-1": "^6.13.0",
     "babelify": "^8.0.0",
     "browserify": "^16.2.0",
-    "coveralls": "^3.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "nyc": "^11.6.0",
+    "jest": "^22.4.3",
     "prettier": "1.12.0",
     "react": "^16.3.1",
     "react-addons-test-utils": "^15.3.0",

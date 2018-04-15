@@ -1,4 +1,3 @@
-import test from 'ava'
 import React from 'react'
 import { configure, shallow } from 'enzyme'
 
@@ -10,51 +9,51 @@ import Adapter from 'enzyme-adapter-react-16'
 
 configure({ adapter: new Adapter() })
 
-test('just now', t => {
+it('just now', () => {
   const wrapper = shallow(<TimeAgo date={new Date()} />)
-  t.is(wrapper.text(), '0 seconds ago')
+  expect(wrapper.text()).toBe('0 seconds ago')
 })
 
-test('1 second ago', t => {
+it('1 second ago', () => {
   const wrapper = shallow(<TimeAgo date={Date.now() - 1000} />)
-  t.is(wrapper.text(), '1 second ago')
+  expect(wrapper.text()).toBe('1 second ago')
 })
 
-test('2 seconds ago', t => {
+it('2 seconds ago', () => {
   const wrapper = shallow(<TimeAgo date={Date.now() - 2000} />)
-  t.is(wrapper.text(), '2 seconds ago')
+  expect(wrapper.text()).toBe('2 seconds ago')
 })
 
-test('1 minute ago', t => {
+it('1 minute ago', () => {
   const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60} />)
-  t.is(wrapper.text(), '1 minute ago')
+  expect(wrapper.text()).toBe('1 minute ago')
 })
 
-test('2 minutes ago', t => {
+it('2 minutes ago', () => {
   const wrapper = shallow(<TimeAgo date={Date.now() - 2000 * 60} />)
-  t.is(wrapper.text(), '2 minutes ago')
+  expect(wrapper.text()).toBe('2 minutes ago')
 })
 
-test('1 hour ago', t => {
+it('1 hour ago', () => {
   const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60 * 60} />)
-  t.is(wrapper.text(), '1 hour ago')
+  expect(wrapper.text()).toBe('1 hour ago')
 })
 
-test('2 hours ago', t => {
+it('2 hours ago', () => {
   const wrapper = shallow(<TimeAgo date={Date.now() - 2000 * 60 * 60} />)
-  t.is(wrapper.text(), '2 hours ago')
+  expect(wrapper.text()).toBe('2 hours ago')
 })
 
-test('1 day ago', t => {
+it('1 day ago', () => {
   const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60 * 60 * 24} />)
-  t.is(wrapper.text(), '1 day ago')
+  expect(wrapper.text()).toBe('1 day ago')
 })
 
-test('1 week ago', t => {
+it('1 week ago', () => {
   const wrapper = shallow(
     <TimeAgo date={Date.now() - 1000 * 60 * 60 * 24 * 7} />,
   )
-  t.is(wrapper.text(), '1 week ago')
+  expect(wrapper.text()).toBe('1 week ago')
 })
 
 /* ... */
@@ -63,12 +62,12 @@ test('1 week ago', t => {
 const formatter = buildFormatter(TWStrings)
 
 /* 1 week ago in zh-TW */
-test('1 week ago in zh-TW', t => {
+it('1 week ago in zh-TW', () => {
   const wrapper = shallow(
     <TimeAgo
       date={Date.now() - 1000 * 60 * 60 * 24 * 7}
       formatter={formatter}
     />,
   )
-  t.is(wrapper.text(), '7天之前')
+  expect(wrapper.text()).toBe('7天之前')
 })
