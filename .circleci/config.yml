@@ -12,11 +12,10 @@ jobs:
 
       - run: npm i
       - run: npm test
-      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      - run: npm publish
 
-      # # publish the build (if a tagged release)
-      # - deploy:
-      #     name: Publish to npm registry
-      #     run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      #     run: npm publish
+  deployment:
+    npm:
+      tag: /v[0-9]+(\.[0-9]+)*/
+      commands:
+        - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+        - run: npm publish
