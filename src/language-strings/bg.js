@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 const strings: L10nsStrings = {
   prefixAgo: 'преди',
@@ -16,7 +16,7 @@ const strings: L10nsStrings = {
   month: 'един месец',
   months: '%d месеца',
   year: 'една година',
-  years: '%d години'
+  years: '%d години',
 }
 
 export default strings

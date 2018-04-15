@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Finnish
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'kuukausi',
   months: '%d kuukautta',
   year: 'vuosi',
-  years: '%d vuotta'
+  years: '%d vuotta',
 }
 
 export default strings

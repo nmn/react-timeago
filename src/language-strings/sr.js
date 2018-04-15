@@ -1,8 +1,8 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Serbian
-function numpf (n, f, s, t) {
+function numpf(n, f, s, t) {
   var n10
   n10 = n % 10
   if (n10 === 1 && (n === 1 || n > 20)) {
@@ -20,30 +20,30 @@ const strings: L10nsStrings = {
   suffixAgo: null,
   suffixFromNow: null,
   second: 'секунд',
-  seconds: function (value) {
+  seconds: function(value) {
     return numpf(value, '%d секунд', '%d секунде', '%d секунди')
   },
   minute: 'један минут',
-  minutes: function (value) {
+  minutes: function(value) {
     return numpf(value, '%d минут', '%d минута', '%d минута')
   },
   hour: 'један сат',
-  hours: function (value) {
+  hours: function(value) {
     return numpf(value, '%d сат', '%d сата', '%d сати')
   },
   day: 'један дан',
-  days: function (value) {
+  days: function(value) {
     return numpf(value, '%d дан', '%d дана', '%d дана')
   },
   month: 'месец дана',
-  months: function (value) {
+  months: function(value) {
     return numpf(value, '%d месец', '%d месеца', '%d месеци')
   },
   year: 'годину дана',
-  years: function (value) {
+  years: function(value) {
     return numpf(value, '%d годину', '%d године', '%d година')
   },
-  wordSeparator: ' '
+  wordSeparator: ' ',
 }
 
 export default strings

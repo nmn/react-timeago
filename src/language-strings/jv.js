@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Javanesse (Boso Jowo)
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'kurang luwih sewulan',
   months: '%d wulan',
   year: 'kurang luwih setahun',
-  years: '%d tahun'
+  years: '%d tahun',
 }
 
 export default strings

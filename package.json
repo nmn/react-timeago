@@ -9,11 +9,14 @@
     "example": "browserify -t babelify --debug examples/simple/index.js -o examples/simple/bundle.js",
     "build": "npm run babel && npm run cpflow && npm run example",
     "prepublish": "npm run build",
-    "test": "ava --require babel-register",
+    "test": "ava",
     "coverall": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "ava": {
-    "babel": "inherit"
+    "babel": "inherit",
+    "require": [
+      "babel-register"
+    ]
   },
   "repository": {
     "type": "git",
@@ -37,9 +40,9 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
+    "ava": "^0.25.0",
     "babel-cli": "^6.14.0",
-    "babel-eslint": "^6.1.2",
+    "babel-core": "^6.26.0",
     "babel-plugin-syntax-flow": "^6.13.0",
     "babel-plugin-syntax-jsx": "^6.13.0",
     "babel-plugin-transform-flow-strip-types": "^6.14.0",
@@ -47,15 +50,16 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.13.0",
-    "babelify": "^7.3.0",
-    "browserify": "^13.1.0",
-    "coveralls": "^2.11.12",
-    "enzyme": "^2.4.1",
-    "nyc": "^8.0.0",
+    "babelify": "^8.0.0",
+    "browserify": "^16.2.0",
+    "coveralls": "^3.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "nyc": "^11.6.0",
     "prettier": "1.12.0",
-    "react": "^15.0.0-rc.2",
+    "react": "^16.3.1",
     "react-addons-test-utils": "^15.3.0",
-    "react-dom": "^15.3.1"
+    "react-dom": "^16.3.1"
   },
   "dependencies": {},
   "prettier": {

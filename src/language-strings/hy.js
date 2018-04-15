@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Armenian
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'մեկ ամիս',
   months: '%d ամիս',
   year: 'մեկ տարի',
-  years: '%d տարի'
+  years: '%d տարի',
 }
 
 export default strings

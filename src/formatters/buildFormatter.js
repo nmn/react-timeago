@@ -89,7 +89,7 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     const normalize = normalizeFn(
       value,
       strings.numbers,
-      Math.abs(epochMiliseconds - now),
+      now - epochMiliseconds,
     )
 
     // The eventual return value stored in an array so that the wordSeparator can be used

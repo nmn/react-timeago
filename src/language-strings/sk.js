@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Slovak
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: '1 mesiacom',
   months: '%d mesiacmi',
   year: '1 rokom',
-  years: '%d rokmi'
+  years: '%d rokmi',
 }
 
 export default strings

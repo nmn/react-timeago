@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Indonesian
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'sekitar sebulan',
   months: '%d bulan',
   year: 'sekitar setahun',
-  years: '%d tahun'
+  years: '%d tahun',
 }
 
 export default strings

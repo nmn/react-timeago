@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Turkish
 const strings: L10nsStrings = {
@@ -15,7 +15,7 @@ const strings: L10nsStrings = {
   month: '1 ay',
   months: '%d ay',
   year: '1 yıl',
-  years: '%d yıl'
+  years: '%d yıl',
 }
 
 export default strings

@@ -1,8 +1,8 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Croatian
-function numpf (n, f, s, t) {
+function numpf(n, f, s, t) {
   var n10
   n10 = n % 10
   if (n10 === 1 && (n === 1 || n > 20)) {
@@ -20,30 +20,30 @@ const strings: L10nsStrings = {
   suffixAgo: null,
   suffixFromNow: null,
   second: 'sekundu',
-  seconds: function (value) {
+  seconds: function(value) {
     return numpf(value, '%d sekundu', '%d sekunde', '%d sekundi')
   },
   minute: 'oko minutu',
-  minutes: function (value) {
+  minutes: function(value) {
     return numpf(value, '%d minutu', '%d minute', '%d minuta')
   },
   hour: 'oko jedan sat',
-  hours: function (value) {
+  hours: function(value) {
     return numpf(value, '%d sat', '%d sata', '%d sati')
   },
   day: 'jedan dan',
-  days: function (value) {
+  days: function(value) {
     return numpf(value, '%d dan', '%d dana', '%d dana')
   },
   month: 'mjesec dana',
-  months: function (value) {
+  months: function(value) {
     return numpf(value, '%d mjesec', '%d mjeseca', '%d mjeseci')
   },
   year: 'prije godinu dana',
-  years: function (value) {
+  years: function(value) {
     return numpf(value, '%d godinu', '%d godine', '%d godina')
   },
-  wordSeparator: ' '
+  wordSeparator: ' ',
 }
 
 export default strings

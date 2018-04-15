@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Hungarian
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'körülbelül egy hónapja',
   months: '%d hónapja',
   year: 'körülbelül egy éve',
-  years: '%d éve'
+  years: '%d éve',
 }
 
 export default strings

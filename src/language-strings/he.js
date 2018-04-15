@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Hebrew
 const strings: L10nsStrings = {
@@ -9,13 +9,21 @@ const strings: L10nsStrings = {
   minute: 'דקה',
   minutes: '%d דקות',
   hour: 'שעה',
-  hours: function (number) { return (number === 2) ? 'שעתיים' : '%d שעות' },
+  hours: function(number) {
+    return number === 2 ? 'שעתיים' : '%d שעות'
+  },
   day: 'יום',
-  days: function (number) { return (number === 2) ? 'יומיים' : '%d ימים' },
+  days: function(number) {
+    return number === 2 ? 'יומיים' : '%d ימים'
+  },
   month: 'חודש',
-  months: function (number) { return (number === 2) ? 'חודשיים' : '%d חודשים' },
+  months: function(number) {
+    return number === 2 ? 'חודשיים' : '%d חודשים'
+  },
   year: 'שנה',
-  years: function (number) { return (number === 2) ? 'שנתיים' : '%d שנים' }
+  years: function(number) {
+    return number === 2 ? 'שנתיים' : '%d שנים'
+  },
 }
 
 export default strings

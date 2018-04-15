@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 const strings: L10nsStrings = {
   prefixAgo: 'duela',
@@ -16,7 +16,7 @@ const strings: L10nsStrings = {
   month: 'hilabete bat',
   months: '%d hilabete',
   year: 'urte bat',
-  years: '%d urte'
+  years: '%d urte',
 }
 
 export default strings

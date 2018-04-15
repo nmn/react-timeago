@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Sinhalese (SI)
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'මාසයක් පමණ',
   months: 'මාස %d කට',
   year: 'වසරක් පමණ',
-  years: 'වසරක් %d කට පමණ'
+  years: 'වසරක් %d කට පමණ',
 }
 
 export default strings

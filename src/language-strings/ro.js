@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Romanian
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'o luna',
   months: '%d luni',
   year: 'un an',
-  years: '%d ani'
+  years: '%d ani',
 }
 
 export default strings

@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // German
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'etwa einem Monat',
   months: '%d Monaten',
   year: 'etwa einem Jahr',
-  years: '%d Jahren'
+  years: '%d Jahren',
 }
 
 export default strings

@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Swedish
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'ungefär en månad',
   months: '%d månader',
   year: 'ungefär ett år',
-  years: '%d år'
+  years: '%d år',
 }
 
 export default strings

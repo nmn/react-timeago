@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Persian
 // Use DIR attribute for RTL text in Persian Language for ABBR tag .
@@ -20,7 +20,7 @@ const strings: L10nsStrings = {
   months: '%d ماه',
   year: 'حدود یک سال',
   years: '%d سال',
-  wordSeparator: ' '
+  wordSeparator: ' ',
 }
 
 export default strings

@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Greek
 const strings: L10nsStrings = {
@@ -17,7 +17,7 @@ const strings: L10nsStrings = {
   month: 'περίπου ένα μήνα',
   months: '%d μήνες',
   year: 'περίπου ένα χρόνο',
-  years: '%d χρόνια'
+  years: '%d χρόνια',
 }
 
 export default strings

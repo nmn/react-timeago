@@ -1,9 +1,9 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // French
 const strings: L10nsStrings = {
-   // environ ~= about, it's optional
+  // environ ~= about, it's optional
   prefixAgo: 'il y a',
   prefixFromNow: "d'ici",
   seconds: "moins d'une minute",
@@ -16,7 +16,7 @@ const strings: L10nsStrings = {
   month: 'environ un mois',
   months: 'environ %d mois',
   year: 'un an',
-  years: '%d ans'
+  years: '%d ans',
 }
 
 export default strings
