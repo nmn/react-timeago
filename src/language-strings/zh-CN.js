@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Simplified Chinese
 const strings: L10nsStrings = {
@@ -18,8 +18,8 @@ const strings: L10nsStrings = {
   months: '%d月',
   year: '大约1年',
   years: '%d年',
-  numbers: [],
-  wordSeparator: ''
+  numbers: null,
+  wordSeparator: '',
 }
 
 export default strings

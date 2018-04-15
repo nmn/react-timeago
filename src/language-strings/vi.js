@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Vietnamese
 const strings: L10nsStrings = {
@@ -19,7 +19,7 @@ const strings: L10nsStrings = {
   year: 'khoảng một năm',
   years: '%d năm',
   wordSeparator: ' ',
-  numbers: []
+  numbers: null,
 }
 
 export default strings

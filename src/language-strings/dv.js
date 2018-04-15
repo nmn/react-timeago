@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 /**
  * Dhivehi time in Thaana for timeago.js
@@ -21,7 +21,7 @@ const strings: L10nsStrings = {
   year: 'އަހަރެއްވަރު',
   years: 'މީގެ %d އަހަރު',
   wordSeparator: ' ',
-  numbers: []
+  numbers: null,
 }
 
 export default strings

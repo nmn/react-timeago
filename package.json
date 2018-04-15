@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/nmn/react-timeago",
   "peerDependencies": {
-    "react": "^15.0.0"
+    "react": "^16.0.0"
   },
   "devDependencies": {
     "ava": "^0.16.0",
@@ -51,18 +51,18 @@
     "browserify": "^13.1.0",
     "coveralls": "^2.11.12",
     "enzyme": "^2.4.1",
-    "eslint": "^3.4.0",
-    "eslint-config-standard": "^6.0.0",
-    "eslint-config-standard-react": "^4.0.0",
-    "eslint-plugin-flow-vars": "^0.5.0",
-    "eslint-plugin-flowtype": "^2.16.0",
-    "eslint-plugin-promise": "^2.0.1",
-    "eslint-plugin-react": "^6.2.0",
-    "eslint-plugin-standard": "^2.0.0",
     "nyc": "^8.0.0",
+    "prettier": "1.12.0",
     "react": "^15.0.0-rc.2",
     "react-addons-test-utils": "^15.3.0",
     "react-dom": "^15.3.1"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "prettier": {
+    "printWidth": 80,
+    "parser": "flow",
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true
+  }
 }

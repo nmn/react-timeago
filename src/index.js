@@ -1,15 +1,23 @@
 /* @flow */
-import React, {Component} from 'react'
+import * as React from 'react'
 
-export type Unit = 'second'
-          | 'minute'
-          | 'hour'
-          | 'day'
-          | 'week'
-          | 'month'
-          | 'year'
+const { Component } = React
+
+export type Unit =
+  | 'second'
+  | 'minute'
+  | 'hour'
+  | 'day'
+  | 'week'
+  | 'month'
+  | 'year'
 export type Suffix = 'ago' | 'from now'
-export type Formatter = (value: number, unit: Unit, suffix: Suffix, epochSeconds: number) => string | React$Element<Object>
+export type Formatter = (
+  value: number,
+  unit: Unit,
+  suffix: Suffix,
+  epochMiliseconds: number,
+) => string | React$Element<Object>
 
 export type Props = {
   /** If the component should update itself over time */
@@ -19,7 +27,7 @@ export type Props = {
   /** Maximum time between re-renders in seconds. The component should update at least once every `x` seconds */
   maxPeriod: number,
   /** The container to render the string into. You could use a string like `span` or a custom component */
-  component: string | ReactClass<any>,
+  component: string | React.ComponentType<mixed>,
   /**
    * A title used for setting the title attribute if a <time> HTML Element is used.
    */
@@ -29,15 +37,15 @@ export type Props = {
    */
   formatter: Formatter,
   /** The Date to display. An actual Date object or something that can be fed to new Date */
-  date: string | number | Date
+  date: string | number | Date,
 }
 
 type DefaultProps = {
   live: boolean,
   minPeriod: number,
   maxPeriod: number,
-  component: string | ReactClass<Object> | Function,
-  formatter: Formatter
+  component: string | React.ComponentType<mixed>,
+  formatter: Formatter,
 }
 
 type TickFn = (refresh: ?boolean) => void
@@ -50,44 +58,44 @@ const WEEK = DAY * 7
 const MONTH = DAY * 30
 const YEAR = DAY * 365
 
-export default class TimeAgo extends Component<DefaultProps, Props, void> {
-  static displayName = 'TimeAgo';
-  static defaultProps = {
+export default class TimeAgo extends Component<Props> {
+  static displayName = 'TimeAgo'
+  static defaultProps: DefaultProps = {
     live: true,
     component: 'time',
     minPeriod: 0,
     maxPeriod: Infinity,
-    formatter (value, unit, suffix) {
+    formatter(value, unit, suffix) {
       if (value !== 1) {
         unit += 's'
       }
       return value + ' ' + unit + ' ' + suffix
-    }
-  };
+    },
+  }
 
-  timeoutId: ?number;
-  isStillMounted: boolean = false;
+  timeoutId: ?TimeoutID
+  isStillMounted: boolean = false
 
-  tick: TickFn = (refresh) => {
+  tick: TickFn = refresh => {
     if (!this.isStillMounted || !this.props.live) {
       return
     }
 
-    const then = (new Date(this.props.date)).valueOf()
+    const then = new Date(this.props.date).valueOf()
     const now = Date.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
 
-    const unboundPeriod
-      = seconds < MINUTE
-      ? 1000
-      : seconds < HOUR
-      ? 1000 * MINUTE
-      : seconds < DAY
-      ? 1000 * HOUR
-      : 0
+    const unboundPeriod =
+      seconds < MINUTE
+        ? 1000
+        : seconds < HOUR
+          ? 1000 * MINUTE
+          : seconds < DAY
+            ? 1000 * HOUR
+            : 0
     const period = Math.min(
       Math.max(unboundPeriod, this.props.minPeriod * 1000),
-      this.props.maxPeriod * 1000
+      this.props.maxPeriod * 1000,
     )
 
     if (period) {
@@ -97,17 +105,20 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     if (!refresh) {
       this.forceUpdate()
     }
-  };
+  }
 
-  componentDidMount () {
+  componentDidMount() {
     this.isStillMounted = true
     if (this.props.live) {
       this.tick(true)
     }
   }
 
-  componentDidUpdate (lastProps: Props) {
-    if (this.props.live !== lastProps.live || this.props.date !== lastProps.date) {
+  componentDidUpdate(lastProps: Props) {
+    if (
+      this.props.live !== lastProps.live ||
+      this.props.date !== lastProps.date
+    ) {
       if (!this.props.live && this.timeoutId) {
         clearTimeout(this.timeoutId)
       }
@@ -115,7 +126,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.isStillMounted = false
     if (this.timeoutId) {
       clearTimeout(this.timeoutId)
@@ -123,7 +134,7 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
     }
   }
 
-  render (): React$Element<*> {
+  render(): React.Node {
     /* eslint-disable no-unused-vars */
     const {
       date,
@@ -136,38 +147,45 @@ export default class TimeAgo extends Component<DefaultProps, Props, void> {
       ...passDownProps
     } = this.props
     /* eslint-enable no-unused-vars */
-    const then = (new Date(date)).valueOf()
+    const then = new Date(date).valueOf()
     const now = Date.now()
     const seconds = Math.round(Math.abs(now - then) / 1000)
     const suffix = then < now ? 'ago' : 'from now'
 
-    const [value, unit]
-      = seconds < MINUTE
-      ? [Math.round(seconds), 'second']
-      : seconds < HOUR
-      ? [Math.round(seconds / MINUTE), 'minute']
-      : seconds < DAY
-      ? [Math.round(seconds / HOUR), 'hour']
-      : seconds < WEEK
-      ? [Math.round(seconds / DAY), 'day']
-      : seconds < MONTH
-      ? [Math.round(seconds / WEEK), 'week']
-      : seconds < YEAR
-      ? [Math.round(seconds / MONTH), 'month']
-      : [Math.round(seconds / YEAR), 'year']
+    const [value, unit] =
+      seconds < MINUTE
+        ? [Math.round(seconds), 'second']
+        : seconds < HOUR
+          ? [Math.round(seconds / MINUTE), 'minute']
+          : seconds < DAY
+            ? [Math.round(seconds / HOUR), 'hour']
+            : seconds < WEEK
+              ? [Math.round(seconds / DAY), 'day']
+              : seconds < MONTH
+                ? [Math.round(seconds / WEEK), 'week']
+                : seconds < YEAR
+                  ? [Math.round(seconds / MONTH), 'month']
+                  : [Math.round(seconds / YEAR), 'year']
 
-    const passDownTitle = typeof title === 'undefined'
-      ? (typeof date === 'string'
-	? date
-	: (new Date(date)).toISOString().substr(0, 16).replace('T', ' '))
-      : title
+    const passDownTitle =
+      typeof title === 'undefined'
+        ? typeof date === 'string'
+          ? date
+          : new Date(date)
+              .toISOString()
+              .substr(0, 16)
+              .replace('T', ' ')
+        : title
 
-    if (Komponent === 'time') {
-      passDownProps.dateTime = (new Date(date)).toISOString()
-    }
+    const spreadProps =
+      Komponent === 'time'
+        ? Object.assign({}, passDownProps, {
+            dateTime: new Date(date).toISOString(),
+          })
+        : passDownProps
 
     return (
-      <Komponent {...passDownProps} title={passDownTitle}>
+      <Komponent {...spreadProps} title={passDownTitle}>
         {this.props.formatter(value, unit, suffix, then)}
       </Komponent>
     )

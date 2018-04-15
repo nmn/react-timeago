@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 const strings: L10nsStrings = {
   prefixAgo: null,
@@ -18,7 +18,7 @@ const strings: L10nsStrings = {
   year: '1 il',
   years: '%d il',
   wordSeparator: '',
-  numbers: []
+  numbers: null,
 }
 
 export default strings

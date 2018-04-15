@@ -1,5 +1,5 @@
 /* @flow */
-import type {L10nsStrings} from '../formatters/buildFormatter'
+import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Traditional Chinese, zh-tw
 const strings: L10nsStrings = {
@@ -18,8 +18,8 @@ const strings: L10nsStrings = {
   months: '%d個月',
   year: '大約1年',
   years: '%d年',
-  numbers: [],
-  wordSeparator: ''
+  numbers: null,
+  wordSeparator: '',
 }
 
 export default strings
