@@ -16,4 +16,5 @@ jobs:
       # publish the build (if a tagged release)
       - deploy:
           name: Publish to npm registry
-          command: .circleci/deploy.sh
+          run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          run: npm publish
