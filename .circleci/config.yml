@@ -1,0 +1,19 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: /home/timeago
+
+    docker:
+      - image: node:8
+
+    steps:
+      - checkout
+
+      - run: npm i
+      - run: npm test
+
+      # publish the build (if a tagged release)
+      - deploy:
+          name: Publish to npm registry
+          command: .circleci/deploy.sh
