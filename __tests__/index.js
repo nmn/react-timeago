@@ -72,7 +72,7 @@ it('1 week ago in zh-TW', () => {
   expect(wrapper.text()).toBe('7天之前')
 })
 
-test('allow custom wordSeparator', t => {
+test('allow custom wordSeparator', () => {
   const strings = Object.assign({}, TWStrings, { wordSeparator: 'x' })
   const formatter = buildFormatter(strings)
   const wrapper = shallow(
@@ -81,5 +81,5 @@ test('allow custom wordSeparator', t => {
       formatter={formatter}
     />,
   )
-  t.is(wrapper.text(), '7天x之前')
+  expect(wrapper.text()).toBe('7天x之前')
 })
