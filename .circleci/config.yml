@@ -9,13 +9,12 @@ jobs:
 
     steps:
       - checkout
-
       - run: npm i
       - run: npm test
 
-  deployment:
-    npm:
-      tag: /v[0-9]+(\.[0-9]+)*/
-      commands:
-        - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-        - run: npm publish
+    deployment:
+      npm:
+        tag: /v[0-9]+(\.[0-9]+)*/
+        commands:
+          - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          - run: npm publish
