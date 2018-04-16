@@ -28,3 +28,4 @@ lib
 
 .DS_Store
 */.DS_Store
+yarn-error.log
