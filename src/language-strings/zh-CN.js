@@ -6,7 +6,7 @@ const strings: L10nsStrings = {
   prefixAgo: null,
   prefixFromNow: null,
   suffixAgo: '之前',
-  suffixFromNow : '后',
+  suffixFromNow: '后',
   seconds: '不到1分钟',
   minute: '大约1分钟',
   minutes: '%d分钟',
