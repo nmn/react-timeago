@@ -25,6 +25,7 @@ build/Release
 
 node_modules
 lib
+examples/simple/bundle.js
 
 .DS_Store
 */.DS_Store
