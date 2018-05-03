@@ -89,7 +89,7 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     // create a normalize function for given value
     const normalize = normalizeFn(
       value,
-      now - epochMiliseconds,
+      current - epochMiliseconds,
       strings.numbers,
     )
 
