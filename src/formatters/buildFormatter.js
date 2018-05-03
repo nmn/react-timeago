@@ -73,13 +73,14 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     value: number,
     unit: Unit,
     suffix: Suffix,
+    now: Function,
     epochMiliseconds: number,
   ) {
-    const now = Date.now()
+    const current = now()
     // convert weeks to days if strings don't handle weeks
     if (unit === 'week' && !strings.week && !strings.weeks) {
       const days = Math.round(
-        Math.abs(epochMiliseconds - now) / (1000 * 60 * 60 * 24),
+        Math.abs(epochMiliseconds - current) / (1000 * 60 * 60 * 24),
       )
       value = days
       unit = 'day'

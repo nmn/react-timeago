@@ -56,7 +56,33 @@ it('1 week ago', () => {
   expect(wrapper.text()).toBe('1 week ago')
 })
 
-/* ... */
+it('21 days ago', () => {
+  const timeAgoFormatConfig = {
+    prefixAgo: null,
+    prefixFromNow: null,
+    suffixAgo: 'ago',
+    suffixFromNow: 'from now',
+    seconds: '%d sec',
+    minutes: '%d min',
+    hour: '%d hr',
+    hours: '%d hrs',
+    day: '%d day',
+    days: '%d days',
+    wordSeparator: ' ',
+  }
+
+  const timeAgoFormatter = buildFormatter(timeAgoFormatConfig)
+
+  const wrapper = shallow(
+    <TimeAgo
+      formatter={timeAgoFormatter}
+      date={new Date('Tue Apr 03 2018 12:00:00 GMT-0700 (PDT)').getTime()}
+      now={() => new Date('Tue Apr 24 2018 15:12:51 GMT-0400 (EDT)').getTime()}
+    />,
+  )
+
+  expect(wrapper.text()).toBe('21 days ago')
+})
 
 /* zh-TW */
 const formatter = buildFormatter(TWStrings)
