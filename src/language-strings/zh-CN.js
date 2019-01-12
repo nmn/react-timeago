@@ -4,9 +4,9 @@ import type { L10nsStrings } from '../formatters/buildFormatter'
 // Simplified Chinese
 const strings: L10nsStrings = {
   prefixAgo: null,
-  prefixFromNow: '从现在开始',
+  prefixFromNow: null,
   suffixAgo: '之前',
-  suffixFromNow: null,
+  suffixFromNow: '之后',
   seconds: '不到1分钟',
   minute: '大约1分钟',
   minutes: '%d分钟',
