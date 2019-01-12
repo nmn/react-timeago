@@ -1,5 +1,6 @@
 // @flow
 
+import * as React from 'react'
 import type { Formatter, Unit, Suffix } from '../index'
 
 type StringOrFn = string | ((value: number, millisDelta: number) => string)
@@ -74,12 +75,14 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     unit: Unit,
     suffix: Suffix,
     epochMiliseconds: number,
+    _nextFormmater: () => React.Node,
+    now: () => number,
   ) {
-    const now = Date.now()
+    const current = now()
     // convert weeks to days if strings don't handle weeks
     if (unit === 'week' && !strings.week && !strings.weeks) {
       const days = Math.round(
-        Math.abs(epochMiliseconds - now) / (1000 * 60 * 60 * 24),
+        Math.abs(epochMiliseconds - current) / (1000 * 60 * 60 * 24),
       )
       value = days
       unit = 'day'
@@ -88,7 +91,7 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     // create a normalize function for given value
     const normalize = normalizeFn(
       value,
-      now - epochMiliseconds,
+      current - epochMiliseconds,
       strings.numbers != null ? strings.numbers : undefined,
     )
 

@@ -20,6 +20,7 @@ export type Formatter = (
   suffix: Suffix,
   epochMiliseconds: number,
   nextFormatter: () => React.Node,
+  now: () => number,
 ) => React.Node
 
 export type Props = {
@@ -199,7 +200,7 @@ export default class TimeAgo extends Component<Props> {
 
     return (
       <Komponent {...spreadProps} title={passDownTitle}>
-        {formatter(value, unit, suffix, then, nextFormatter)}
+        {formatter(value, unit, suffix, then, nextFormatter, now)}
       </Komponent>
     )
   }
