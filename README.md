@@ -148,6 +148,10 @@ React-TimeAgo follows SemVer strictly.
 ## Changelog
 
 #### v4.2.0
+- Pass in the `now` function as the last argument to the formatters.
+- Fix a bug in `buildFormatter` that would ignore the user-specified `now` function and just used `Date.now`
+
+#### v4.2.0
 - Fixed the type of `Formatter`.
   - It's last argument is now correctly typed to be `() => React.Node`
   - This last argument is now a documented feature and is going to be set to the value of of the default formatter.
