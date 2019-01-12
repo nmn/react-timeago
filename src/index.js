@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import * as React from 'react'
 import defaultFormatter from './defaultFormatter'
 import dateParser from './dateParser'
@@ -19,7 +19,7 @@ export type Formatter = (
   unit: Unit,
   suffix: Suffix,
   epochMiliseconds: number,
-  nextFormatter?: Formatter,
+  nextFormatter: () => React.Node,
 ) => React.Node
 
 export type Props = {
@@ -199,7 +199,7 @@ export default class TimeAgo extends Component<Props> {
 
     return (
       <Komponent {...spreadProps} title={passDownTitle}>
-        {this.props.formatter(value, unit, suffix, then, nextFormatter)}
+        {formatter(value, unit, suffix, then, nextFormatter)}
       </Komponent>
     )
   }

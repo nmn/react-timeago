@@ -1,11 +1,10 @@
 [ignore]
+.*/lib/.*
+.*/coverage/.*
+.*/node_modules/.*
 
 [include]
 
 [libs]
 
 [options]
-esproposal.class_static_fields=enable
-esproposal.class_instance_fields=enable
-esproposal.decorators=ignore
-esproposal.export_star_as=enable

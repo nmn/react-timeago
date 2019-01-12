@@ -2,29 +2,6 @@
 
 A simple time-ago component for ReactJs.
 
-
-## Changes in V4.X:
-- Requires React ^16.
-- Flow types updated to the latest version (0.69)
-- Various bug-fixes.
-
-## Changes in V3.X:
-
-- `minPeriod` and `maxPeriod` now accept seconds not milliseconds. This matches the documentation.
-- react-timeago now uses ES6 modules. So if you don't use ES6, your code will go from :
-```js
-var TimeAgo = require('react-timeago')
-```
-to:
-```js
-var TimeAgo = require('react-timeago').default
-```
-ES6 imports will obviously continue to work just fine:
-```js
-import TimeAgo from 'react-timeago'
-```
-
-
 ## Usage:
 
 React-timeago is a very simple component that takes a date prop and returns a span with live updating date in a time-ago format. The date will update only as often as needed. For timestamps below a minute away — every second, for timestamps up to 5 minutes away — every hour, and so on.
@@ -43,7 +20,8 @@ React.createElement(TimeAgo, {date: 'Aug 29, 2014'})
 ## Language support
 
 Since v3.1.0 `react-timeago` now comes with support for a large number of languages out of the box.
-This support is based on the string objects taken from `jquery-timeago`
+This support is based on the string objects taken from `jquery-timeago` and then updated with the help of the
+community. Many thanks to all those who contribute language support.
 
 #### Usage:
 To use any of the languages provided, other than the default english, you will have to
@@ -84,6 +62,10 @@ Date is a date in the past or the future. This can be a Date Object, A UTC date-
 #### `live` (optional)
 React-Timeago is live by default and will auto update it's value. However, if you don't want this behaviour, you can set live:false.
 
+#### `now` (optional)
+A custom function that can be used instead of `Date.now()` to get the current value of `epochSeconds` in `formatter` below.
+This can be specifically useful for server rendering when you want the datetime to be the same on the server and client.
+
 #### `formatter` (optional)
 A function that takes four arguments:
   - value : An integer value, already rounded off
@@ -98,7 +80,8 @@ A function that takes four arguments:
   - suffix : A string. This can be one of
     - 'ago'
     - 'from now'
-  - date: The actual date you are trying to represent. Use this for a more custom format for showing your date.
+  - epochSeconds: The result of `Date.now()` or the result of a custom `now` prop.
+  - nextFormatter: A function that takes no arguments and gives you the result of the defaultFormatter using the same arguments above.
 
 Here are some examples of what the formatter function will receive:
 
@@ -163,6 +146,34 @@ default english, weeks get down-converted to days instead. Help me fix that.
 React-TimeAgo follows SemVer strictly.
 
 ## Changelog
+
+#### v4.2.0
+- Fixed the type of `Formatter`.
+  - It's last argument is now correctly typed to be `() => React.Node`
+  - This last argument is now a documented feature and is going to be set to the value of of the default formatter.
+  - Please Note, that you should not use this argument and instead import defaultFormatter from the package directly and use it as a fallback.
+
+#### v4.0.0 - v4.1.9:
+- Requires React ^16.
+- Flow types updated to the latest version (0.69)
+- Various bug-fixes.
+
+#### v3.x.x:
+
+- `minPeriod` and `maxPeriod` now accept seconds not milliseconds. This matches the documentation.
+- react-timeago now uses ES6 modules. So if you don't use ES6, your code will go from :
+
+```js
+var TimeAgo = require('react-timeago')
+```
+to:
+```js
+var TimeAgo = require('react-timeago').default
+```
+ES6 imports will continue to work the same way.
+```js
+import TimeAgo from 'react-timeago'
+```
 
 #### v2.2.1
 * Fixed the many typos introduced by me in 2.2.0. Thanks to insin for the quick PR.

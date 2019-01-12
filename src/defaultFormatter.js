@@ -1,5 +1,7 @@
 // @flow
 
+import * as React from 'react';
+
 export default function defaultFormatter(
   value: number,
   unit: string,
