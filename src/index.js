@@ -107,6 +107,9 @@ export default class TimeAgo extends Component<Props> {
     )
 
     if (period) {
+      if (this.timeoutId) {
+        clearTimeout(this.timeoutId)
+      }
       this.timeoutId = setTimeout(this.tick, period)
     }
 
