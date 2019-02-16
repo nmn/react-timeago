@@ -147,6 +147,9 @@ React-TimeAgo follows SemVer strictly.
 
 ## Changelog
 
+#### v4.4.0
+- Bug Fix: clearTimeout when setting a new timeout. Prevents unneccesary renders.
+
 #### v4.2.0
 - Pass in the `now` function as the last argument to the formatters.
 - Fix a bug in `buildFormatter` that would ignore the user-specified `now` function and just used `Date.now`
