@@ -4,8 +4,9 @@ import type { L10nsStrings } from '../formatters/buildFormatter'
 // Turkish
 const strings: L10nsStrings = {
   suffixAgo: 'önce',
-  suffixFromNow: null,
-  seconds: '1 dakikadan',
+  suffixFromNow: 'sonra',
+  second: '1 saniye',
+  seconds: '%d saniye',
   minute: '1 dakika',
   minutes: '%d dakika',
   hour: '1 saat',
