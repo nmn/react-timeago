@@ -119,27 +119,26 @@ This means that you can pass className, styles, id, title, aria-label, event han
 
 ## Why React-TimeAgo
 
-React-TimeAgo focusses on speed, and simplicity. At about 100 lines of code, the file size is extremely small. There are many similar libraries, but most of them come with large dependencies that usually isn't worth such a simple use-case
+React-TimeAgo focusses on speed, and simplicity. At about 100 lines of code, the file size is extremely small. There are many similar libraries, but most of them come with large dependencies that aren't worth it for such a simple use case.
 
-Additionally, in the spirit of NPM and keeping libraries small, any additional features you may need from TimeAgo can be plugged-in using the formatter function.
+In the spirit of NPM and keeping libraries small, any additional features you may need from TimeAgo can be plugged-in using the formatter function.
 
 In the future, I will be writing formatter functions for various languages, that can be required and passed-in as needed.
-As you will only require the parts you actually use, there will be no need to bloat-up your javascript.
+As you will only require the parts you actually use, there will be no need to bloat-up your JavaScript.
 
-React-TimeAgo is also set apart from its competitors in that it is one of the only time-ago components that updates itself live.
+React-TimeAgo is also set apart from its competitors in that it is one of the only time-ago components that can update itself live.
 
-If this is not for you, please looks at the alternatives out there.
 
 ## Contribution
 
 While the code is complete and pretty stable, I welcome issues and pull requests.
 
-React-TimeAgo is feature complete from my point of view. (discussions welcome)
+React-TimeAgo is feature complete from my point of view (discussions welcome).
 
 However, support for various languages can always be improved. So please, conrtibute
 strings for the language(s) you're fluent in. I'm specifically looking for strings for
 the unit 'week'. `jquery-timeago` did not support weeks in its strings, and so in all but the
-default english, weeks get down-converted to days instead. Help me fix that.
+default English, weeks get down-converted to days instead. Help me fix that.
 
 ## SemVer
 
