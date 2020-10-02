@@ -10,7 +10,7 @@ export default function dateParser(date: string | number | Date): Date {
   if (parts == null || parts.length <= 2) {
     return parsed
   } else {
-    const [firstP, secondP, ...restPs] = parts.map(x => parseInt(x))
+    const [firstP, secondP, ...restPs] = parts.map((x) => parseInt(x))
     const correctedParts = [firstP, secondP - 1, ...restPs]
     let isoDate = new Date(Date.UTC(...correctedParts))
     return isoDate

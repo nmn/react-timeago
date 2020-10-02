@@ -1,62 +1,61 @@
+
+import '@testing-library/jest-dom'
+import {render, fireEvent, screen} from '@testing-library/react'
+
 import React from 'react'
-import { configure, shallow } from 'enzyme'
 
 import TimeAgo from '../src'
 import buildFormatter from '../src/formatters/buildFormatter'
 import TWStrings from '../src/language-strings/zh-TW'
 
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
-
-it('just now', () => {
-  const wrapper = shallow(<TimeAgo date={new Date()} />)
-  expect(wrapper.text()).toBe('0 seconds ago')
+test('just now', () => {
+  render(<TimeAgo date={new Date()} />)
+  expect(screen.getByText('0 seconds ago')).toBeInTheDocument()
 })
 
-it('1 second ago', () => {
-  const wrapper = shallow(<TimeAgo date={Date.now() - 1000} />)
-  expect(wrapper.text()).toBe('1 second ago')
+test('1 second ago', () => {
+  render(<TimeAgo date={Date.now() - 1000} />)
+  expect(screen.getByText('1 second ago')).toBeInTheDocument()
 })
 
-it('2 seconds ago', () => {
-  const wrapper = shallow(<TimeAgo date={Date.now() - 2000} />)
-  expect(wrapper.text()).toBe('2 seconds ago')
+test('2 seconds ago', () => {
+  render(<TimeAgo date={Date.now() - 2000} />)
+  expect(screen.getByText('2 seconds ago')).toBeInTheDocument()
 })
 
-it('1 minute ago', () => {
-  const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60} />)
-  expect(wrapper.text()).toBe('1 minute ago')
+test('1 minute ago', () => {
+  render(<TimeAgo date={Date.now() - 1000 * 60} />)
+  expect(screen.getByText('1 minute ago')).toBeInTheDocument()
 })
 
-it('2 minutes ago', () => {
-  const wrapper = shallow(<TimeAgo date={Date.now() - 2000 * 60} />)
-  expect(wrapper.text()).toBe('2 minutes ago')
+test('2 minutes ago', () => {
+  render(<TimeAgo date={Date.now() - 2000 * 60} />)
+  expect(screen.getByText('2 minutes ago')).toBeInTheDocument()
 })
 
-it('1 hour ago', () => {
-  const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60 * 60} />)
-  expect(wrapper.text()).toBe('1 hour ago')
+test('1 hour ago', () => {
+  render(<TimeAgo date={Date.now() - 1000 * 60 * 60} />)
+  expect(screen.getByText('1 hour ago')).toBeInTheDocument()
 })
 
-it('2 hours ago', () => {
-  const wrapper = shallow(<TimeAgo date={Date.now() - 2000 * 60 * 60} />)
-  expect(wrapper.text()).toBe('2 hours ago')
+test('2 hours ago', () => {
+  render(<TimeAgo date={Date.now() - 2000 * 60 * 60} />)
+  expect(screen.getByText('2 hours ago')).toBeInTheDocument()
 })
 
-it('1 day ago', () => {
-  const wrapper = shallow(<TimeAgo date={Date.now() - 1000 * 60 * 60 * 24} />)
-  expect(wrapper.text()).toBe('1 day ago')
+test('1 day ago', () => {
+  render(<TimeAgo date={Date.now() - 1000 * 60 * 60 * 24} />)
+  expect(screen.getByText('1 day ago')).toBeInTheDocument()
 })
 
-it('1 week ago', () => {
-  const wrapper = shallow(
+test('1 week ago', () => {
+  render(
     <TimeAgo date={Date.now() - 1000 * 60 * 60 * 24 * 7} />,
   )
-  expect(wrapper.text()).toBe('1 week ago')
+  expect(screen.getByText('1 week ago')).toBeInTheDocument()
 })
 
-it('21 days ago', () => {
+test('21 days ago', () => {
   const timeAgoFormatConfig = {
     prefixAgo: null,
     prefixFromNow: null,
@@ -73,15 +72,14 @@ it('21 days ago', () => {
 
   const timeAgoFormatter = buildFormatter(timeAgoFormatConfig)
 
-  const wrapper = shallow(
+  render(
     <TimeAgo
       formatter={timeAgoFormatter}
       date={new Date('Tue Apr 03 2018 12:00:00 GMT-0700 (PDT)').getTime()}
       now={() => new Date('Tue Apr 24 2018 15:12:51 GMT-0400 (EDT)').getTime()}
     />,
   )
-
-  expect(wrapper.text()).toBe('21 days ago')
+  expect(screen.getByText('21 days ago')).toBeInTheDocument()
 })
 
 /* zh-TW */
@@ -89,23 +87,23 @@ const formatter = buildFormatter(TWStrings)
 
 /* 1 week ago in zh-TW */
 it('1 week ago in zh-TW', () => {
-  const wrapper = shallow(
+  render(
     <TimeAgo
       date={Date.now() - 1000 * 60 * 60 * 24 * 7}
       formatter={formatter}
     />,
   )
-  expect(wrapper.text()).toBe('7天之前')
+  expect(screen.getByText('7天之前')).toBeInTheDocument()
 })
 
 test('allow custom wordSeparator', () => {
   const strings = Object.assign({}, TWStrings, { wordSeparator: 'x' })
   const formatter = buildFormatter(strings)
-  const wrapper = shallow(
+  render(
     <TimeAgo
       date={Date.now() - 1000 * 60 * 60 * 24 * 7}
       formatter={formatter}
     />,
   )
-  expect(wrapper.text()).toBe('7天x之前')
+  expect(screen.getByText('7天x之前')).toBeInTheDocument()
 })
