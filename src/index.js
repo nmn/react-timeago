@@ -71,7 +71,6 @@ export default function TimeAgo({
 }: Props) {
   const [_, setCount] = useState(0);
   useEffect(() => {
-    debugger;
     if (!live) {
       return undefined;
     }
