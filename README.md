@@ -135,7 +135,7 @@ While the code is complete and pretty stable, I welcome issues and pull requests
 
 React-TimeAgo is feature complete from my point of view (discussions welcome).
 
-However, support for various languages can always be improved. So please, conrtibute
+However, support for various languages can always be improved. So please, contribute
 strings for the language(s) you're fluent in. I'm specifically looking for strings for
 the unit 'week'. `jquery-timeago` did not support weeks in its strings, and so in all but the
 default English, weeks get down-converted to days instead. Help me fix that.
@@ -147,7 +147,7 @@ React-TimeAgo follows SemVer strictly.
 ## Changelog
 
 #### v4.4.0
-- Bug Fix: clearTimeout when setting a new timeout. Prevents unneccesary renders.
+- Bug Fix: clearTimeout when setting a new timeout. Prevents unnecessary renders.
 
 #### v4.2.0
 - Pass in the `now` function as the last argument to the formatters.
