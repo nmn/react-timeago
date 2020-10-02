@@ -16,7 +16,7 @@ jobs:
     working_directory: /home/timeago
 
     docker:
-      - image: node:8
+      - image: node:14
 
     steps:
       - checkout
