@@ -90,13 +90,14 @@ export default function TimeAgo({
         : seconds < HOUR
           ? 1000 * MINUTE
           : seconds < DAY
-          ? 1000 * HOUR
-          : 0
+            ? 1000 * HOUR
+            : Infinity
+
       const period = Math.min(
         Math.max(unboundPeriod, minPeriod * 1000),
         maxPeriod * 1000,
       )
-    
+
       if (period) {
         if (timeoutId) {
         clearTimeout(timeoutId)
