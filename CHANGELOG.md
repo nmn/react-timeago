@@ -1,5 +1,9 @@
 # Changelog
 
+#### v5.2.1
+
+- Minor documentation fixes
+
 #### v4.4.0
 - Bug Fix: clearTimeout when setting a new timeout. Prevents unnecessary renders.
 
