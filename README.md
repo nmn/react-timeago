@@ -78,7 +78,7 @@ A function that takes four arguments:
   - `suffix` : A string. This can be one of
     - 'ago'
     - 'from now'
-  - `epochMiliseconds`: The result of `Date.now()` or the result of a custom `now` prop.
+  - `epochMilliseconds`: The result of `Date.now()` or the result of a custom `now` prop.
   - `nextFormatter`: A function that takes no arguments and gives you the result of the defaultFormatter using the same arguments above.
 
 Here are some examples of what the formatter function will receive:

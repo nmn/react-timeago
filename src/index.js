@@ -19,7 +19,7 @@ export type Formatter = (
   value: number,
   unit: Unit,
   suffix: Suffix,
-  epochMiliseconds: number,
+  epochMilliseconds: number,
   nextFormatter: () => React.Node,
   now: () => number,
 ) => React.Node
@@ -83,7 +83,7 @@ export default function TimeAgo({
       }
       const timeNow = now()
       const seconds = Math.round(Math.abs(timeNow - then) / 1000)
-    
+
       const unboundPeriod =
         seconds < MINUTE
         ? 1000
@@ -113,7 +113,7 @@ export default function TimeAgo({
       clearTimeout(timeoutId)
     }
   }, [])
-  
+
   const Komponent = component
   const then = dateParser(date).valueOf()
   if (!then) {
