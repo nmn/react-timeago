@@ -1,10 +1,9 @@
 // @flow
+
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import defaultFormatter from './defaultFormatter'
 import dateParser from './dateParser'
-
-const { Component } = React
 
 export type Unit =
   | 'second'
@@ -48,7 +47,7 @@ export type Props = $ReadOnly<{
    */
   now?: () => number,
   ...
-}>;
+}>
 
 // Just some simple constants for readability
 const MINUTE = 60
@@ -68,13 +67,13 @@ export default function TimeAgo({
   title,
   now = () => Date.now(),
   ...passDownProps
-}: Props) {
-  const [_, setCount] = useState(0);
+}: Props): null | React.MixedElement {
+  const [_, setCount] = useState(0)
   useEffect(() => {
     if (!live) {
-      return undefined;
+      return undefined
     }
-    let timeoutId;
+    let timeoutId
     const tick = (refresh: ?boolean): void => {
       const then = dateParser(date).valueOf()
       if (!then) {
@@ -83,15 +82,15 @@ export default function TimeAgo({
       }
       const timeNow = now()
       const seconds = Math.round(Math.abs(timeNow - then) / 1000)
-    
+
       const unboundPeriod =
         seconds < MINUTE
-        ? 1000
-        : seconds < HOUR
+          ? 1000
+          : seconds < HOUR
           ? 1000 * MINUTE
           : seconds < DAY
-            ? 1000 * HOUR
-            : Infinity
+          ? 1000 * HOUR
+          : Infinity
 
       const period = Math.min(
         Math.max(unboundPeriod, minPeriod * 1000),
@@ -100,20 +99,20 @@ export default function TimeAgo({
 
       if (period) {
         if (timeoutId) {
-        clearTimeout(timeoutId)
+          clearTimeout(timeoutId)
         }
         timeoutId = setTimeout(tick, period)
       }
       if (!refresh) {
-        setCount(c => c + 1)
+        setCount((c) => c + 1)
       }
     }
-    tick(true);
+    tick(true)
     return () => {
       clearTimeout(timeoutId)
     }
   }, [date])
-  
+
   const Komponent = component
   const then = dateParser(date).valueOf()
   if (!then) {
@@ -148,7 +147,7 @@ export default function TimeAgo({
 
   const spreadProps =
     Komponent === 'time'
-      ? {...passDownProps, dateTime: dateParser(date).toISOString()}
+      ? { ...passDownProps, dateTime: dateParser(date).toISOString() }
       : passDownProps
 
   const nextFormatter = defaultFormatter.bind(null, value, unit, suffix)
