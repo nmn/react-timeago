@@ -112,7 +112,7 @@ export default function TimeAgo({
     return () => {
       clearTimeout(timeoutId)
     }
-  }, [])
+  }, [date])
   
   const Komponent = component
   const then = dateParser(date).valueOf()
