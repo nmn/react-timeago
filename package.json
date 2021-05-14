@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/nmn/react-timeago",
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.0.0 || ^17.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.0",
