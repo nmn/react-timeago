@@ -4,10 +4,10 @@
   "description": "A simple Time-Ago component for ReactJs",
   "main": "lib/index.js",
   "scripts": {
-    "cpflow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
     "babel": "babel src/ --out-dir lib/",
-    "example": "browserify -t babelify --debug examples/simple/index.js -o examples/simple/bundle.js",
     "build": "npm run babel && npm run cpflow && npm run example",
+    "cpflow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
+    "example": "browserify -t babelify --debug examples/simple/index.js -o examples/simple/bundle.js",
     "prepublish": "npm run build",
     "test": "jest --coverage"
   },

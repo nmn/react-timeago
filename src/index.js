@@ -18,7 +18,7 @@ export type Formatter = (
   value: number,
   unit: Unit,
   suffix: Suffix,
-  epochMiliseconds: number,
+  epochMilliseconds: number,
   nextFormatter: () => React.Node,
   now: () => number,
 ) => React.Node

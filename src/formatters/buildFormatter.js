@@ -74,7 +74,7 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     value: number,
     unit: Unit,
     suffix: Suffix,
-    epochMiliseconds: number,
+    epochMilliseconds: number,
     _nextFormmater: () => React.Node,
     now: () => number,
   ) {
@@ -82,7 +82,7 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     // convert weeks to days if strings don't handle weeks
     if (unit === 'week' && !strings.week && !strings.weeks) {
       const days = Math.round(
-        Math.abs(epochMiliseconds - current) / (1000 * 60 * 60 * 24),
+        Math.abs(epochMilliseconds - current) / (1000 * 60 * 60 * 24),
       )
       value = days
       unit = 'day'
@@ -91,7 +91,7 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     // create a normalize function for given value
     const normalize = normalizeFn(
       value,
-      current - epochMiliseconds,
+      current - epochMilliseconds,
       strings.numbers != null ? strings.numbers : undefined,
     )
 
