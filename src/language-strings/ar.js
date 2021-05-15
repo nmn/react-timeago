@@ -6,14 +6,14 @@ function numpf(n, a) {
     n === 0
       ? 0
       : n === 1
-        ? 1
-        : n === 2
-          ? 2
-          : n % 100 >= 3 && n % 100 <= 10
-            ? 3
-            : n % 100 >= 11
-              ? 4
-              : 5
+      ? 1
+      : n === 2
+      ? 2
+      : n % 100 >= 3 && n % 100 <= 10
+      ? 3
+      : n % 100 >= 11
+      ? 4
+      : 5
   ]
 }
 
@@ -22,7 +22,7 @@ const strings: L10nsStrings = {
   prefixFromNow: 'بعد',
   suffixAgo: null,
   suffixFromNow: null, // null OR "من الآن"
-  second: function(value) {
+  second: function (value) {
     return numpf(value, [
       'أقل من ثانية',
       'ثانية واحدة',
@@ -32,7 +32,7 @@ const strings: L10nsStrings = {
       '%d ثانية',
     ])
   },
-  seconds: function(value) {
+  seconds: function (value) {
     return numpf(value, [
       'أقل من ثانية',
       'ثانية واحدة',
@@ -42,7 +42,7 @@ const strings: L10nsStrings = {
       '%d ثانية',
     ])
   },
-  minute: function(value) {
+  minute: function (value) {
     return numpf(value, [
       'أقل من دقيقة',
       'دقيقة واحدة',
@@ -52,7 +52,7 @@ const strings: L10nsStrings = {
       'دقيقة',
     ])
   },
-  minutes: function(value) {
+  minutes: function (value) {
     return numpf(value, [
       'أقل من دقيقة',
       'دقيقة واحدة',
@@ -62,7 +62,7 @@ const strings: L10nsStrings = {
       'دقيقة',
     ])
   },
-  hour: function(value) {
+  hour: function (value) {
     return numpf(value, [
       'أقل من ساعة',
       'ساعة واحدة',
@@ -72,7 +72,7 @@ const strings: L10nsStrings = {
       '%d ساعة',
     ])
   },
-  hours: function(value) {
+  hours: function (value) {
     return numpf(value, [
       'أقل من ساعة',
       'ساعة واحدة',
@@ -82,7 +82,7 @@ const strings: L10nsStrings = {
       '%d ساعة',
     ])
   },
-  day: function(value) {
+  day: function (value) {
     return numpf(value, [
       'أقل من يوم',
       'يوم واحد',
@@ -92,7 +92,7 @@ const strings: L10nsStrings = {
       '%d يوم',
     ])
   },
-  days: function(value) {
+  days: function (value) {
     return numpf(value, [
       'أقل من يوم',
       'يوم واحد',
@@ -102,7 +102,7 @@ const strings: L10nsStrings = {
       '%d يوم',
     ])
   },
-  month: function(value) {
+  month: function (value) {
     return numpf(value, [
       'أقل من شهر',
       'شهر واحد',
@@ -112,7 +112,7 @@ const strings: L10nsStrings = {
       '%d شهر',
     ])
   },
-  months: function(value) {
+  months: function (value) {
     return numpf(value, [
       'أقل من شهر',
       'شهر واحد',
@@ -122,7 +122,7 @@ const strings: L10nsStrings = {
       '%d شهر',
     ])
   },
-  year: function(value) {
+  year: function (value) {
     return numpf(value, [
       'أقل من عام',
       'عام واحد',
@@ -131,7 +131,7 @@ const strings: L10nsStrings = {
       '%d عامًا',
     ])
   },
-  years: function(value) {
+  years: function (value) {
     return numpf(value, [
       'أقل من عام',
       'عام واحد',

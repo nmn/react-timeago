@@ -1,6 +1,5 @@
-
 import '@testing-library/jest-dom'
-import {render, fireEvent, screen} from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
 
 import React from 'react'
 
@@ -49,9 +48,7 @@ test('1 day ago', () => {
 })
 
 test('1 week ago', () => {
-  render(
-    <TimeAgo date={Date.now() - 1000 * 60 * 60 * 24 * 7} />,
-  )
+  render(<TimeAgo date={Date.now() - 1000 * 60 * 60 * 24 * 7} />)
   expect(screen.getByText('1 week ago')).toBeInTheDocument()
 })
 

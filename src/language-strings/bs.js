@@ -20,27 +20,27 @@ const strings: L10nsStrings = {
   suffixAgo: null,
   suffixFromNow: null,
   second: 'sekund',
-  seconds: function(value) {
+  seconds: function (value) {
     return numpf(value, '%d sekund', '%d sekunde', '%d sekundi')
   },
   minute: 'oko minut',
-  minutes: function(value) {
+  minutes: function (value) {
     return numpf(value, '%d minut', '%d minute', '%d minuta')
   },
   hour: 'oko sat',
-  hours: function(value) {
+  hours: function (value) {
     return numpf(value, '%d sat', '%d sata', '%d sati')
   },
   day: 'oko jednog dana',
-  days: function(value) {
+  days: function (value) {
     return numpf(value, '%d dan', '%d dana', '%d dana')
   },
   month: 'mjesec dana',
-  months: function(value) {
+  months: function (value) {
     return numpf(value, '%d mjesec', '%d mjeseca', '%d mjeseci')
   },
   year: 'prije godinu dana ',
-  years: function(value) {
+  years: function (value) {
     return numpf(value, '%d godinu', '%d godine', '%d godina')
   },
   wordSeparator: ' ',

@@ -23,23 +23,23 @@ const strings: L10nsStrings = {
   suffixFromNow: null,
   seconds: '1 минуттан аз',
   minute: 'минута',
-  minutes: function(value) {
+  minutes: function (value) {
     return numpf(value, '%d минута', '%d минута', '%d минут')
   },
   hour: 'саат',
-  hours: function(value) {
+  hours: function (value) {
     return numpf(value, '%d саат', '%d саат', '%d саат')
   },
   day: 'күн',
-  days: function(value) {
+  days: function (value) {
     return numpf(value, '%d күн', '%d күн', '%d күн')
   },
   month: 'ай',
-  months: function(value) {
+  months: function (value) {
     return numpf(value, '%d ай', '%d ай', '%d ай')
   },
   year: 'жыл',
-  years: function(value) {
+  years: function (value) {
     return numpf(value, '%d жыл', '%d жыл', '%d жыл')
   },
 }

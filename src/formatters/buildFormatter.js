@@ -46,28 +46,25 @@ const normalizeNumber = (numbers: ?NumberArray, value: number) =>
   numbers && numbers.length === 10
     ? String(value)
         .split('')
-        .map(
-          (digit: string) =>
-            digit.match(/^[0-9]$/)
-              ? ((numbers: any): NumberArray)[parseInt(digit)]
-              : digit,
+        .map((digit: string) =>
+          digit.match(/^[0-9]$/)
+            ? ((numbers: any): NumberArray)[parseInt(digit)]
+            : digit,
         )
         .join('')
     : String(value)
 
 // Take a string or a function that takes number of days and returns a string
 // and provide a uniform API to create string parts
-const normalizeFn = (
-  value: number,
-  distanceMillis: number,
-  numbers?: NumberArray,
-) => (stringOrFn: StringOrFn) =>
-  typeof stringOrFn === 'function'
-    ? stringOrFn(value, distanceMillis).replace(
-        /%d/g,
-        normalizeNumber(numbers, value),
-      )
-    : stringOrFn.replace(/%d/g, normalizeNumber(numbers, value))
+const normalizeFn =
+  (value: number, distanceMillis: number, numbers?: NumberArray) =>
+  (stringOrFn: StringOrFn) =>
+    typeof stringOrFn === 'function'
+      ? stringOrFn(value, distanceMillis).replace(
+          /%d/g,
+          normalizeNumber(numbers, value),
+        )
+      : stringOrFn.replace(/%d/g, normalizeNumber(numbers, value))
 
 export default function buildFormatter(strings: L10nsStrings): Formatter {
   return function formatter(

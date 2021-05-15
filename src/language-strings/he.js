@@ -9,19 +9,19 @@ const strings: L10nsStrings = {
   minute: 'דקה',
   minutes: '%d דקות',
   hour: 'שעה',
-  hours: function(number) {
+  hours: function (number) {
     return number === 2 ? 'שעתיים' : '%d שעות'
   },
   day: 'יום',
-  days: function(number) {
+  days: function (number) {
     return number === 2 ? 'יומיים' : '%d ימים'
   },
   month: 'חודש',
-  months: function(number) {
+  months: function (number) {
     return number === 2 ? 'חודשיים' : '%d חודשים'
   },
   year: 'שנה',
-  years: function(number) {
+  years: function (number) {
     return number === 2 ? 'שנתיים' : '%d שנים'
   },
 }

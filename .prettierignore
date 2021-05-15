@@ -30,3 +30,11 @@ examples/simple/bundle.js
 .DS_Store
 */.DS_Store
 yarn-error.log
+
+# Files not in .gitignore
+.babelrc
+.circleci
+CHANGELOG.md
+examples/simple/index.html
+package.json
+README.md
