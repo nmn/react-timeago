@@ -1,6 +1,10 @@
+__tests__
+.circleci
+coverage
+examples
 node_modules
 src
-examples
 .babelrc
-coverage
-.circleci
+.eslintrc
+.flowignore
+.prettierignore

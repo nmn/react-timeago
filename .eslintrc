@@ -47,6 +47,7 @@
     "node_modules",
     "coverage",
     "examples",
-    "lib"
+    "lib",
+    "es6"
   ]
 }
