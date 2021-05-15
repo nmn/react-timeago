@@ -1,0 +1,52 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:flowtype/recommended",
+    "prettier"
+  ],
+  "plugins": ["import", "flowtype"],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "curly": ["error", "multi-line"],
+    "linebreak-style": ["error", "unix"],
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "new-cap": "off",
+    "no-case-declarations": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "no-unused-vars": [
+      "error",
+      { 
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_" 
+      }
+    ],
+    "import/order": "error"
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "ignorePatterns": [
+    "__tests__",
+    "node_modules",
+    "coverage",
+    "examples",
+    "lib"
+  ]
+}

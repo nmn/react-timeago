@@ -3,8 +3,7 @@ import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Bosnian
 function numpf(n, f, s, t) {
-  var n10
-  n10 = n % 10
+  const n10 = n % 10
   if (n10 === 1 && (n === 1 || n > 20)) {
     return f
   } else if (n10 > 1 && n10 < 5 && (n > 20 || n < 10)) {

@@ -95,7 +95,7 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     )
 
     // The eventual return value stored in an array so that the wordSeparator can be used
-    let dateString: Array<string> = []
+    const dateString: Array<string> = []
 
     // handle prefixes
     if (suffix === 'ago' && strings.prefixAgo) {

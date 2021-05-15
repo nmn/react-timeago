@@ -5,7 +5,7 @@ import type { L10nsStrings } from '../formatters/buildFormatter'
 function numpf(n, s, t) {
   // s - 2-4, 22-24, 32-34 ...
   // t - 5-21, 25-31, ...
-  var n10 = n % 10
+  const n10 = n % 10
   if (n10 > 1 && n10 < 5 && (n > 20 || n < 10)) {
     return s
   } else {
