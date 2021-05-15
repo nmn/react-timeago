@@ -1,6 +1,6 @@
 {
   "name": "react-timeago",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "lib/index.js",
   "scripts": {
@@ -48,9 +48,9 @@
     "babel-jest": "^26.3.0",
     "babelify": "^10.0.0",
     "browserify": "^16.5.2",
-    "flow-bin": "^0.135.0",
+    "flow-bin": "^0.151.0",
     "jest": "^26.4.2",
-    "prettier": "2.1.2",
+    "prettier": "^2.3.0",
     "react": "^16.13.1",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.13.1"

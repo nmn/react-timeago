@@ -71,14 +71,16 @@ const normalizeFn = (
 
 export default function buildFormatter(strings: L10nsStrings): Formatter {
   return function formatter(
-    value: number,
-    unit: Unit,
+    _value: number,
+    _unit: Unit,
     suffix: Suffix,
     epochMilliseconds: number,
     _nextFormmater: () => React.Node,
     now: () => number,
   ) {
     const current = now()
+    let value = _value
+    let unit = _unit
     // convert weeks to days if strings don't handle weeks
     if (unit === 'week' && !strings.week && !strings.weeks) {
       const days = Math.round(

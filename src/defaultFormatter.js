@@ -4,11 +4,12 @@ import * as React from 'react';
 
 export default function defaultFormatter(
   value: number,
-  unit: string,
+  _unit: string,
   suffix: string,
 ): string {
-  if (value !== 1) {
-    unit += 's'
-  }
+  const unit = value !== 1
+    ? _unit + 's'
+    : _unit
+
   return value + ' ' + unit + ' ' + suffix
 }

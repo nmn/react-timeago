@@ -1,10 +1,18 @@
 [ignore]
 .*/lib/.*
 .*/coverage/.*
-.*/node_modules/.*
+.*/node_modules/module-deps/.*
 
 [include]
 
 [libs]
+flow-typed
 
 [options]
+emoji=true
+exact_by_default=true
+experimental.const_params=true
+module.use_strict=true
+munge_underscores=true
+suppress_type=$FlowFixMe
+suppress_type=$FlowTODO
