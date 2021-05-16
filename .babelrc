@@ -1,3 +1,8 @@
 {
-  "presets": ["@babel/react", "@babel/flow"]
+  "presets": ["@babel/react", "@babel/flow"],
+  "env": {
+    "test": {
+      "presets": ["@babel/env", "@babel/react", "@babel/flow"],
+    }
+  }
 }
