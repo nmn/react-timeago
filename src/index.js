@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import defaultFormatter from './defaultFormatter'
 import dateParser from './dateParser'
 
@@ -68,10 +68,10 @@ export default function TimeAgo({
   now = () => Date.now(),
   ...passDownProps
 }: Props): null | React.MixedElement {
-  const [_, setCount] = useState(0)
+  const forceUpdate = useUpdate()
   useEffect(() => {
     if (!live) {
-      return undefined
+      return
     }
     let timeoutId
     const tick = (refresh: ?boolean): void => {
@@ -104,14 +104,14 @@ export default function TimeAgo({
         timeoutId = setTimeout(tick, period)
       }
       if (!refresh) {
-        setCount((c) => c + 1)
+        forceUpdate()
       }
     }
     tick(true)
     return () => {
       clearTimeout(timeoutId)
     }
-  }, [date])
+  }, [date, forceUpdate, live, maxPeriod, minPeriod, now])
 
   const Komponent = component
   const then = dateParser(date).valueOf()
@@ -157,4 +157,11 @@ export default function TimeAgo({
       {formatter(value, unit, suffix, then, nextFormatter, now)}
     </Komponent>
   )
+}
+
+function useUpdate(): () => void {
+  const [_, setCount] = useState(0)
+  return useCallback(() => {
+    setCount((num) => num + 1)
+  }, [])
 }

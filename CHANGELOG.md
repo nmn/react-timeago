@@ -1,5 +1,10 @@
 # Changelog
 
+#### v6.1.0
+- Added `eslint-plugin-react-hooks` and fixed the dependencies for hooks used in the library.
+  Should result in a more consistent behaviour when changing props at runtime.
+- Updated dependencies
+
 #### v6.0.0
 - Added `module` field to the package.json file so you can now import ES6 modules with only 
   a minimal amount of pre-processing applied. Relevant when targeting newer browsers only.

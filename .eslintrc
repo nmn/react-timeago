@@ -5,6 +5,7 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:flowtype/recommended",
+    "plugin:react-hooks/recommended",
     "prettier"
   ],
   "plugins": ["import", "flowtype"],
