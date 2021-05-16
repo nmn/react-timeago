@@ -1,5 +1,13 @@
 # Changelog
 
+#### v6.0.0
+- Added `module` field to the package.json file so you can now import ES6 modules with only 
+  a minimal amount of pre-processing applied. Relevant when targeting newer browsers only.
+- A bunch of internal changes:
+  - Using `rollup` instead of `browserify` to compile the example
+  - Updating a bunch of dependencies
+- Added support for React 17
+
 #### v5.2.1
 
 - Minor documentation fixes
