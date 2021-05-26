@@ -97,7 +97,7 @@ export default function TimeAgo({
         maxPeriod * 1000,
       )
 
-      if (period) {
+      if (period && period !== Infinity) {
         if (timeoutId) {
           clearTimeout(timeoutId)
         }
