@@ -63,7 +63,7 @@ export default function TimeAgo({
   component = 'time',
   live = true,
   minPeriod = 0,
-  maxPeriod = Infinity,
+  maxPeriod = WEEK,
   title,
   now = () => Date.now(),
   ...passDownProps
@@ -90,14 +90,14 @@ export default function TimeAgo({
           ? 1000 * MINUTE
           : seconds < DAY
           ? 1000 * HOUR
-          : Infinity
+          : 1000 * WEEK
 
       const period = Math.min(
         Math.max(unboundPeriod, minPeriod * 1000),
         maxPeriod * 1000,
       )
 
-      if (period && period !== Infinity) {
+      if (period) {
         if (timeoutId) {
           clearTimeout(timeoutId)
         }
