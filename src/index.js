@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react'
-import { useCallback, useEffect, useState } from 'react'
-import defaultFormatter from './defaultFormatter'
+import { useEffect, useState } from 'react'
 import dateParser from './dateParser'
+import defaultFormatter from './defaultFormatter'
 
 export type Unit =
   | 'second'
@@ -65,22 +65,20 @@ export default function TimeAgo({
   minPeriod = 0,
   maxPeriod = WEEK,
   title,
-  now = () => Date.now(),
+  now = Date.now,
   ...passDownProps
 }: Props): null | React.MixedElement {
-  const forceUpdate = useUpdate()
+  const [timeNow, setTimeNow] = useState(now())
   useEffect(() => {
     if (!live) {
       return
     }
-    let timeoutId
-    const tick = (refresh: ?boolean): void => {
+    const tick = (): number => {
       const then = dateParser(date).valueOf()
       if (!then) {
         console.warn('[react-timeago] Invalid Date provided')
-        return
+        return 0
       }
-      const timeNow = now()
       const seconds = Math.round(Math.abs(timeNow - then) / 1000)
 
       const unboundPeriod =
@@ -98,20 +96,20 @@ export default function TimeAgo({
       )
 
       if (period) {
-        if (timeoutId) {
-          clearTimeout(timeoutId)
-        }
-        timeoutId = setTimeout(tick, period)
+        return setTimeout(() => {
+          setTimeNow(now())
+        }, period)
       }
-      if (!refresh) {
-        forceUpdate()
-      }
+
+      return 0
     }
-    tick(true)
+    const timeoutId = tick()
     return () => {
-      clearTimeout(timeoutId)
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
     }
-  }, [date, forceUpdate, live, maxPeriod, minPeriod, now])
+  }, [date, live, maxPeriod, minPeriod, now, timeNow])
 
   const Komponent = component
   const then = dateParser(date).valueOf()
@@ -119,7 +117,6 @@ export default function TimeAgo({
     return null
   }
 
-  const timeNow = now()
   const seconds = Math.round(Math.abs(timeNow - then) / 1000)
   const suffix = then < timeNow ? 'ago' : 'from now'
 
@@ -157,11 +154,4 @@ export default function TimeAgo({
       {formatter(value, unit, suffix, then, nextFormatter, now)}
     </Komponent>
   )
-}
-
-function useUpdate(): () => void {
-  const [_, setCount] = useState(0)
-  return useCallback(() => {
-    setCount((num) => num + 1)
-  }, [])
 }
