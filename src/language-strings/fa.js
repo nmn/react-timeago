@@ -1,6 +1,8 @@
 /* @flow */
 import type { L10nsStrings } from '../formatters/buildFormatter'
 
+const hasIntl = typeof Intl !== 'undefined' && Intl.NumberFormat != null
+
 // Persian
 // Use DIR attribute for RTL text in Persian Language for ABBR tag .
 // By MB.seifollahi@gmail.com
@@ -11,15 +13,43 @@ const strings: L10nsStrings = {
   suffixFromNow: 'از حال',
   seconds: 'کمتر از یک دقیقه',
   minute: 'حدود یک دقیقه',
-  minutes: '%d دقیقه',
+  minutes: (value) => {
+    if (hasIntl) {
+      return new Intl.NumberFormat('fa').format(value) + ' دقیقه'
+    }
+    return '%d دقیقه'
+  },
   hour: 'حدود یک ساعت',
-  hours: 'حدود %d ساعت',
+  hours: (value) => {
+    if (hasIntl) {
+      return 'حدود %d ساعت'.replace(
+        '%d',
+        new Intl.NumberFormat('fa').format(value),
+      )
+    }
+    return 'حدود %d ساعت'
+  },
   day: 'یک روز',
-  days: '%d روز',
+  days: (value) => {
+    if (hasIntl) {
+      return '%d روز'.replace('%d', new Intl.NumberFormat('fa').format(value))
+    }
+    return '%d روز'
+  },
   month: 'حدود یک ماه',
-  months: '%d ماه',
+  months: (value) => {
+    if (hasIntl) {
+      return '%d ماه'.replace('%d', new Intl.NumberFormat('fa').format(value))
+    }
+    return '%d ماه'
+  },
   year: 'حدود یک سال',
-  years: '%d سال',
+  years: (value) => {
+    if (hasIntl) {
+      return '%d سال'.replace('%d', new Intl.NumberFormat('fa').format(value))
+    }
+    return '%d سال'
+  },
   wordSeparator: ' ',
 }
 

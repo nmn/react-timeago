@@ -9,25 +9,15 @@ const strings: L10nsStrings = {
   suffixFromNow: null,
   seconds: 'bir necha soniya',
   minute: '1 daqiqa',
-  minutes: function (_value) {
-    return '%d daqiqa'
-  },
+  minutes: '%d daqiqa',
   hour: '1 soat',
-  hours: function (_value) {
-    return '%d soat'
-  },
+  hours: '%d soat',
   day: '1 kun',
-  days: function (_value) {
-    return '%d kun'
-  },
+  days: '%d kun',
   month: '1 oy',
-  months: function (_value) {
-    return '%d oy'
-  },
+  months: '%d oy',
   year: '1 yil',
-  years: function (_value) {
-    return '%d yil'
-  },
+  years: '%d yil',
   wordSeparator: ' ',
 }
 

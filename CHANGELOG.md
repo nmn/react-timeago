@@ -1,6 +1,10 @@
 # Changelog
 
 #### v7.0.0
+- Use Intl to render persian number for farsi languages
+- Looking for help testing the results and then doing the same for Arabic
+
+#### v7.0.0
 - Added support for React 18
 - Added hi.js language strings
 - Added so.js language strings
@@ -8,13 +12,6 @@
 - Update ru.js language strings
 - Fix memory leak
 - Update dependencies
-  - Bump ansi-regex from 5.0.0 to 5.0.1
-  - Bump ansi-regex from 5.0.0 to 5.0.1
-  - Bump minimist from 1.2.5 to 1.2.6
-  - Bump minimist from 1.2.5 to 1.2.6
-  - Bump path-parse from 1.0.6 to 1.0.7
-  - Bump tmpl from 1.0.4 to 1.0.5
-  - Bump tmpl from 1.0.4 to 1.0.5
 
 #### v6.1.0
 - Added `eslint-plugin-react-hooks` and fixed the dependencies for hooks used in the library.

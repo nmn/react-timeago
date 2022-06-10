@@ -65,7 +65,7 @@ export default function TimeAgo({
   minPeriod = 0,
   maxPeriod = WEEK,
   title,
-  now = Date.now,
+  now = () => Date.now(),
   ...passDownProps
 }: Props): null | React.MixedElement {
   const [timeNow, setTimeNow] = useState(now())
@@ -73,7 +73,7 @@ export default function TimeAgo({
     if (!live) {
       return
     }
-    const tick = (): number => {
+    const tick = (): 0 | TimeoutID => {
       const then = dateParser(date).valueOf()
       if (!then) {
         console.warn('[react-timeago] Invalid Date provided')
