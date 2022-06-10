@@ -1,6 +1,6 @@
 # Changelog
 
-#### v7.0.0
+#### v7.1.0
 - Use Intl to render persian number for farsi languages
 - Looking for help testing the results and then doing the same for Arabic
 
