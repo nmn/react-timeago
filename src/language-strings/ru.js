@@ -19,9 +19,17 @@ function numpf(n: number, f: string, s: string, t: string): string {
 const strings: L10nsStrings = {
   prefixAgo: null,
   prefixFromNow: 'через',
-  suffixAgo: 'назад',
+  suffixAgo: function suffixAgo(value) {
+        if (value === 0)
+            return ''
+        return 'назад'
+    },
   suffixFromNow: null,
-  seconds: 'меньше минуты',
+  seconds: function seconds(value) {
+    if (value === 0)
+        return 'только что'
+    return numpf(value, '%d секунду', '%d секунды', '%d секунд');
+  },
   minute: 'минуту',
   minutes: function (value) {
     return numpf(value, '%d минута', '%d минуты', '%d минут')
