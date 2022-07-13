@@ -69,6 +69,13 @@ export default function TimeAgo({
   ...passDownProps
 }: Props): null | React.MixedElement {
   const [timeNow, setTimeNow] = useState(now())
+  const updateNoLaterThan = useRef(null)
+
+  if(updateNoLaterThan.current && Date.now() > updateNoLaterThan.current){
+    updateNoLaterThan.current = null
+    setTimeNow(now())
+  }
+
   useEffect(() => {
     if (!live) {
       return
@@ -96,7 +103,11 @@ export default function TimeAgo({
       )
 
       if (period) {
+        if(updateNoLaterThan.current == null){
+          updateNoLaterThan.current = now() + period + 100
+        }
         return setTimeout(() => {
+          updateNoLaterThan.current = null
           setTimeNow(now())
         }, period)
       }
