@@ -103,7 +103,7 @@ export default function TimeAgo({
       )
 
       if (period) {
-        if(updateNoLaterThan.current == null){
+        if(updateNoLaterThan.current === null){
           updateNoLaterThan.current = now() + period + 100
         }
         return setTimeout(() => {
