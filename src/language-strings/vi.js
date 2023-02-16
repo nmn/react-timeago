@@ -4,9 +4,9 @@ import type { L10nsStrings } from '../formatters/buildFormatter'
 // Vietnamese
 const strings: L10nsStrings = {
   prefixAgo: 'cách đây',
-  prefixFromNow: null,
-  suffixAgo: null,
-  suffixFromNow: 'trước',
+  prefixFromNow: 'trong vòng',
+  suffixAgo: 'trước',
+  suffixFromNow: 'sắp tới',
   seconds: 'chưa đến 1 phút',
   minute: 'khoảng 1 phút',
   minutes: '%d phút',
