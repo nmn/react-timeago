@@ -57,6 +57,8 @@ const WEEK = DAY * 7
 const MONTH = DAY * 30
 const YEAR = DAY * 365
 
+const defaultNow = () => Date.now();
+
 export default function TimeAgo({
   date,
   formatter = defaultFormatter,
@@ -65,7 +67,7 @@ export default function TimeAgo({
   minPeriod = 0,
   maxPeriod = WEEK,
   title,
-  now = () => Date.now(),
+  now = defaultNow,
   ...passDownProps
 }: Props): null | React.MixedElement {
   const [timeNow, setTimeNow] = useState(now())
