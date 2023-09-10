@@ -20,15 +20,17 @@ const strings: L10nsStrings = {
   prefixAgo: null,
   prefixFromNow: 'через',
   suffixAgo: function suffixAgo(value) {
-        if (value === 0)
-            return ''
-        return 'назад'
-    },
+    if (value === 0) {
+      return ''
+    }
+    return 'назад'
+  },
   suffixFromNow: null,
   seconds: function seconds(value) {
-    if (value === 0)
-        return 'только что'
-    return numpf(value, '%d секунду', '%d секунды', '%d секунд');
+    if (value === 0) {
+      return 'только что'
+    }
+    return numpf(value, '%d секунду', '%d секунды', '%d секунд')
   },
   minute: 'минуту',
   minutes: function (value) {

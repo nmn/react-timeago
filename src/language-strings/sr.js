@@ -2,7 +2,7 @@
 import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Serbian
-function numpf(n, f, s, t) {
+function numpf(n: number, f: string, s: string, t: string): string {
   const n10 = n % 10
   if (n10 === 1 && (n === 1 || n > 20)) {
     return f

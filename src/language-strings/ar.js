@@ -1,7 +1,7 @@
-/* @flow */
+// @flow strict
 import type { L10nsStrings } from '../formatters/buildFormatter'
 
-function numpf(n, a) {
+function numpf(n: number, a: Array<string>): string {
   return a[
     n === 0
       ? 0
