@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react'
+import type { Node as ReactNode } from 'react'
 import type { Formatter, Unit, Suffix } from '../index'
 
 type StringOrFn = string | ((value: number, millisDelta: number) => string)
@@ -72,7 +72,7 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     _unit: Unit,
     suffix: Suffix,
     epochMilliseconds: number,
-    _nextFormmater: () => React.Node,
+    _nextFormmater: () => ReactNode,
     now: () => number,
   ) {
     const current = now()
