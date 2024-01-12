@@ -6,7 +6,7 @@ const strings: L10nsStrings = {
   prefixAgo: 'cách đây',
   prefixFromNow: null,
   suffixAgo: null,
-  suffixFromNow: 'trước',
+  suffixFromNow: 'sau',
   seconds: 'chưa đến 1 phút',
   minute: 'khoảng 1 phút',
   minutes: '%d phút',
