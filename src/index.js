@@ -75,6 +75,7 @@ export default function TimeAgo({
     if (!live) {
       return
     }
+    setTimeNow(now());
     const tick = (): 0 | TimeoutID => {
       const then = dateParser(date).valueOf()
       if (!then) {
