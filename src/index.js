@@ -113,6 +113,10 @@ export default function TimeAgo({
     }
   }, [date, live, maxPeriod, minPeriod, now, timeNow])
 
+  useEffect(() => {
+    setTimeNow(now())
+  }, [date])
+
   const Komponent = component
   const then = dateParser(date).valueOf()
   if (!then) {
