@@ -72,10 +72,12 @@ export default function TimeAgo({
 }: Props): null | React.MixedElement {
   const [timeNow, setTimeNow] = useState(now())
   useEffect(() => {
+    if (live) setTimeNow(now())
+  }, [date, live, now])
+  useEffect(() => {
     if (!live) {
       return
     }
-    setTimeNow(now());
     const tick = (): 0 | TimeoutID => {
       const then = dateParser(date).valueOf()
       if (!then) {
