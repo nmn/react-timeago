@@ -104,3 +104,25 @@ test('allow custom wordSeparator', () => {
   )
   expect(screen.getByText('7天x之前')).toBeInTheDocument()
 })
+
+test('on date change, now() should be updated', () => {
+  const start = 1000000000000
+  const second = 1_000
+  const now = jest.fn(() => start + 10 * second) // T+10
+
+  const Component = ({ date }) => <>
+    <TimeAgo date={date} now={now} />
+  </>
+
+  const { rerender } = render(<Component date={start} />)
+  expect(screen.getByText('10 seconds ago')).toBeInTheDocument()
+
+  // advance time by another 10s - T+20
+  now.mockImplementation(() => start + second * 20)
+
+  // add 1s to previous value
+  rerender(<Component date={start + second} />)
+
+  // 20 - 1 = 19, because new now() value should be applied
+  expect(screen.getByText('19 seconds ago')).toBeInTheDocument()
+})
