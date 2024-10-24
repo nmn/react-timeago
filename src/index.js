@@ -57,7 +57,7 @@ const WEEK = DAY * 7
 const MONTH = DAY * 30
 const YEAR = DAY * 365
 
-const defaultNow = () => Date.now();
+const defaultNow = () => Date.now()
 
 export default function TimeAgo({
   date,
@@ -153,11 +153,40 @@ export default function TimeAgo({
       ? { ...passDownProps, dateTime: dateParser(date).toISOString() }
       : passDownProps
 
-  const nextFormatter = defaultFormatter.bind(null, value, unit, suffix)
+  // const nextFormatter = defaultFormatter.bind(null, value, unit, suffix)
 
+  const nextFormatter = (value, unit, suffix) => {
+    // Use the default formatter if `formatter` is not a valid function or if it doesn't behave correctly
+    if (typeof formatter !== 'function') {
+      console.warn(
+        '[react-timeago] Formatter is not a function. Using default formatter.',
+      )
+      return defaultFormatter(value, unit, suffix, then, nextFormatter, now)
+    }
+
+    try {
+      // Call the formatter to see if it behaves correctly
+      const result = formatter(value, unit, suffix, then, nextFormatter, now)
+      // If the result is falsy, fall back to defaultFormatter
+      if (!result) {
+        console.warn(
+          '[react-timeago] Formatter is invalid. Using default formatter.',
+        )
+        return defaultFormatter(value, unit, suffix, then, nextFormatter, now)
+      }
+      return result
+    } catch (error) {
+      console.warn(
+        '[react-timeago] Formatter is invalid. Using default formatter.',
+        error,
+      )
+      return defaultFormatter(value, unit, suffix, then, nextFormatter, now)
+    }
+  }
   return (
     <Komponent {...spreadProps} title={passDownTitle}>
-      {formatter(value, unit, suffix, then, nextFormatter, now)}
+      {/* {formatter(value, unit, suffix, then, nextFormatter, now)} */}
+      {nextFormatter(value, unit, suffix)}
     </Komponent>
   )
 }
