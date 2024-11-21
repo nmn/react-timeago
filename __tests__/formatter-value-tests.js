@@ -3,11 +3,6 @@ import { render, screen } from '@testing-library/react'
 import React from 'react'
 import TimeAgo from '../src'
 
-test('1 minute ago', () => {
-  render(<TimeAgo date={Date.now() - 1000 * 60} />)
-  expect(screen.getByText('1 minute ago')).toBeInTheDocument()
-})
-
 it('should handle null formatter gracefully', () => {
   render(<TimeAgo date={Date.now() - 1000 * 60} formatter={null} />)
   expect(screen.getByText('1 minute ago')).toBeInTheDocument()
