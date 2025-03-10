@@ -61,7 +61,7 @@ const defaultNow = () => Date.now();
 
 export default function TimeAgo({
   date,
-  formatter = defaultFormatter,
+  formatter,
   component = 'time',
   live = true,
   minPeriod = 0,
@@ -87,10 +87,10 @@ export default function TimeAgo({
         seconds < MINUTE
           ? 1000
           : seconds < HOUR
-          ? 1000 * MINUTE
-          : seconds < DAY
-          ? 1000 * HOUR
-          : 1000 * WEEK
+            ? 1000 * MINUTE
+            : seconds < DAY
+              ? 1000 * HOUR
+              : 1000 * WEEK
 
       const period = Math.min(
         Math.max(unboundPeriod, minPeriod * 1000),
@@ -130,22 +130,22 @@ export default function TimeAgo({
     seconds < MINUTE
       ? [Math.round(seconds), 'second']
       : seconds < HOUR
-      ? [Math.round(seconds / MINUTE), 'minute']
-      : seconds < DAY
-      ? [Math.round(seconds / HOUR), 'hour']
-      : seconds < WEEK
-      ? [Math.round(seconds / DAY), 'day']
-      : seconds < MONTH
-      ? [Math.round(seconds / WEEK), 'week']
-      : seconds < YEAR
-      ? [Math.round(seconds / MONTH), 'month']
-      : [Math.round(seconds / YEAR), 'year']
+        ? [Math.round(seconds / MINUTE), 'minute']
+        : seconds < DAY
+          ? [Math.round(seconds / HOUR), 'hour']
+          : seconds < WEEK
+            ? [Math.round(seconds / DAY), 'day']
+            : seconds < MONTH
+              ? [Math.round(seconds / WEEK), 'week']
+              : seconds < YEAR
+                ? [Math.round(seconds / MONTH), 'month']
+                : [Math.round(seconds / YEAR), 'year']
 
   const passDownTitle =
     typeof title === 'undefined'
       ? typeof date === 'string'
         ? date
-        : dateParser(date).toISOString().substr(0, 16).replace('T', ' ')
+        : dateParser(date).toISOString().substring(0, 16).replace('T', ' ')
       : title
 
   const spreadProps =
@@ -154,10 +154,22 @@ export default function TimeAgo({
       : passDownProps
 
   const nextFormatter = defaultFormatter.bind(null, value, unit, suffix)
+  const effectiveFormatter = formatter || defaultFormatter
+
+  let content
+  try {
+    content = effectiveFormatter(value, unit, suffix, then, nextFormatter, now)
+    if (!content) {
+      content = defaultFormatter(value, unit, suffix, then, nextFormatter, now)
+    }
+  } catch (error) {
+    console.error('[react-timeago] Formatter threw an error:', error)
+    content = defaultFormatter(value, unit, suffix, then, nextFormatter, now)
+  }
 
   return (
     <Komponent {...spreadProps} title={passDownTitle}>
-      {formatter(value, unit, suffix, then, nextFormatter, now)}
+      {content}
     </Komponent>
   )
 }
