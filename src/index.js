@@ -4,24 +4,7 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 import dateParser from './dateParser'
 import defaultFormatter from './defaultFormatter'
-
-export type Unit =
-  | 'second'
-  | 'minute'
-  | 'hour'
-  | 'day'
-  | 'week'
-  | 'month'
-  | 'year'
-export type Suffix = 'ago' | 'from now'
-export type Formatter = (
-  value: number,
-  unit: Unit,
-  suffix: Suffix,
-  epochMilliseconds: number,
-  nextFormatter: () => React.Node,
-  now: () => number,
-) => React.Node
+import type { Formatter } from "./types";
 
 export type Props = $ReadOnly<{
   /** If the component should update itself over time */
@@ -71,6 +54,7 @@ export default function TimeAgo({
   ...passDownProps
 }: Props): null | React.MixedElement {
   const [timeNow, setTimeNow] = useState(now())
+  
   useEffect(() => {
     if (!live) {
       return
@@ -153,8 +137,8 @@ export default function TimeAgo({
       ? { ...passDownProps, dateTime: dateParser(date).toISOString() }
       : passDownProps
 
-  const nextFormatter = defaultFormatter.bind(null, value, unit, suffix)
-  const effectiveFormatter = formatter || defaultFormatter
+  const nextFormatter = defaultFormatter
+  const effectiveFormatter: Formatter = formatter || defaultFormatter
 
   let content
   try {

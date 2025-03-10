@@ -1,19 +1,15 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:import/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:flowtype/recommended",
+    "plugin:ft-flow/recommended",
     "plugin:react-hooks/recommended",
     "prettier"
   ],
-  "plugins": ["import", "flowtype"],
-  "parser": "@babel/eslint-parser",
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
-  },
+  "plugins": [
+    "ft-flow",
+    "react-hooks"
+  ],
+  "parser": "hermes-eslint",
   "rules": {
     "curly": ["error", "multi-line"],
     "linebreak-style": ["error", "unix"],
@@ -36,8 +32,7 @@
         "varsIgnorePattern": "^_",
         "argsIgnorePattern": "^_" 
       }
-    ],
-    "import/order": "error"
+    ]
   },
   "env": {
     "node": true,

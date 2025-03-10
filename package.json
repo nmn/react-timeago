@@ -1,16 +1,23 @@
 {
   "name": "react-timeago",
-  "version": "7.2.0",
+  "version": "8.0.0",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "lib/index.js",
+  "types": "es6/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./es6/index.js",
+      "require": "./lib/index.js"
+    }
+  },
   "module": "es6/index.js",
   "scripts": {
-    "babel-es6": "babel src/ --out-dir es6/ --presets=@babel/react,@babel/flow",
-    "babel": "babel src/ --out-dir lib/ --presets=@babel/env,@babel/react,@babel/flow",
-    "build": "npm run babel && npm run babel-es6 && npm run cpflow && npm run cpflow-es6 && npm run example",
-    "cpflow-es6": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/es6\\//g'`.flow; done",
-    "cpflow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
-    "example": "rollup -c ./rollup.config.js",
+    "babel-es6": "ES6=true babel src/ --out-dir es6/",
+    "postbabel-es6": "node ./scripts/gen-types.js -i src -o es6/",
+    "babel": "babel src/ --out-dir lib/",
+    "postbabel": "node ./scripts/gen-types.js -i src -o lib/",
+    "build": "npm run babel && npm run babel-es6 && npm run example",
+    "example": "rollup -c ./rollup.config.mjs",
     "prepublish": "npm run build",
     "test": "jest --coverage"
   },
@@ -40,12 +47,6 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
-    "@babel/core": "^7.18.2",
-    "@babel/eslint-parser": "^7.18.2",
-    "@babel/plugin-syntax-flow": "^7.17.12",
-    "@babel/plugin-syntax-jsx": "^7.17.12",
-    "@babel/plugin-transform-flow-strip-types": "^7.17.12",
-    "@babel/plugin-transform-react-jsx": "^7.17.12",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-flow": "^7.17.12",
     "@babel/preset-react": "^7.17.12",
@@ -57,22 +58,31 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "babel-jest": "^29.7.0",
-    "eslint": "^9.19.0",
+    "babel-plugin-syntax-hermes-parser": "^0.26.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-ft-flow": "^3.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint": "^8.1.0",
+    "flow-api-translator": "^0.26.0",
     "flow-bin": "^0.259.1",
-    "jest": "^29.7.0",
+    "hermes-eslint": "^0.26.0",
     "jest-environment-jsdom": "^29.7.0",
-    "prettier": "^3.4.2",
-    "react": "^19.0.0",
+    "jest": "^29.7.0",
+    "prettier-plugin-hermes-parser": "^0.26.0",
+    "prettier": "^2.8.8",
     "react-dom": "^19.0.0",
-    "rollup": "^4.32.0"
+    "react": "^19.0.0",
+    "rollup": "^4.32.0",
+    "yargs": "^17.7.2"
   },
   "prettier": {
+    "plugins": [
+      "prettier-plugin-hermes-parser"
+    ],
     "printWidth": 80,
-    "parser": "flow",
     "semi": false,
     "trailingComma": "all",
     "singleQuote": true

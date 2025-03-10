@@ -2,7 +2,7 @@
 import type { L10nsStrings } from '../formatters/buildFormatter'
 
 // Slovenian with support for dual
-function numpf(n, a) {
+function numpf(n: number, a: Array<string>): string {
   return a[
     n % 100 === 1
       ? 1
