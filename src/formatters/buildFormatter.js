@@ -1,7 +1,7 @@
 // @flow
 
 import type { Node as ReactNode } from 'react'
-import type { Formatter, Unit, Suffix } from '../index'
+import type { Formatter, Unit, Suffix } from '../types'
 
 type StringOrFn = string | ((value: number, millisDelta: number) => string)
 type NumberArray = [
@@ -66,13 +66,34 @@ const normalizeFn =
         )
       : stringOrFn.replace(/%d/g, normalizeNumber(numbers, value))
 
+const pluralize = (unit: Unit) => {
+  switch (unit) {
+    case 'second':
+      return 'seconds'
+    case 'minute':
+      return 'minutes'  
+    case 'hour':
+      return 'hours'
+    case 'day':
+      return 'days'
+    case 'week':
+      return 'weeks'
+    case 'month':
+      return 'months'
+    case 'year':
+      return 'years'
+    default:
+      return unit
+  }
+}
+
 export default function buildFormatter(strings: L10nsStrings): Formatter {
   return function formatter(
     _value: number,
     _unit: Unit,
     suffix: Suffix,
     epochMilliseconds: number,
-    _nextFormmater: () => ReactNode,
+    _nextFormmater: Formatter,
     now: () => number,
   ) {
     const current = now()
@@ -109,11 +130,11 @@ export default function buildFormatter(strings: L10nsStrings): Formatter {
     const isPlural = value > 1
     if (isPlural) {
       const stringFn: StringOrFn =
-        strings[unit + 's'] || strings[unit] || '%d ' + unit
+        strings[pluralize(unit)] || strings[unit] || '%d ' + unit
       dateString.push(normalize(stringFn))
     } else {
       const stringFn: StringOrFn =
-        strings[unit] || strings[unit + 's'] || '%d ' + unit
+        strings[unit] || strings[pluralize(unit)] || '%d ' + unit
       dateString.push(normalize(stringFn))
     }
 
