@@ -54,6 +54,7 @@ export default function TimeAgo({
   ...passDownProps
 }: Props): null | React.MixedElement {
   const [timeNow, setTimeNow] = useState(now())
+  
   useEffect(() => {
     if (!live) {
       return
