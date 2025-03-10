@@ -1,8 +1,15 @@
 {
   "name": "react-timeago",
-  "version": "7.2.0",
+  "version": "8.0.0",
   "description": "A simple Time-Ago component for ReactJs",
   "main": "lib/index.js",
+  "types": "es6/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./es6/index.js",
+      "require": "./lib/index.js"
+    }
+  },
   "module": "es6/index.js",
   "scripts": {
     "babel-es6": "ES6=true babel src/ --out-dir es6/",
