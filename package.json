@@ -7,10 +7,10 @@
   "exports": {
     ".": {
       "import": "./es6/index.js",
-      "require": "./lib/index.js",
-      "./lib/language-strings/*": "./lib/language-strings/*.js",
-      "./lib/formatters/*": "./lib/formatters/*.js"
-    }
+      "require": "./lib/index.js"
+    },
+    "./lib/language-strings/*": "./lib/language-strings/*.js",
+    "./lib/formatters/*": "./lib/formatters/*.js"
   },
   "module": "es6/index.js",
   "scripts": {
