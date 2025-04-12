@@ -5,9 +5,9 @@ import TimeAgo from '../../src/index'
 
 const appElement = document.getElementById('app')
 
-appElement && ReactDom.createRoot(appElement).render(
-  <div>
-    You opened this page <TimeAgo date={Date.now()} />
-  </div>,
-)
-
+appElement &&
+  ReactDom.createRoot(appElement).render(
+    <div>
+      You opened this page <TimeAgo date={Date.now()} />
+    </div>,
+  )
