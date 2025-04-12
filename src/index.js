@@ -4,7 +4,7 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 import dateParser from './dateParser'
 import defaultFormatter from './defaultFormatter'
-import type { Formatter } from './types'
+import type { Formatter, Suffix, Unit } from './types'
 
 export type Props = $ReadOnly<{
   /** If the component should update itself over time */
@@ -137,7 +137,15 @@ export default function TimeAgo({
       ? { ...passDownProps, dateTime: dateParser(date).toISOString() }
       : passDownProps
 
-  const nextFormatter = defaultFormatter
+  const nextFormatter = (
+    value: number = value,
+    unit: Unit = unit,
+    suffix: Suffix = suffix,
+    epochMilliseconds: number = then,
+    nextFormatter: Formatter = defaultFormatter,
+    now: () => number = now,
+  ) =>
+    defaultFormatter(value, unit, suffix, epochMilliseconds, nextFormatter, now)
   const effectiveFormatter: Formatter = formatter || defaultFormatter
 
   let content
