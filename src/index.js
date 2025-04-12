@@ -4,7 +4,7 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 import dateParser from './dateParser'
 import defaultFormatter from './defaultFormatter'
-import type { Formatter } from "./types";
+import type { Formatter } from './types'
 
 export type Props = $ReadOnly<{
   /** If the component should update itself over time */
@@ -40,7 +40,7 @@ const WEEK = DAY * 7
 const MONTH = DAY * 30
 const YEAR = DAY * 365
 
-const defaultNow = () => Date.now();
+const defaultNow = () => Date.now()
 
 export default function TimeAgo({
   date,
@@ -54,7 +54,7 @@ export default function TimeAgo({
   ...passDownProps
 }: Props): null | React.MixedElement {
   const [timeNow, setTimeNow] = useState(now())
-  
+
   useEffect(() => {
     if (!live) {
       return
@@ -71,10 +71,10 @@ export default function TimeAgo({
         seconds < MINUTE
           ? 1000
           : seconds < HOUR
-            ? 1000 * MINUTE
-            : seconds < DAY
-              ? 1000 * HOUR
-              : 1000 * WEEK
+          ? 1000 * MINUTE
+          : seconds < DAY
+          ? 1000 * HOUR
+          : 1000 * WEEK
 
       const period = Math.min(
         Math.max(unboundPeriod, minPeriod * 1000),
@@ -114,16 +114,16 @@ export default function TimeAgo({
     seconds < MINUTE
       ? [Math.round(seconds), 'second']
       : seconds < HOUR
-        ? [Math.round(seconds / MINUTE), 'minute']
-        : seconds < DAY
-          ? [Math.round(seconds / HOUR), 'hour']
-          : seconds < WEEK
-            ? [Math.round(seconds / DAY), 'day']
-            : seconds < MONTH
-              ? [Math.round(seconds / WEEK), 'week']
-              : seconds < YEAR
-                ? [Math.round(seconds / MONTH), 'month']
-                : [Math.round(seconds / YEAR), 'year']
+      ? [Math.round(seconds / MINUTE), 'minute']
+      : seconds < DAY
+      ? [Math.round(seconds / HOUR), 'hour']
+      : seconds < WEEK
+      ? [Math.round(seconds / DAY), 'day']
+      : seconds < MONTH
+      ? [Math.round(seconds / WEEK), 'week']
+      : seconds < YEAR
+      ? [Math.round(seconds / MONTH), 'month']
+      : [Math.round(seconds / YEAR), 'year']
 
   const passDownTitle =
     typeof title === 'undefined'
