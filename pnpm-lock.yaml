@@ -72,8 +72,8 @@ importers:
         specifier: ^0.28.0
         version: 0.28.0(eslint@8.57.1)(prettier-plugin-hermes-parser@0.28.0(prettier@2.8.8))(prettier@2.8.8)
       flow-bin:
-        specifier: ^0.264.0
-        version: 0.264.0
+        specifier: ^0.267.0
+        version: 0.267.0
       hermes-eslint:
         specifier: ^0.28.0
         version: 0.28.0
@@ -1787,8 +1787,8 @@ packages:
     peerDependencies:
       prettier: ^3.0.0 || ^2.7.1
 
-  flow-bin@0.264.0:
-    resolution: {integrity: sha512-9sEmxu7TuV2ZXOwSBwa3rPVxA0rMuxzBkzZVZ7Elmu8f4HzC7/+6E2yq/zya+AGLDyIxzZNP38fbXRiBYkUD2Q==}
+  flow-bin@0.267.0:
+    resolution: {integrity: sha512-NsBcxdAqQauzgOaDf960M+eEnjcFS6FeMs93dEpkvQflwMlP4SRMdKQR8p5WzJJh07CXq9iQnxn+JjLN6kaLUw==}
     engines: {node: '>=0.10.0'}
     hasBin: true
 
@@ -5164,7 +5164,7 @@ snapshots:
       - prettier-plugin-hermes-parser
       - supports-color
 
-  flow-bin@0.264.0: {}
+  flow-bin@0.267.0: {}
 
   flow-enums-runtime@0.0.6: {}
 

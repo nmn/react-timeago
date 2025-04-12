@@ -14,7 +14,7 @@ export type Props = $ReadOnly<{
   /** Maximum time between re-renders in seconds. The component should update at least once every `x` seconds */
   maxPeriod?: number,
   /** The container to render the string into. You could use a string like `span` or a custom component */
-  component?: string | React.ComponentType<mixed>,
+  component?: string | React.ComponentType<{ ... }>,
   /**
    * A title used for setting the title attribute if a <time> HTML Element is used.
    */
