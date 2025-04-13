@@ -2,10 +2,16 @@
 
 import type { Formatter, Suffix, Unit } from './types'
 
-export default (value: number, _unit: Unit, suffix: Suffix): string => {
+const defaultFormatter: Formatter = (
+  value: number,
+  _unit: Unit,
+  suffix: string,
+): string => {
   const unit = value !== 1 ? _unit + 's' : _unit
   return value + ' ' + unit + ' ' + suffix
 }
+
+export default defaultFormatter
 
 export type IntlFormatterOptions = $ReadOnly<{
   locale?: void | string,
@@ -16,7 +22,7 @@ export type IntlFormatterOptions = $ReadOnly<{
 }>
 
 export const makeIntlFormatter: (IntlFormatterOptions) => Formatter =
-  ({ locale, ...options } = {}) =>
+  ({ locale, ...options }) =>
   (value, unit, suffix) => {
     const RelativeTimeFormat = Intl.RelativeTimeFormat
     if (!RelativeTimeFormat) {
