@@ -1,5 +1,15 @@
 # Changelog
 
+#### v8.1.0
+- Fixed bug where `nextFormatter` no longer worked without passing arguments
+  - Calling `nextFormatter()` without arguments should work once again.
+
+#### v8.0.0
+- Code overhaul
+  - Moved from `npm` to `pnpm`
+- Support React 19.x
+- Minor fixes
+
 #### v7.1.0
 - Use Intl to render persian number for farsi languages
 - Looking for help testing the results and then doing the same for Arabic
