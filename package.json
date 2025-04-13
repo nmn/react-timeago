@@ -9,8 +9,14 @@
       "import": "./es6/index.js",
       "require": "./lib/index.js"
     },
-    "./lib/language-strings/*": "./lib/language-strings/*.js",
-    "./lib/formatters/*": "./lib/formatters/*.js"
+    "./lib/language-strings/*": {
+      "import": "./es6/language-strings/*",
+      "require": "./lib/language-strings/*"
+    },
+    "./lib/formatters/buildFormatter": {
+      "import": "./es6/formatters/buildFormatter.js",
+      "require": "./lib/formatters/buildFormatter.js"
+    }
   },
   "module": "es6/index.js",
   "scripts": {
