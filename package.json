@@ -9,8 +9,30 @@
       "import": "./es6/index.js",
       "require": "./lib/index.js"
     },
-    "./lib/language-strings/*": "./lib/language-strings/*.js",
-    "./lib/formatters/*": "./lib/formatters/*.js"
+    "./dateParser": {
+      "import": "./es6/dateParser.js",
+      "require": "./lib/dateParser.js"
+    },
+    "./defaultFormatter": {
+      "import": "./es6/defaultFormatter.js",
+      "require": "./lib/defaultFormatter.js"
+    },
+    "./language-strings/*": {
+      "import": "./es6/language-strings/*.js",
+      "require": "./lib/language-strings/*.js"
+    },
+    "./formatters/buildFormatter": {
+      "import": "./es6/formatters/buildFormatter.js",
+      "require": "./lib/formatters/buildFormatter.js"
+    },
+    "./lib/language-strings/*": {
+      "import": "./es6/language-strings/*.js",
+      "require": "./lib/language-strings/*.js"
+    },
+    "./lib/formatters/buildFormatter": {
+      "import": "./es6/formatters/buildFormatter.js",
+      "require": "./lib/formatters/buildFormatter.js"
+    }
   },
   "module": "es6/index.js",
   "scripts": {
