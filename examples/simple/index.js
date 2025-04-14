@@ -7,7 +7,7 @@ import { makeIntlFormatter } from '../../src/defaultFormatter'
 
 const appElement = document.getElementById('app')
 
-function Bare({ date }: { date: Date }) {
+function Bare({ date }: { date: number }) {
   return (
     <>
       You opened this page <TimeAgo date={date} />
@@ -21,7 +21,7 @@ const intlFormatter = makeIntlFormatter({
   numeric: 'auto',
 })
 
-function Intl({ date }: { date: Date }) {
+function Intl({ date }: { date: number }) {
   const [locale, setLocale] = React.useState('en')
   const [style, setStyle] = React.useState('long')
   const [numeric, setNumeric] = React.useState('auto')
