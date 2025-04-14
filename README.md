@@ -15,17 +15,46 @@ A simple time-ago component for [React].
 React.createElement(TimeAgo, {date: 'Aug 29, 2014'})
 ```
 
+## Intl Formatter
+
+Since v8.2.0 `react-timeago` comes with a formatter that uses the `Intl` that is built-in to Javascript
+to create relative time format in any locale you want with little configuration.
+
+However, this option is not the default. (The default is a custom formatter for English). You can use it
+by manually importing the `makeIntlFormatter` function.
+
+```tsx
+import TimeAgo from 'react-timeago'
+import {makeIntlFormatter} from 'react-timeago/defaultFormatter';
+
+const intlFormatter = makeIntlFormatter({
+  locale: undefined, // string
+  localeMatcher?: 'best fit', // 'lookup' | 'best fit',
+  numberingSystem?: 'latn' // Intl$NumberingSystem such as 'arab', 'deva', 'hebr' etc.
+  style?: 'long', // 'long' | 'short' | 'narrow',
+  numeric?: 'auto', //  'always' | 'auto', Using 'auto` will convert "1 day ago" to "yesterday" etc.
+});
+
+<TimeAgo date='Feb 1, 1966' formatter={intlFormatter} />
+```
+
+`makeIntlFormatter` can be called without any arguments at all and you'll get good defaults.
+
+This new formatter should be your first choice when using `react-timeago` going forward as long as it
+has the [browser support](https://caniuse.com/mdn-javascript_builtins_intl_relativetimeformat_format) you need.
+
 ## Language support
 
-Since v3.1.0 `react-timeago` now comes with support for a large number of languages out of the box.
+Since v3.1.0 `react-timeago` comes with support for a large number of languages out of the box.
 This support is based on the string objects taken from `jquery-timeago` and then updated with the help of the
 community. Many thanks to all those who contribute language support.
 
 ### Usage
+
 To use any of the languages provided, other than the default english, you will have to
 import the language strings and build a custom formatter.
 
-```jsx
+```tsx
 import TimeAgo from 'react-timeago'
 import frenchStrings from 'react-timeago/lib/language-strings/fr'
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
