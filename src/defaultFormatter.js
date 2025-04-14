@@ -30,7 +30,6 @@ export const makeIntlFormatter: (IntlFormatterOptions) => Formatter =
     }
 
     const rtf = new RelativeTimeFormat(locale ?? undefined, {
-      numeric: 'auto',
       style: 'long',
       numeric: 'auto',
       ...options,
