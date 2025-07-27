@@ -1,5 +1,8 @@
 # Changelog
 
+#### v8.3.0
+- Exported Formatter, Unit, and Suffix types which were present in v7
+
 #### v8.1.0
 - Fixed bug where `nextFormatter` no longer worked without passing arguments
   - Calling `nextFormatter()` without arguments should work once again.
