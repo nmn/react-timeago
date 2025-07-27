@@ -30,7 +30,7 @@ import {makeIntlFormatter} from 'react-timeago/defaultFormatter';
 const intlFormatter = makeIntlFormatter({
   locale: undefined, // string
   localeMatcher?: 'best fit', // 'lookup' | 'best fit',
-  numberingSystem?: 'latn' // Intl$NumberingSystem such as 'arab', 'deva', 'hebr' etc.
+  numberingSystem?: 'latn', // Intl$NumberingSystem such as 'arab', 'deva', 'hebr' etc.
   style?: 'long', // 'long' | 'short' | 'narrow',
   numeric?: 'auto', //  'always' | 'auto', Using 'auto` will convert "1 day ago" to "yesterday" etc.
 });
