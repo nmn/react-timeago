@@ -2,8 +2,8 @@
 
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import dateParser from './dateParser'
-import defaultFormatter from './defaultFormatter'
+import timeAgo from 'native-time-ago'
+
 export type { Formatter, Suffix, Unit } from './types'
 
 export type Props = $ReadOnly<{
@@ -29,16 +29,9 @@ export type Props = $ReadOnly<{
    * date: string | number | Date		 +   * rendering.
    */
   now?: () => number,
+  locale?: string,
   ...
 }>
-
-// Just some simple constants for readability
-const MINUTE = 60
-const HOUR = MINUTE * 60
-const DAY = HOUR * 24
-const WEEK = DAY * 7
-const MONTH = DAY * 30
-const YEAR = DAY * 365
 
 const defaultNow = () => Date.now()
 
@@ -48,9 +41,10 @@ export default function TimeAgo({
   component = 'time',
   live = true,
   minPeriod = 0,
-  maxPeriod = WEEK,
+  maxPeriod = 60 * 60 * 24 * 7,
   title,
   now = defaultNow,
+  locale = 'en',
   ...passDownProps
 }: Props): null | React.MixedElement {
   const [timeNow, setTimeNow] = useState(now())
@@ -59,105 +53,39 @@ export default function TimeAgo({
     if (!live) {
       return
     }
-    const tick = (): 0 | TimeoutID => {
-      const then = dateParser(date).valueOf()
-      if (!then) {
-        console.warn('[react-timeago] Invalid Date provided')
-        return 0
-      }
-      const seconds = Math.round(Math.abs(timeNow - then) / 1000)
-
-      const unboundPeriod =
-        seconds < MINUTE
-          ? 1000
-          : seconds < HOUR
-          ? 1000 * MINUTE
-          : seconds < DAY
-          ? 1000 * HOUR
-          : 1000 * WEEK
-
-      const period = Math.min(
-        Math.max(unboundPeriod, minPeriod * 1000),
-        maxPeriod * 1000,
-      )
-
-      if (period) {
-        return setTimeout(() => {
-          setTimeNow(now())
-        }, period)
-      }
-
-      return 0
-    }
-    const timeoutId = tick()
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
-    }
-  }, [date, live, maxPeriod, minPeriod, now, timeNow])
+    
+    const intervalId = setInterval(() => {
+      setTimeNow(now())
+    }, 60000)
+    
+    return () => clearInterval(intervalId)
+  }, [live, now])
 
   useEffect(() => {
     setTimeNow(now())
-  }, [date])
+  }, [date, now])
 
   const Komponent = component
-  const then = dateParser(date).valueOf()
-  if (!then) {
+  const dateObj = date instanceof Date ? date : new Date(date)
+  const then = dateObj.getTime()
+  
+  if (!then || isNaN(then)) {
     return null
   }
-
-  const seconds = Math.round(Math.abs(timeNow - then) / 1000)
-  const suffix = then < timeNow ? 'ago' : 'from now'
-
-  const [value, unit] =
-    seconds < MINUTE
-      ? [Math.round(seconds), 'second']
-      : seconds < HOUR
-      ? [Math.round(seconds / MINUTE), 'minute']
-      : seconds < DAY
-      ? [Math.round(seconds / HOUR), 'hour']
-      : seconds < WEEK
-      ? [Math.round(seconds / DAY), 'day']
-      : seconds < MONTH
-      ? [Math.round(seconds / WEEK), 'week']
-      : seconds < YEAR
-      ? [Math.round(seconds / MONTH), 'month']
-      : [Math.round(seconds / YEAR), 'year']
 
   const passDownTitle =
     typeof title === 'undefined'
       ? typeof date === 'string'
         ? date
-        : dateParser(date).toISOString().substring(0, 16).replace('T', ' ')
+        : dateObj.toISOString().substring(0, 16).replace('T', ' ')
       : title
 
   const spreadProps =
     Komponent === 'time'
-      ? { ...passDownProps, dateTime: dateParser(date).toISOString() }
+      ? { ...passDownProps, dateTime: dateObj.toISOString() }
       : passDownProps
 
-  const nextFormatter = (
-    value: number = value,
-    unit: Unit = unit,
-    suffix: Suffix = suffix,
-    epochMilliseconds: number = then,
-    nextFormatter: Formatter = defaultFormatter,
-    now: () => number = now,
-  ) =>
-    defaultFormatter(value, unit, suffix, epochMilliseconds, nextFormatter, now)
-  const effectiveFormatter: Formatter = formatter || defaultFormatter
-
-  let content
-  try {
-    content = effectiveFormatter(value, unit, suffix, then, nextFormatter, now)
-    if (!content) {
-      content = defaultFormatter(value, unit, suffix, then, nextFormatter, now)
-    }
-  } catch (error) {
-    console.error('[react-timeago] Formatter threw an error:', error)
-    content = defaultFormatter(value, unit, suffix, then, nextFormatter, now)
-  }
+  const content = timeAgo(date, locale)
 
   return (
     <Komponent {...spreadProps} title={passDownTitle}>

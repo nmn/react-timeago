@@ -2,7 +2,12 @@
 
 A simple time-ago component for [React].
 
-## Usage:
+**Now uses native-time-ago** - a zero-dependency library using the native Intl.RelativeTimeFormat API.
+
+## Benefits:
+- ✅ Zero dependencies (no more bundled locale files)
+- ✅ Supports 100+ languages automatically via native browser API
+- ✅ No locale maintenance needed - translations improve as browsers update
 
 `react-timeago` is a very simple component that takes a `date` prop and returns a `time` element with live updating date in a time-ago format. The date will update only as often as needed. For timestamps below a minute away — every second, for timestamps up to 5 minutes away — every minute, and so on.
 

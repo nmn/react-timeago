@@ -66,8 +66,11 @@
     "url": "https://github.com/nmn/react-timeago/issues"
   },
   "homepage": "https://github.com/nmn/react-timeago",
-  "peerDependencies": {
+"peerDependencies": {
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "native-time-ago": "1.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.27.0",
