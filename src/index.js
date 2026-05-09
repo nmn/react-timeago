@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import dateParser from './dateParser'
 import defaultFormatter from './defaultFormatter'
 export type { Formatter, Suffix, Unit } from './types'
+import type { Formatter } from './types'
 
 export type Props = $ReadOnly<{
   /** If the component should update itself over time */
