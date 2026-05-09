@@ -1,5 +1,8 @@
 # Changelog
 
+#### v8.3.1
+- Add back missing import for `Formatter` type
+
 #### v8.3.0
 - Exported Formatter, Unit, and Suffix types which were present in v7
 
